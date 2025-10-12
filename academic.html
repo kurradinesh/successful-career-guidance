@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Academic Career Paths After 10th</title>
+  <style>
+    /* ---------- GENERAL STYLING ---------- */
+    body {
+      font-family: 'Segoe UI', Tahoma, sans-serif;
+      margin: 0;
+      background: linear-gradient(135deg, #e3f2fd, #bbdefb);
+      overflow-x: hidden;
+    }
+
+    header {
+      background: linear-gradient(90deg, #004080, #007bff);
+      color: white;
+      text-align: center;
+      padding: 25px 15px;
+      border-bottom-left-radius: 30px;
+      border-bottom-right-radius: 30px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+      animation: slideDown 0.8s ease;
+      position: relative;
+    }
+
+    header h1 {
+      font-size: 26px;
+      margin-bottom: 6px;
+    }
+
+    header p {
+      font-size: 16px;
+      color: #dff3ff;
+    }
+
+    /* ---------- FLEX SECTION ---------- */
+    section {
+      display: flex;
+      justify-content: center;
+      align-items: stretch;
+      gap: 18px;
+      padding: 30px 40px;
+      flex-wrap: nowrap;
+      overflow-x: auto;
+      animation: fadeIn 1s ease-in;
+    }
+
+    section::-webkit-scrollbar {
+      height: 6px;
+    }
+    section::-webkit-scrollbar-thumb {
+      background: #007bff;
+      border-radius: 10px;
+    }
+
+    /* ---------- CARD STYLING (smaller) ---------- */
+    a.path {
+      flex: 0 0 21%;
+      display: block;
+      background: white;
+      padding: 18px;
+      border-radius: 12px;
+      text-decoration: none;
+      color: black;
+      box-shadow: 0 3px 12px rgba(0, 0, 0, 0.1);
+      transition: all 0.3s ease;
+      transform: translateY(0);
+      border: 2px solid transparent;
+      position: relative;
+      overflow: hidden;
+      min-width: 200px;
+    }
+
+    a.path:hover {
+      transform: translateY(-8px) scale(1.02);
+      border: 2px solid #007bff;
+      box-shadow: 0 6px 18px rgba(0, 123, 255, 0.2);
+    }
+
+    a.path h2 {
+      margin-top: 0;
+      color: #004080;
+      font-size: 17px;
+    }
+
+    a.path p {
+      font-size: 13.5px;
+      color: #333;
+      line-height: 1.5;
+    }
+
+    /* ---------- BUTTONS ---------- */
+    .home-top {
+      position: absolute;
+      top: 10px;
+      right: 20px;
+    }
+
+    .home-bottom {
+      position: fixed;
+      bottom: 18px;
+      left: 18px;
+    }
+
+    .home-btn {
+      background: linear-gradient(90deg, #004080, #007bff);
+      color: white;
+      padding: 10px 18px;
+      border-radius: 25px;
+      text-decoration: none;
+      font-weight: bold;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+      transition: all 0.3s ease;
+      font-size: 14px;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .home-btn:hover {
+      background: linear-gradient(90deg, #0056cc, #00aaff);
+      transform: scale(1.05);
+    }
+
+    /* ---------- FOOTER ---------- */
+    footer {
+      text-align: center;
+      background: #004080;
+      color: white;
+      padding: 14px;
+      font-size: 13px;
+      border-top-left-radius: 20px;
+      border-top-right-radius: 20px;
+      margin-top: 30px;
+      box-shadow: 0 -3px 10px rgba(0,0,0,0.2);
+    }
+
+    /* ---------- ANIMATIONS ---------- */
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(15px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes slideDown {
+      from { transform: translateY(-60px); opacity: 0; }
+      to { transform: translateY(0); opacity: 1; }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>Academic Career Paths After 10th</h1>
+    <p>Choose your intermediate stream wisely</p>
+    <a href="index.html" class="home-btn home-top">🏠 Home</a>
+  </header>
+
+  <section>
+    <a href="mpc.html" class="path">
+      <h2>📘 MPC (Maths, Physics, Chemistry)</h2>
+      <p>Careers: Engineering, Architecture, Defence, Research, Space & Technology fields.</p>
+    </a>
+
+    <a href="bipc.html" class="path">
+      <h2>🧬 BiPC (Biology, Physics, Chemistry)</h2>
+      <p>Careers: MBBS, BDS, B.Pharmacy, Nursing, Agriculture, Biotechnology, Life Sciences.</p>
+    </a>
+
+    <a href="cec.html" class="path">
+      <h2>📊 CEC (Civics, Economics, Commerce)</h2>
+      <p>Careers: B.Com, CA, CS, Law, Business Management, Banking, Public Administration.</p>
+    </a>
+
+    <a href="mec.html" class="path">
+      <h2>📈 MEC (Maths, Economics, Commerce)</h2>
+      <p>Careers: B.Com, Economics, CA, Statistics, Actuarial Science, Finance, Business Analytics.</p>
+    </a>
+  </section>
+
+  <footer>
+    © 2025 Career Guidance Portal | Designed with 💙 by Dinesh
+  </footer>
+
+  <a href="after10th.html" class="home-btn home-bottom">⬅ Back</a>
+
+</body>
+</html>

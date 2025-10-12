@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Career Options After 10th</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      background: #f4f6f9;
+    }
+
+    header {
+      background: #004080;
+      color: white;
+      text-align: center;
+      padding: 25px;
+    }
+
+    #welcomeUser {
+      font-size: 20px;
+      margin-top: 8px;
+      color: #d1ecff;
+    }
+
+    .container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px;
+      padding: 30px;
+    }
+
+    .card {
+      background: white;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      padding: 20px;
+      text-align: center;
+      transition: transform 0.3s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-8px);
+    }
+
+    .card h2 {
+      margin-top: 0;
+      color: #004080;
+    }
+
+    .card p {
+      font-size: 16px;
+      margin: 10px 0 20px;
+    }
+
+    .card a {
+      text-decoration: none;
+      background: #004080;
+      color: white;
+      padding: 10px 20px;
+      border-radius: 25px;
+      font-weight: bold;
+      transition: background 0.3s ease;
+    }
+
+    .card a:hover {
+      background: #0066cc;
+    }
+
+    footer {
+      background: #004080;
+      color: white;
+      text-align: center;
+      padding: 15px;
+      margin-top: 30px;
+    }
+
+    .home a {
+      position: fixed;
+      bottom: 20px;
+      left: 20px;
+      background: #004080;
+      color: white;
+      padding: 10px 20px;
+      border-radius: 10px;
+      text-decoration: none;
+      font-weight: bold;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.4);
+      transition: all 0.3s ease;
+    }
+
+    .home a:hover {
+      background: #0066cc;
+      transform: scale(1.05);
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Career Options After 10th</h1>
+    <div id="welcomeUser"></div>
+  </header>
+
+  <main class="container">
+    <div class="card">
+      <h2>📘 Academic Path</h2>
+      <p>Explore MPC, BiPC, CEC, MEC and their career opportunities.</p>
+      <a href="academic.html">Explore</a>
+    </div>
+
+    <div class="card">
+      <h2>🎨 Non-Academic Path</h2>
+      <p>Discover skills, vocational training, arts, and creative fields.</p>
+      <a href="nonacademic.html">Explore</a>
+    </div>
+
+    <div class="card">
+      <h2>🚀 Trending Careers</h2>
+      <p>AI, Data Science, Cybersecurity, Digital Marketing, and more.</p>
+      <a href="trending.html">Explore</a>
+    </div>
+  </main>
+
+  <footer>
+    <p>© 2025 Career Guidance Portal</p>
+  </footer> 
+
+  <div class="home">
+    <a href="index.html">🏠 Home</a>
+  </div>
+
+  <script>
+    const userName = localStorage.getItem('userName');
+    if (userName) {
+      document.getElementById('welcomeUser').innerText = `Welcome, ${userName} 👋`;
+    } else {
+      document.getElementById('welcomeUser').innerText = `Welcome, Guest`;
+    }
+  </script>
+</body>
+</html>

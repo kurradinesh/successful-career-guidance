@@ -1,0 +1,671 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CEC Career Path Explorer</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #8e44ad;
+            --secondary: #9b59b6;
+            --accent: #e74c3c;
+            --dark: #5e3370;
+            --light: #f5eef8;
+            --ca: #8e44ad;
+            --law: #3498db;
+            --business: #2ecc71;
+            --other: #f39c12;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #f5eef8 0%, #e8d4f2 100%);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            overflow-x: hidden;
+        }
+        
+        /* Header Styles */
+        header {
+            background: linear-gradient(to right, var(--primary), var(--secondary));
+            color: white;
+            padding: 25px 70px 25px 25px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+        
+        h1 {
+            font-size: 2.2rem;
+            margin-bottom: 10px;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .subtitle {
+            font-size: 1.1rem;
+            opacity: 0.9;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .home-button {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background-color: rgba(255, 255, 255, 0.2);
+            color: white;
+            border: 2px solid white;
+            padding: 10px 20px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            z-index: 3;
+        }
+        
+        .home-button:hover {
+            background-color: white;
+            color: var(--primary);
+            transform: translateY(-2px);
+        }
+        
+        .floating-circles {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            z-index: 1;
+        }
+        
+        .circle {
+            position: absolute;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.1);
+            animation: float 15s infinite linear;
+        }
+        
+        .circle:nth-child(1) {
+            width: 80px;
+            height: 80px;
+            top: 10%;
+            left: 20%;
+            animation-delay: 0s;
+        }
+        
+        .circle:nth-child(2) {
+            width: 100px;
+            height: 100px;
+            top: 60%;
+            left: 70%;
+            animation-delay: -5s;
+        }
+        
+        .circle:nth-child(3) {
+            width: 60px;
+            height: 60px;
+            top: 40%;
+            left: 40%;
+            animation-delay: -10s;
+        }
+        
+        @keyframes float {
+            0% {
+                transform: translateY(0) rotate(0deg);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-1000px) rotate(720deg);
+                opacity: 0;
+            }
+        }
+        
+        /* Main Content */
+        .container {
+            max-width: 1400px;
+            width: 100%;
+            margin: 20px auto;
+            padding: 0 20px;
+            flex: 1;
+        }
+        
+        .path-container {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+        
+        .path-card {
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            cursor: pointer;
+            position: relative;
+            background: white;
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+        }
+        
+        .path-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+        }
+        
+        .card-header {
+            padding: 20px;
+            color: white;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            font-size: 1.1rem;
+        }
+        
+        .card-header i {
+            font-size: 1.8rem;
+        }
+        
+        .ca .card-header {
+            background: var(--ca);
+        }
+        
+        .law .card-header {
+            background: var(--law);
+        }
+        
+        .business .card-header {
+            background: var(--business);
+        }
+        
+        .other .card-header {
+            background: var(--other);
+        }
+        
+        .card-content {
+            padding: 20px;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .card-content h3 {
+            margin-bottom: 15px;
+            color: var(--dark);
+            font-size: 1.3rem;
+        }
+        
+        .description {
+            margin-bottom: 15px;
+            color: #555;
+            line-height: 1.5;
+            font-size: 0.95rem;
+        }
+        
+        .eligibility {
+            background: #f8f9fa;
+            padding: 12px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            font-size: 0.9rem;
+            border-left: 4px solid var(--accent);
+            line-height: 1.5;
+        }
+        
+        .options-list {
+            list-style: none;
+            flex: 1;
+        }
+        
+        .options-list li {
+            padding: 10px 0;
+            border-bottom: 1px solid #eee;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            transition: all 0.3s ease;
+        }
+        
+        .options-list li:hover {
+            background: #f5f5f5;
+            padding-left: 10px;
+        }
+        
+        .checkbox {
+            width: 20px;
+            height: 20px;
+            border-radius: 4px;
+            border: 2px solid #ddd;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            flex-shrink: 0;
+        }
+        
+        .checked .checkbox {
+            background: var(--secondary);
+            border-color: var(--secondary);
+        }
+        
+        .checked .checkbox::after {
+            content: "✓";
+            color: white;
+            font-weight: bold;
+        }
+        
+        .exam-link {
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.9rem;
+        }
+        
+        .exam-link:hover {
+            color: var(--dark);
+            text-decoration: underline;
+        }
+        
+        .exam-link i {
+            font-size: 0.8rem;
+        }
+        
+        /* Footer Navigation */
+        footer {
+            background: linear-gradient(to right, var(--primary), var(--secondary));
+            color: white;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 30px;
+            margin-top: auto;
+            box-shadow: 0 -4px 12px rgba(0, 0, 0, 0.1);
+        }
+        
+        .nav-btn {
+            padding: 12px 25px;
+            border: none;
+            border-radius: 8px;
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+        }
+        
+        .nav-btn:hover {
+            background: white;
+            color: var(--primary);
+            transform: translateY(-2px);
+        }
+        
+        .back-btn {
+            order: 1;
+        }
+        
+        .next-btn {
+            order: 2;
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 1200px) {
+            .path-container {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        
+        @media (max-width: 768px) {
+            header {
+                padding: 20px 60px 20px 20px;
+            }
+            
+            h1 {
+                font-size: 1.8rem;
+            }
+            
+            .path-container {
+                grid-template-columns: 1fr;
+            }
+            
+            footer {
+                flex-direction: column;
+                gap: 15px;
+            }
+            
+            .nav-btn {
+                width: 100%;
+                justify-content: center;
+            }
+        }
+        
+        /* Progress Bar */
+        .progress-container {
+            width: 100%;
+            background-color: #e0e0e0;
+            border-radius: 10px;
+            margin: 20px 0;
+            overflow: hidden;
+            height: 10px;
+        }
+        
+        .progress-bar {
+            height: 100%;
+            background: linear-gradient(to right, var(--primary), var(--secondary));
+            width: 0%;
+            transition: width 0.5s ease;
+            border-radius: 10px;
+        }
+        
+        .progress-text {
+            text-align: center;
+            font-weight: 500;
+            color: var(--dark);
+            margin-bottom: 10px;
+        }
+        
+        /* Animation for cards */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .animate-card {
+            animation: fadeInUp 0.6s ease forwards;
+            opacity: 0;
+        }
+        
+        .card-1 { animation-delay: 0.1s; }
+        .card-2 { animation-delay: 0.2s; }
+        .card-3 { animation-delay: 0.3s; }
+        .card-4 { animation-delay: 0.4s; }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="floating-circles">
+            <div class="circle"></div>
+            <div class="circle"></div>
+            <div class="circle"></div>
+        </div>
+        <h1>CEC Career Path Explorer</h1>
+        <div class="subtitle">Commerce & Humanities options after CEC</div>
+        <button class="home-button" onclick="location.href='index.html'">
+            <i class="fas fa-home"></i> Home
+        </button>
+    </header>
+    
+    <div class="container">
+        <div class="progress-text">Your Progress: <span id="progress-percent">0%</span></div>
+        <div class="progress-container">
+            <div class="progress-bar" id="progress-bar"></div>
+        </div>
+        
+        <div class="path-container">
+            <!-- Chartered Accountant -->
+            <div class="path-card ca animate-card card-1">
+                <div class="card-header">
+                    <i class="fas fa-file-invoice-dollar"></i>
+                    <span>Chartered Accountant (CA)</span>
+                </div>
+                <div class="card-content">
+                    <h3>Finance Professional</h3>
+                    <p class="description">CA Foundation, Intermediate & Final.</p>
+                    <div class="eligibility">
+                        <strong>Eligibility:</strong> 10+2 pass (any percentage).
+                    </div>
+                    <ul class="options-list">
+                        <li>
+                            <div class="checkbox"></div>
+                            <a href="https://www.icai.org" target="_blank" class="exam-link">
+                                <i class="fas fa-external-link-alt"></i> CA Foundation
+                            </a>
+                        </li>
+                        <li>
+                            <div class="checkbox"></div>
+                            <a href="https://www.icai.org" target="_blank" class="exam-link">
+                                <i class="fas fa-external-link-alt"></i> CA Intermediate
+                            </a>
+                        </li>
+                        <li>
+                            <div class="checkbox"></div>
+                            <a href="https://www.icai.org" target="_blank" class="exam-link">
+                                <i class="fas fa-external-link-alt"></i> CA Final
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            
+            <!-- Law -->
+            <div class="path-card law animate-card card-2">
+                <div class="card-header">
+                    <i class="fas fa-gavel"></i>
+                    <span>Law (CLAT, LAWCET)</span>
+                </div>
+                <div class="card-content">
+                    <h3>Legal Careers</h3>
+                    <p class="description">BA LLB, BBA LLB, B.Com LLB.</p>
+                    <div class="eligibility">
+                        <strong>Eligibility:</strong> 45% in 10+2 (General), 40% (SC/ST).
+                    </div>
+                    <ul class="options-list">
+                        <li>
+                            <div class="checkbox"></div>
+                            <a href="https://consortiumofnlus.ac.in/" target="_blank" class="exam-link">
+                                <i class="fas fa-external-link-alt"></i> BA LLB (CLAT)
+                            </a>
+                        </li>
+                        <li>
+                            <div class="checkbox"></div>
+                            <a href="https://lawcet.apsche.ap.gov.in/" target="_blank" class="exam-link">
+                                <i class="fas fa-external-link-alt"></i> BBA LLB (AP LAWCET / State CET)
+                            </a>
+                        </li>
+                        <li>
+                            <div class="checkbox"></div>
+                            <a href="https://lawcet.apsche.ap.gov.in/" target="_blank" class="exam-link">
+                                <i class="fas fa-external-link-alt"></i> B.Com LLB (AP LAWCET / State CET)
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            
+            <!-- Business & Management -->
+            <div class="path-card business animate-card card-3">
+                <div class="card-header">
+                    <i class="fas fa-chart-line"></i>
+                    <span>Business & Management</span>
+                </div>
+                <div class="card-content">
+                    <h3>Management Careers</h3>
+                    <p class="description">BBA, BBM, Hotel Management, Event Management.</p>
+                    <div class="eligibility">
+                        <strong>Eligibility:</strong> 10+2 pass, 50% for most colleges.
+                    </div>
+                    <ul class="options-list">
+                        <li>
+                            <div class="checkbox"></div>
+                            <a href="https://www.ugc.ac.in/bba-admission" target="_blank" class="exam-link">
+                                <i class="fas fa-external-link-alt"></i> BBA (UG Admissions / State CET)
+                            </a>
+                        </li>
+                        <li>
+                            <div class="checkbox"></div>
+                            <a href="https://www.ugc.ac.in/bbm-admission" target="_blank" class="exam-link">
+                                <i class="fas fa-external-link-alt"></i> BBM (UG Admissions / State CET)
+                            </a>
+                        </li>
+                        <li>
+                            <div class="checkbox"></div>
+                            <a href="https://www.ihmchennai.gov.in/admissions" target="_blank" class="exam-link">
+                                <i class="fas fa-external-link-alt"></i> Hotel Management (IHM / NCHMCT JEE)
+                            </a>
+                        </li>
+                        <li>
+                            <div class="checkbox"></div>
+                            <a href="https://www.eventscouncil.in/admissions" target="_blank" class="exam-link">
+                                <i class="fas fa-external-link-alt"></i> Event Management (State / Private Colleges)
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            
+            <!-- Other Degrees -->
+            <div class="path-card other animate-card card-4">
+                <div class="card-header">
+                    <i class="fas fa-book-open"></i>
+                    <span>Other Degrees</span>
+                </div>
+                <div class="card-content">
+                    <h3>Arts & Humanities</h3>
+                    <p class="description">BA (Economics, Political Science, Public Administration), Journalism, Mass Communication.</p>
+                    <div class="eligibility">
+                        <strong>Eligibility:</strong> 10+2 pass, 40–50% aggregate.
+                    </div>
+                    <ul class="options-list">
+                        <li>
+                            <div class="checkbox"></div>
+                            <a href="https://admission.uod.ac.in/" target="_blank" class="exam-link">
+                                <i class="fas fa-external-link-alt"></i> BA Economics
+                            </a>
+                        </li>
+                        <li>
+                            <div class="checkbox"></div>
+                            <a href="https://admission.uod.ac.in/" target="_blank" class="exam-link">
+                                <i class="fas fa-external-link-alt"></i> BA Political Science
+                            </a>
+                        </li>
+                        <li>
+                            <div class="checkbox"></div>
+                            <a href="https://admission.uod.ac.in/" target="_blank" class="exam-link">
+                                <i class="fas fa-external-link-alt"></i> BA Public Administration
+                            </a>
+                        </li>
+                        <li>
+                            <div class="checkbox"></div>
+                            <a href="https://www.iimc.gov.in/" target="_blank" class="exam-link">
+                                <i class="fas fa-external-link-alt"></i> Journalism / Mass Communication
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <footer>
+        <button class="nav-btn back-btn" onclick="goBack()">
+            <i class="fas fa-arrow-left"></i> Back
+        </button>
+        <button class="nav-btn next-btn" onclick="goNext()">
+            Next <i class="fas fa-arrow-right"></i>
+        </button>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Add click functionality to checkboxes
+            const checkboxes = document.querySelectorAll('.checkbox');
+            checkboxes.forEach(checkbox => {
+                checkbox.addEventListener('click', function() {
+                    const listItem = this.closest('li');
+                    listItem.classList.toggle('checked');
+                    updateProgress();
+                    
+                    // Add pulse animation when checked
+                    if (listItem.classList.contains('checked')) {
+                        listItem.style.animation = 'pulse 0.5s';
+                        setTimeout(() => {
+                            listItem.style.animation = '';
+                        }, 500);
+                    }
+                });
+            });
+            
+            // Initialize progress
+            updateProgress();
+        });
+        
+        // Navigation functions
+        function goNext() {
+            localStorage.setItem('userProgress', 'CEC completed');
+            alert('Moving to next section...');
+            // window.location.href = 'Next.html';
+        }
+        
+        function goBack() {
+            alert('Going back to previous page...');
+            // window.location.href = 'academic.html';
+        }
+        
+        // Progress tracking
+        function updateProgress() {
+            const totalItems = document.querySelectorAll('.checkbox').length;
+            const checkedItems = document.querySelectorAll('.checked').length;
+            const progressPercent = Math.round((checkedItems / totalItems) * 100);
+            
+            document.getElementById('progress-percent').textContent = `${progressPercent}%`;
+            document.getElementById('progress-bar').style.width = `${progressPercent}%`;
+            
+            // Change progress bar color based on completion
+            const progressBar = document.getElementById('progress-bar');
+            if (progressPercent < 25) {
+                progressBar.style.background = '#e74c3c';
+            } else if (progressPercent < 50) {
+                progressBar.style.background = '#f39c12';
+            } else if (progressPercent < 75) {
+                progressBar.style.background = '#f1c40f';
+            } else {
+                progressBar.style.background = 'linear-gradient(to right, var(--primary), var(--secondary))';
+            }
+        }
+        
+        // Add pulse animation for checked items
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes pulse {
+                0% { transform: scale(1); }
+                50% { transform: scale(1.02); }
+                100% { transform: scale(1); }
+            }
+        `;
+        document.head.appendChild(style);
+    function goBack() {
+      window.location.href = 'academic.html';
+    }
+  
+    </script>
+</body>
+</html>

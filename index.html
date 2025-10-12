@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Career Guidance Portal</title>
+  <style>
+    body {
+      background-image: url("https://media.istockphoto.com/id/535677723/vector/leadership.jpg?s=612x612&w=0&k=20&c=kzFB3FNFh3lcSBZhvs525cV9FSA40nZhQA-bSFWZoa8=");
+      background-repeat: no-repeat;
+      background-size: cover;
+      background-attachment: fixed;
+      font-family: 'Segoe UI', Tahoma, sans-serif;
+      margin: 0;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .top-bar {
+      position: absolute;
+      top: 15px;
+      right: 20px;
+      display: flex;
+      gap: 15px;
+    }
+
+    .top-bar button {
+      background: linear-gradient(90deg, #0072ff, #00c6ff);
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      font-size: 16px;
+      border-radius: 25px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .top-bar button:hover {
+      background: linear-gradient(90deg, #0056cc, #00aaff);
+      transform: scale(1.07);
+    }
+
+    .container {
+      background: rgba(255, 255, 255, 0.92);
+      padding: 40px;
+      border-radius: 20px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+      text-align: center;
+      width: 400px;
+      transition: all 0.5s ease;
+    }
+
+    .container img {
+      width: 120px;
+      border-radius: 20px;
+      margin-bottom: 15px;
+      animation: float 3s ease-in-out infinite;
+    }
+
+    h1 {
+      color: #222;
+      margin-bottom: 10px;
+      font-size: 32px;
+    }
+
+    p {
+      font-size: 17px;
+      margin-bottom: 25px;
+      color: #444;
+    }
+
+    .btn-main {
+      background: linear-gradient(90deg, #0072ff, #00c6ff);
+      color: white;
+      border: none;
+      padding: 14px 36px;
+      font-size: 18px;
+      border-radius: 30px;
+      cursor: pointer;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+      transition: all 0.3s ease;
+    }
+
+    .btn-main:hover {
+      background: linear-gradient(90deg, #0056cc, #00aaff);
+      transform: scale(1.08);
+    }
+
+    form {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+      text-align: left;
+    }
+
+    input {
+      padding: 12px;
+      border: 1px solid #aaa;
+      border-radius: 8px;
+      font-size: 15px;
+    }
+
+    input:focus {
+      border-color: #0072ff;
+      outline: none;
+    }
+
+    .hidden {
+      display: none;
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-8px); }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="top-bar">
+    <button onclick="showLogin()">Login</button>
+    <button onclick="showRegister()">Register</button>
+  </div>
+
+  <!-- Welcome Section -->
+  <div class="container" id="welcome">
+    <img src="https://risingkashmir.blr1.digitaloceanspaces.com/wp-content/uploads/2024/04/21222447/Image-View-1-15.png" alt="Career Logo">
+    <h1>Career Guidance Portal</h1>
+    <p>Your journey to the right career starts here</p>
+    <button class="btn-main" onclick="showRegister()">📝 Start Career Registration</button>
+  </div>
+
+  <!-- Register -->
+  <div class="container hidden" id="register">
+    <h1>Register</h1>
+    <form id="registerForm">
+      <input type="text" id="name" placeholder="Full Name" required>
+      <input type="email" id="email" placeholder="Email" required>
+      <input type="password" id="password" placeholder="Password" required>
+      <input type="text" id="branch" placeholder="Interested Branch" required>
+      <button type="submit" class="btn-main">Submit</button>
+    </form>
+  </div>
+
+  <!-- Login -->
+  <div class="container hidden" id="login">
+    <h1>Login</h1>
+    <form id="loginForm">
+      <input type="email" id="loginEmail" placeholder="Email" required>
+      <input type="password" id="loginPassword" placeholder="Password" required>
+      <button type="submit" class="btn-main">Login</button>
+    </form>
+  </div>
+
+  <script>
+    const welcome = document.getElementById('welcome');
+    const register = document.getElementById('register');
+    const login = document.getElementById('login');
+    const registerForm = document.getElementById('registerForm');
+    const loginForm = document.getElementById('loginForm');
+
+    function showRegister() {
+      welcome.classList.add('hidden');
+      login.classList.add('hidden');
+      register.classList.remove('hidden');
+    }
+
+    function showLogin() {
+      welcome.classList.add('hidden');
+      register.classList.add('hidden');
+      login.classList.remove('hidden');
+    }
+
+    // Register
+    registerForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const name = document.getElementById('name').value;
+      const email = document.getElementById('email').value;
+      const password = document.getElementById('password').value;
+      const branch = document.getElementById('branch').value;
+
+      localStorage.setItem('userName', name);
+      localStorage.setItem('userEmail', email);
+      localStorage.setItem('userPassword', password);
+      localStorage.setItem('userBranch', branch);
+
+      alert('Registration successful! Redirecting to login page...');
+      showLogin();
+    });
+
+    // Login
+    loginForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const email = document.getElementById('loginEmail').value;
+      const password = document.getElementById('loginPassword').value;
+
+      const savedEmail = localStorage.getItem('userEmail');
+      const savedPassword = localStorage.getItem('userPassword');
+
+      if (email === savedEmail && password === savedPassword) {
+        alert('Login successful! Redirecting...');
+        window.location.href = "academic.html";
+      } else {
+        alert('Invalid email or password.');
+      }
+    });
+  </script>
+
+</body>
+</html>

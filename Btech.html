@@ -1,0 +1,1300 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Engineering Career Paths - Complete Guide</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* All the CSS styles remain exactly the same as in your code */
+        :root {
+            --primary: #3498db;
+            --secondary: #2ecc71;
+            --accent: #e74c3c;
+            --dark: #2c3e50;
+            --light: #ecf0f1;
+            --cse: #3498db;
+            --ece: #9b59b6;
+            --eee: #e67e22;
+            --mech: #e74c3c;
+            --civil: #1abc9c;
+            --other: #f39c12;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            overflow-x: hidden;
+            color: #333;
+        }
+        
+        /* Header Styles */
+        header {
+            background: linear-gradient(to right, var(--primary), var(--secondary));
+            color: white;
+            padding: 25px 70px 25px 25px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+        
+        h1 {
+            font-size: 2.2rem;
+            margin-bottom: 10px;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .subtitle {
+            font-size: 1.1rem;
+            opacity: 0.9;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .home-button {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background-color: rgba(255, 255, 255, 0.2);
+            color: white;
+            border: 2px solid white;
+            padding: 10px 20px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            z-index: 3;
+        }
+        
+        .home-button:hover {
+            background-color: white;
+            color: var(--primary);
+            transform: translateY(-2px);
+        }
+        
+        .floating-circles {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            z-index: 1;
+        }
+        
+        .circle {
+            position: absolute;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.1);
+            animation: float 15s infinite linear;
+        }
+        
+        .circle:nth-child(1) {
+            width: 80px;
+            height: 80px;
+            top: 10%;
+            left: 20%;
+            animation-delay: 0s;
+        }
+        
+        .circle:nth-child(2) {
+            width: 100px;
+            height: 100px;
+            top: 60%;
+            left: 70%;
+            animation-delay: -5s;
+        }
+        
+        .circle:nth-child(3) {
+            width: 60px;
+            height: 60px;
+            top: 40%;
+            left: 40%;
+            animation-delay: -10s;
+        }
+        
+        @keyframes float {
+            0% {
+                transform: translateY(0) rotate(0deg);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-1000px) rotate(720deg);
+                opacity: 0;
+            }
+        }
+        
+        /* Main Content */
+        .container {
+            max-width: 1200px;
+            width: 100%;
+            margin: 20px auto;
+            padding: 0 20px;
+            flex: 1;
+        }
+        
+        /* Navigation Tabs */
+        .tabs {
+            display: flex;
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            margin-bottom: 25px;
+        }
+        
+        .tab {
+            flex: 1;
+            padding: 15px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 600;
+            color: var(--dark);
+            border-bottom: 3px solid transparent;
+        }
+        
+        .tab.active {
+            border-bottom: 3px solid var(--primary);
+            color: var(--primary);
+            background: rgba(52, 152, 219, 0.1);
+        }
+        
+        .tab:hover:not(.active) {
+            background: rgba(52, 152, 219, 0.05);
+        }
+        
+        /* Tab Content */
+        .tab-content {
+            display: none;
+        }
+        
+        .tab-content.active {
+            display: block;
+            animation: fadeIn 0.5s ease;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        /* Branches Grid */
+        .branches-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 25px;
+            margin-bottom: 30px;
+        }
+        
+        .branch-card {
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            cursor: pointer;
+            position: relative;
+            background: white;
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+        }
+        
+        .branch-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+        }
+        
+        .card-header {
+            padding: 20px;
+            color: white;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            font-size: 1.1rem;
+        }
+        
+        .card-header i {
+            font-size: 1.8rem;
+        }
+        
+        .cse .card-header {
+            background: var(--cse);
+        }
+        
+        .ece .card-header {
+            background: var(--ece);
+        }
+        
+        .eee .card-header {
+            background: var(--eee);
+        }
+        
+        .mech .card-header {
+            background: var(--mech);
+        }
+        
+        .civil .card-header {
+            background: var(--civil);
+        }
+        
+        .other .card-header {
+            background: var(--other);
+        }
+        
+        .card-content {
+            padding: 20px;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .card-content h3 {
+            margin-bottom: 15px;
+            color: var(--dark);
+            font-size: 1.3rem;
+        }
+        
+        .description {
+            margin-bottom: 15px;
+            color: #555;
+            line-height: 1.5;
+        }
+        
+        .info-item {
+            display: flex;
+            margin-bottom: 12px;
+            align-items: flex-start;
+        }
+        
+        .info-label {
+            font-weight: 600;
+            min-width: 120px;
+            color: var(--dark);
+        }
+        
+        .info-value {
+            flex: 1;
+            color: #555;
+            line-height: 1.5;
+        }
+        
+        .skills-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 5px;
+        }
+        
+        .skill-tag {
+            background: rgba(52, 152, 219, 0.1);
+            color: var(--primary);
+            padding: 4px 10px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 500;
+        }
+        
+        /* Colleges Table */
+        .colleges-container {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            margin-bottom: 30px;
+            overflow-x: auto;
+        }
+        
+        .colleges-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        
+        .colleges-table th {
+            background: var(--primary);
+            color: white;
+            padding: 15px;
+            text-align: left;
+            font-weight: 600;
+        }
+        
+        .colleges-table td {
+            padding: 12px 15px;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .colleges-table tr:nth-child(even) {
+            background: #f9f9f9;
+        }
+        
+        .colleges-table tr:hover {
+            background: rgba(52, 152, 219, 0.05);
+        }
+        
+        .type-badge {
+            display: inline-block;
+            padding: 4px 10px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+        
+        .type-govt {
+            background: rgba(46, 204, 113, 0.2);
+            color: #27ae60;
+        }
+        
+        .type-private {
+            background: rgba(155, 89, 182, 0.2);
+            color: #8e44ad;
+        }
+        
+        /* Footer Navigation */
+        footer {
+            background: linear-gradient(to right, var(--primary), var(--secondary));
+            color: white;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 30px;
+            margin-top: auto;
+            box-shadow: 0 -4px 12px rgba(0, 0, 0, 0.1);
+        }
+        
+        .nav-btn {
+            padding: 12px 25px;
+            border: none;
+            border-radius: 8px;
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+        }
+        
+        .nav-btn:hover {
+            background: white;
+            color: var(--primary);
+            transform: translateY(-2px);
+        }
+        
+        .back-btn {
+            order: 1;
+        }
+        
+        .next-btn {
+            order: 2;
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            header {
+                padding: 20px 60px 20px 20px;
+            }
+            
+            h1 {
+                font-size: 1.8rem;
+            }
+            
+            .tabs {
+                flex-direction: column;
+            }
+            
+            .branches-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            footer {
+                flex-direction: column;
+                gap: 15px;
+            }
+            
+            .nav-btn {
+                width: 100%;
+                justify-content: center;
+            }
+            
+            .colleges-table {
+                font-size: 0.85rem;
+            }
+            
+            .colleges-table th, .colleges-table td {
+                padding: 10px 8px;
+            }
+        }
+        
+        /* Search and Filter */
+        .search-container {
+            margin-bottom: 20px;
+            display: flex;
+            gap: 15px;
+        }
+        
+        .search-box {
+            flex: 1;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            font-size: 1rem;
+        }
+        
+        .filter-select {
+            padding: 12px 20px;
+            border: none;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            font-size: 1rem;
+            background: white;
+            min-width: 150px;
+        }
+        
+        /* Progress Bar */
+        .progress-container {
+            width: 100%;
+            background-color: #e0e0e0;
+            border-radius: 10px;
+            margin: 20px 0;
+            overflow: hidden;
+            height: 10px;
+        }
+        
+        .progress-bar {
+            height: 100%;
+            background: linear-gradient(to right, var(--primary), var(--secondary));
+            width: 0%;
+            transition: width 0.5s ease;
+            border-radius: 10px;
+        }
+        
+        .progress-text {
+            text-align: center;
+            font-weight: 500;
+            color: var(--dark);
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Engineering Career Paths</h1>
+        <p class="subtitle">Complete Guide to BTech Branches, Future Scope & Top Colleges</p>
+        <button class="home-button" onclick="location.href='index.html'">
+            <i class="fas fa-home"></i> Home
+        </button>
+        <div class="floating-circles">
+            <div class="circle"></div>
+            <div class="circle"></div>
+            <div class="circle"></div>
+        </div>
+    </header>
+
+    <div class="container">
+        <!-- Navigation Tabs -->
+        <div class="tabs">
+            <div class="tab active" data-tab="branches">Engineering Branches</div>
+            <div class="tab" data-tab="colleges">Top Colleges</div>
+            <div class="tab" data-tab="exams">Entrance Exams</div>
+        </div>
+
+        <!-- Branches Tab Content -->
+        <div class="tab-content active" id="branches-tab">
+            <div class="search-container">
+                <input type="text" class="search-box" id="branch-search" placeholder="Search engineering branches...">
+                <select class="filter-select" id="branch-filter">
+                    <option value="all">All Branches</option>
+                    <option value="cse">Computer Science</option>
+                    <option value="ece">Electronics</option>
+                    <option value="eee">Electrical</option>
+                    <option value="mech">Mechanical</option>
+                    <option value="civil">Civil</option>
+                    <option value="other">Other</option>
+                </select>
+            </div>
+
+            <div class="branches-grid" id="branches-container">
+                <!-- CSE Card -->
+                <div class="branch-card cse" data-category="cse">
+                    <div class="card-header">
+                        <i class="fas fa-laptop-code"></i>
+                        <h2>Computer Science Engineering (CSE)</h2>
+                    </div>
+                    <div class="card-content">
+                        <div class="info-item">
+                            <div class="info-label">Future Scope:</div>
+                            <div class="info-value">Highest demand in IT industry, startups, product companies, research</div>
+                        </div>
+                        <div class="info-item">
+                            <div class="info-label">Avg Package:</div>
+                            <div class="info-value">6-25 LPA (Top colleges: 20-50 LPA)</div>
+                        </div>
+                        <div class="info-item">
+                            <div class="info-label">Govt Jobs:</div>
+                            <div class="info-value">ISRO, DRDO, BARC, PSUs through GATE</div>
+                        </div>
+                        <div class="info-item">
+                            <div class="info-label">Skills:</div>
+                            <div class="info-value">
+                                <div class="skills-list">
+                                    <span class="skill-tag">Programming</span>
+                                    <span class="skill-tag">DSA</span>
+                                    <span class="skill-tag">Problem Solving</span>
+                                    <span class="skill-tag">System Design</span>
+                                    <span class="skill-tag">DBMS</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- CSE AI/ML Card -->
+                <div class="branch-card cse" data-category="cse">
+                    <div class="card-header">
+                        <i class="fas fa-brain"></i>
+                        <h2>CSE (AI & Machine Learning)</h2>
+                    </div>
+                    <div class="card-content">
+                        <div class="info-item">
+                            <div class="info-label">Future Scope:</div>
+                            <div class="info-value">Emerging field, high growth potential in AI/ML companies, research labs</div>
+                        </div>
+                        <div class="info-item">
+                            <div class="info-label">Avg Package:</div>
+                            <div class="info-value">7-30 LPA</div>
+                        </div>
+                        <div class="info-item">
+                            <div class="info-label">Career Paths:</div>
+                            <div class="info-value">ML Engineer, AI Researcher, Data Scientist, AI Product Manager</div>
+                        </div>
+                        <div class="info-item">
+                            <div class="info-label">Skills:</div>
+                            <div class="info-value">
+                                <div class="skills-list">
+                                    <span class="skill-tag">Python</span>
+                                    <span class="skill-tag">Statistics</span>
+                                    <span class="skill-tag">Neural Networks</span>
+                                    <span class="skill-tag">Deep Learning</span>
+                                    <span class="skill-tag">TensorFlow</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- CSE Data Science Card -->
+                <div class="branch-card cse" data-category="cse">
+                    <div class="card-header">
+                        <i class="fas fa-chart-bar"></i>
+                        <h2>CSE (Data Science)</h2>
+                    </div>
+                    <div class="card-content">
+                        <div class="info-item">
+                            <div class="info-label">Future Scope:</div>
+                            <div class="info-value">Every company needs data scientists, analytics roles across industries</div>
+                        </div>
+                        <div class="info-item">
+                            <div class="info-label">Avg Package:</div>
+                            <div class="info-value">6-28 LPA</div>
+                        </div>
+                        <div class="info-item">
+                            <div class="info-label">Career Paths:</div>
+                            <div class="info-value">Data Scientist, Data Analyst, Business Intelligence, Data Engineer</div>
+                        </div>
+                        <div class="info-item">
+                            <div class="info-label">Skills:</div>
+                            <div class="info-value">
+                                <div class="skills-list">
+                                    <span class="skill-tag">Statistics</span>
+                                    <span class="skill-tag">Python</span>
+                                    <span class="skill-tag">SQL</span>
+                                    <span class="skill-tag">Data Visualization</span>
+                                    <span class="skill-tag">Machine Learning</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- IT Card -->
+                <div class="branch-card cse" data-category="cse">
+                    <div class="card-header">
+                        <i class="fas fa-server"></i>
+                        <h2>Information Technology (IT)</h2>
+                    </div>
+                    <div class="card-content">
+                        <div class="info-item">
+                            <div class="info-label">Future Scope:</div>
+                            <div class="info-value">Similar to CSE, focuses on software applications, IT infrastructure</div>
+                        </div>
+                        <div class="info-item">
+                            <div class="info-label">Avg Package:</div>
+                            <div class="info-value">5-22 LPA</div>
+                        </div>
+                        <div class="info-item">
+                            <div class="info-label">Career Paths:</div>
+                            <div class="info-value">Software Developer, System Administrator, Network Engineer, IT Consultant</div>
+                        </div>
+                        <div class="info-item">
+                            <div class="info-label">Skills:</div>
+                            <div class="info-value">
+                                <div class="skills-list">
+                                    <span class="skill-tag">Programming</span>
+                                    <span class="skill-tag">Networking</span>
+                                    <span class="skill-tag">Database Management</span>
+                                    <span class="skill-tag">Cybersecurity</span>
+                                    <span class="skill-tag">Cloud Computing</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ECE Card -->
+                <div class="branch-card ece" data-category="ece">
+                    <div class="card-header">
+                        <i class="fas fa-microchip"></i>
+                        <h2>Electronics & Communication (ECE)</h2>
+                    </div>
+                    <div class="card-content">
+                        <div class="info-item">
+                            <div class="info-label">Future Scope:</div>
+                            <div class="info-value">Hardware + Software, IoT, Embedded Systems, VLSI, Telecom</div>
+                        </div>
+                        <div class="info-item">
+                            <div class="info-label">Avg Package:</div>
+                            <div class="info-value">4-18 LPA</div>
+                        </div>
+                        <div class="info-item">
+                            <div class="info-label">Career Paths:</div>
+                            <div class="info-value">VLSI Engineer, Embedded Systems, Telecom Engineer, Electronics Design</div>
+                        </div>
+                        <div class="info-item">
+                            <div class="info-label">Skills:</div>
+                            <div class="info-value">
+                                <div class="skills-list">
+                                    <span class="skill-tag">Circuit Design</span>
+                                    <span class="skill-tag">Embedded C</span>
+                                    <span class="skill-tag">Signal Processing</span>
+                                    <span class="skill-tag">VLSI</span>
+                                    <span class="skill-tag">Communication Systems</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- EEE Card -->
+                <div class="branch-card eee" data-category="eee">
+                    <div class="card-header">
+                        <i class="fas fa-bolt"></i>
+                        <h2>Electrical & Electronics (EEE)</h2>
+                    </div>
+                    <div class="card-content">
+                        <div class="info-item">
+                            <div class="info-label">Future Scope:</div>
+                            <div class="info-value">Power sector, renewable energy, automation, robotics, smart grids</div>
+                        </div>
+                        <div class="info-item">
+                            <div class="info-label">Avg Package:</div>
+                            <div class="info-value">4-15 LPA</div>
+                        </div>
+                        <div class="info-item">
+                            <div class="info-label">Govt Jobs:</div>
+                            <div class="info-value">Excellent opportunities in PSUs (PGCIL, NTPC, BHEL, etc.)</div>
+                        </div>
+                        <div class="info-item">
+                            <div class="info-label">Skills:</div>
+                            <div class="info-value">
+                                <div class="skills-list">
+                                    <span class="skill-tag">Power Systems</span>
+                                    <span class="skill-tag">Control Systems</span>
+                                    <span class="skill-tag">PLC Programming</span>
+                                    <span class="skill-tag">Renewable Energy</span>
+                                    <span class="skill-tag">Circuit Analysis</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Mechanical Card -->
+                <div class="branch-card mech" data-category="mech">
+                    <div class="card-header">
+                        <i class="fas fa-cogs"></i>
+                        <h2>Mechanical Engineering</h2>
+                    </div>
+                    <div class="card-content">
+                        <div class="info-item">
+                            <div class="info-label">Future Scope:</div>
+                            <div class="info-value">Core engineering, manufacturing, automotive, aerospace, robotics</div>
+                        </div>
+                        <div class="info-item">
+                            <div class="info-label">Avg Package:</div>
+                            <div class="info-value">4-12 LPA</div>
+                        </div>
+                        <div class="info-item">
+                            <div class="info-label">Govt Jobs:</div>
+                            <div class="info-value">Railways, Defense, PSUs, ISRO, DRDO</div>
+                        </div>
+                        <div class="info-item">
+                            <div class="info-label">Skills:</div>
+                            <div class="info-value">
+                                <div class="skills-list">
+                                    <span class="skill-tag">CAD/CAM</span>
+                                    <span class="skill-tag">Thermodynamics</span>
+                                    <span class="skill-tag">Manufacturing</span>
+                                    <span class="skill-tag">SolidWorks</span>
+                                    <span class="skill-tag">Automation</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Civil Card -->
+                <div class="branch-card civil" data-category="civil">
+                    <div class="card-header">
+                        <i class="fas fa-hard-hat"></i>
+                        <h2>Civil Engineering</h2>
+                    </div>
+                    <div class="card-content">
+                        <div class="info-item">
+                            <div class="info-label">Future Scope:</div>
+                            <div class="info-value">Infrastructure, construction, urban planning, transportation, environmental</div>
+                        </div>
+                        <div class="info-item">
+                            <div class="info-label">Avg Package:</div>
+                            <div class="info-value">3-10 LPA</div>
+                        </div>
+                        <div class="info-item">
+                            <div class="info-label">Govt Jobs:</div>
+                            <div class="info-value">PWD, Railways, CPWD, NHAI, State Govt Departments</div>
+                        </div>
+                        <div class="info-item">
+                            <div class="info-label">Skills:</div>
+                            <div class="info-value">
+                                <div class="skills-list">
+                                    <span class="skill-tag">Structural Analysis</span>
+                                    <span class="skill-tag">AutoCAD</span>
+                                    <span class="skill-tag">Project Management</span>
+                                    <span class="skill-tag">Surveying</span>
+                                    <span class="skill-tag">Construction Tech</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Colleges Tab Content -->
+        <div class="tab-content" id="colleges-tab">
+            <div class="search-container">
+                <input type="text" class="search-box" id="college-search" placeholder="Search colleges...">
+                <select class="filter-select" id="college-filter">
+                    <option value="all">All Colleges</option>
+                    <option value="government">Government</option>
+                    <option value="private">Private</option>
+                </select>
+            </div>
+
+            <div class="colleges-container">
+                <table class="colleges-table">
+                    <thead>
+                        <tr>
+                            <th>Rank</th>
+                            <th>Institute Name</th>
+                            <th>Location</th>
+                            <th>Type</th>
+                            <th>Admission Through</th>
+                        </tr>
+                    </thead>
+                    <tbody id="colleges-table-body">
+                        <!-- College data will be populated by JavaScript -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- Exams Tab Content -->
+        <div class="tab-content" id="exams-tab">
+            <div class="branches-grid">
+                <!-- JEE Main Card -->
+                <div class="branch-card cse">
+                    <div class="card-header">
+                        <i class="fas fa-graduation-cap"></i>
+                        <h2>JEE Main</h2>
+                    </div>
+                    <div class="card-content">
+                        <div class="info-item">
+                            <div class="info-label">Purpose:</div>
+                            <div class="info-value">Admission to NITs, IIITs, GFTIs and some private colleges</div>
+                        </div>
+                        <div class="info-item">
+                            <div class="info-label">Eligibility:</div>
+                            <div class="info-value">10+2 with Physics, Chemistry, Mathematics</div>
+                        </div>
+                        <div class="info-item">
+                            <div class="info-label">Exam Pattern:</div>
+                            <div class="info-value">Multiple Choice Questions (MCQs)</div>
+                        </div>
+                        <div class="info-item">
+                            <div class="info-label">Official Website:</div>
+                            <div class="info-value"><a href="https://jeemain.nta.nic.in" target="_blank">jeemain.nta.nic.in</a></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- JEE Advanced Card -->
+                <div class="branch-card ece">
+                    <div class="card-header">
+                        <i class="fas fa-rocket"></i>
+                        <h2>JEE Advanced</h2>
+                    </div>
+                    <div class="card-content">
+                        <div class="info-item">
+                            <div class="info-label">Purpose:</div>
+                            <div class="info-value">Admission to IITs</div>
+                        </div>
+                        <div class="info-item">
+                            <div class="info-label">Eligibility:</div>
+                            <div class="info-value">Top 2,50,000 rank holders in JEE Main</div>
+                        </div>
+                        <div class="info-item">
+                            <div class="info-label">Exam Pattern:</div>
+                            <div class="info-value">MCQs, Numerical Answer Type, Multiple Select Questions</div>
+                        </div>
+                        <div class="info-item">
+                            <div class="info-label">Official Website:</div>
+                            <div class="info-value"><a href="https://jeeadv.ac.in" target="_blank">jeeadv.ac.in</a></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- BITSAT Card -->
+                <div class="branch-card eee">
+                    <div class="card-header">
+                        <i class="fas fa-flask"></i>
+                        <h2>BITSAT</h2>
+                    </div>
+                    <div class="card-content">
+                        <div class="info-item">
+                            <div class="info-label">Purpose:</div>
+                            <div class="info-value">Admission to BITS Pilani campuses</div>
+                        </div>
+                        <div class="info-item">
+                            <div class="info-label">Eligibility:</div>
+                            <div class="info-value">10+2 with 75% aggregate and 60% in each subject</div>
+                        </div>
+                        <div class="info-item">
+                            <div class="info-label">Exam Pattern:</div>
+                            <div class="info-value">Online computer-based test</div>
+                        </div>
+                        <div class="info-item">
+                            <div class="info-label">Official Website:</div>
+                            <div class="info-value"><a href="https://bitsadmission.com" target="_blank">bitsadmission.com</a></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- VITEEE Card -->
+                <div class="branch-card mech">
+                    <div class="card-header">
+                        <i class="fas fa-university"></i>
+                        <h2>VITEEE</h2>
+                    </div>
+                    <div class="card-content">
+                        <div class="info-item">
+                            <div class="info-label">Purpose:</div>
+                            <div class="info-value">Admission to VIT campuses</div>
+                        </div>
+                        <div class="info-item">
+                            <div class="info-label">Eligibility:</div>
+                            <div class="info-value">10+2 with 60% aggregate</div>
+                        </div>
+                        <div class="info-item">
+                            <div class="info-label">Exam Pattern:</div>
+                            <div class="info-value">Online computer-based test</div>
+                        </div>
+                        <div class="info-item">
+                            <div class="info-label">Official Website:</div>
+                            <div class="info-value"><a href="https://viteee.vit.ac.in" target="_blank">viteee.vit.ac.in</a></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- State Exams Card -->
+                <div class="branch-card civil">
+                    <div class="card-header">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <h2>State Engineering Exams</h2>
+                    </div>
+                    <div class="card-content">
+                        <div class="info-item">
+                            <div class="info-label">Purpose:</div>
+                            <div class="info-value">Admission to state government engineering colleges</div>
+                        </div>
+                        <div class="info-item">
+                            <div class="info-label">Examples:</div>
+                            <div class="info-value">MHT-CET, KCET, TS EAMCET, AP EAMCET, WBJEE</div>
+                        </div>
+                        <div class="info-item">
+                            <div class="info-label">Eligibility:</div>
+                            <div class="info-value">10+2 with state-specific requirements</div>
+                        </div>
+                        <div class="info-item">
+                            <div class="info-label">Exam Pattern:</div>
+                            <div class="info-value">Varies by state - mostly offline/online MCQ tests</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <button class="nav-btn back-btn" onclick="goBack()">
+            <i class="fas fa-arrow-left"></i> Back
+        </button>
+        <button class="nav-btn next-btn" onclick="goNext()">
+            Next <i class="fas fa-arrow-right"></i>
+        </button>
+    </footer>
+
+    <script>
+    // College data
+    const colleges = [
+        { rank: 1, name: "IIT Madras", location: "Chennai, Tamil Nadu", type: "Government", admission: "JEE Advanced" },
+        { rank: 2, name: "IIT Delhi", location: "New Delhi", type: "Government", admission: "JEE Advanced" },
+        { rank: 3, name: "IIT Bombay", location: "Mumbai, Maharashtra", type: "Government", admission: "JEE Advanced" },
+        { rank: 4, name: "IIT Kanpur", location: "Kanpur, Uttar Pradesh", type: "Government", admission: "JEE Advanced" },
+        { rank: 5, name: "IIT Kharagpur", location: "Kharagpur, West Bengal", type: "Government", admission: "JEE Advanced" },
+        { rank: 6, name: "IIT Roorkee", location: "Roorkee, Uttarakhand", type: "Government", admission: "JEE Advanced" },
+        { rank: 7, name: "IIT Guwahati", location: "Guwahati, Assam", type: "Government", admission: "JEE Advanced" },
+        { rank: 8, name: "IIT Hyderabad", location: "Hyderabad, Telangana", type: "Government", admission: "JEE Advanced" },
+        { rank: 9, name: "NIT Trichy", location: "Tiruchirappalli, Tamil Nadu", type: "Government", admission: "JEE Main" },
+        { rank: 10, name: "IIT Indore", location: "Indore, Madhya Pradesh", type: "Government", admission: "JEE Advanced" },
+        { rank: 11, name: "BITS Pilani", location: "Pilani, Rajasthan", type: "Private", admission: "BITSAT" },
+        { rank: 12, name: "NIT Surathkal", location: "Surathkal, Karnataka", type: "Government", admission: "JEE Main" },
+        { rank: 13, name: "IIT BHU", location: "Varanasi, Uttar Pradesh", type: "Government", admission: "JEE Advanced" },
+        { rank: 14, name: "NIT Rourkela", location: "Rourkela, Odisha", type: "Government", admission: "JEE Main" },
+        { rank: 15, name: "Vellore Institute of Technology", location: "Vellore, Tamil Nadu", type: "Private", admission: "VITEEE" },
+        { rank: 16, name: "IIT Ropar", location: "Rupnagar, Punjab", type: "Government", admission: "JEE Advanced" },
+        { rank: 17, name: "NIT Warangal", location: "Warangal, Telangana", type: "Government", admission: "JEE Main" },
+        { rank: 18, name: "Anna University", location: "Chennai, Tamil Nadu", type: "Government", admission: "TNEA" },
+        { rank: 19, name: "IIT Bhubaneswar", location: "Bhubaneswar, Odisha", type: "Government", admission: "JEE Advanced" },
+        { rank: 20, name: "IIT Gandhinagar", location: "Gandhinagar, Gujarat", type: "Government", admission: "JEE Advanced" },
+        { rank: 21, name: "Jadavpur University", location: "Kolkata, West Bengal", type: "Government", admission: "WBJEE" },
+        { rank: 22, name: "NIT Calicut", location: "Calicut, Kerala", type: "Government", admission: "JEE Main" },
+        { rank: 23, name: "Delhi Technological University", location: "New Delhi", type: "Government", admission: "JEE Main" },
+        { rank: 24, name: "IIT Patna", location: "Patna, Bihar", type: "Government", admission: "JEE Advanced" },
+        { rank: 25, name: "IIIT Hyderabad", location: "Hyderabad, Telangana", type: "Government", admission: "JEE Main + UGEE" },
+        { rank: 26, name: "NIT Durgapur", location: "Durgapur, West Bengal", type: "Government", admission: "JEE Main" },
+        { rank: 27, name: "Amrita Vishwa Vidyapeetham", location: "Coimbatore, Tamil Nadu", type: "Private", admission: "AEEE" },
+        { rank: 28, name: "NIT Jaipur", location: "Jaipur, Rajasthan", type: "Government", admission: "JEE Main" },
+        { rank: 29, name: "PSG College of Technology", location: "Coimbatore, Tamil Nadu", type: "Private", admission: "TNEA" },
+        { rank: 30, name: "NIT Nagpur", location: "Nagpur, Maharashtra", type: "Government", admission: "JEE Main" },
+        { rank: 31, name: "Thapar Institute", location: "Patiala, Punjab", type: "Private", admission: "JEE Main" },
+        { rank: 32, name: "COEP Pune", location: "Pune, Maharashtra", type: "Government", admission: "JEE Main" },
+        { rank: 33, name: "Manipal Institute of Technology", location: "Manipal, Karnataka", type: "Private", admission: "MET" },
+        { rank: 34, name: "VNIT Nagpur", location: "Nagpur, Maharashtra", type: "Government", admission: "JEE Main" },
+        { rank: 35, name: "IIIT Bangalore", location: "Bangalore, Karnataka", type: "Government", admission: "JEE Main + KCET" },
+        { rank: 36, name: "NIT Kurukshetra", location: "Kurukshetra, Haryana", type: "Government", admission: "JEE Main" },
+        { rank: 37, name: "BITS Hyderabad", location: "Hyderabad, Telangana", type: "Private", admission: "BITSAT" },
+        { rank: 38, name: "NIT Silchar", location: "Silchar, Assam", type: "Government", admission: "JEE Main" },
+        { rank: 39, name: "SRM Institute", location: "Chennai, Tamil Nadu", type: "Private", admission: "SRMJEEE" },
+        { rank: 40, name: "NIT Hamirpur", location: "Hamirpur, Himachal Pradesh", type: "Government", admission: "JEE Main" },
+        { rank: 41, name: "MANIT Bhopal", location: "Bhopal, Madhya Pradesh", type: "Government", admission: "JEE Main" },
+        { rank: 42, name: "SVNIT Surat", location: "Surat, Gujarat", type: "Government", admission: "JEE Main" },
+        { rank: 43, name: "NIT Allahabad", location: "Prayagraj, Uttar Pradesh", type: "Government", admission: "JEE Main" },
+        { rank: 44, name: "Jamia Millia Islamia", location: "New Delhi", type: "Government", admission: "JEE Main" },
+        { rank: 45, name: "IIIT Delhi", location: "New Delhi", type: "Government", admission: "JEE Main" },
+        { rank: 46, name: "BIT Mesra", location: "Ranchi, Jharkhand", type: "Private", admission: "JEE Main" },
+        { rank: 47, name: "PEC Chandigarh", location: "Chandigarh", type: "Government", admission: "JEE Main" },
+        { rank: 48, name: "NIT Raipur", location: "Raipur, Chhattisgarh", type: "Government", admission: "JEE Main" },
+        { rank: 49, name: "IIIT Allahabad", location: "Prayagraj, Uttar Pradesh", type: "Government", admission: "JEE Main" },
+        { rank: 50, name: "NIT Jamshedpur", location: "Jamshedpur, Jharkhand", type: "Government", admission: "JEE Main" }
+    ];
+
+    // Initialize the page
+    document.addEventListener('DOMContentLoaded', function() {
+        // Initialize tab functionality
+        initializeTabs();
+        
+        // Populate colleges table
+        populateCollegesTable();
+        
+        // Initialize search and filter functionality
+        initializeSearchAndFilter();
+        
+        // Initialize progress tracking
+        initializeProgressTracking();
+    });
+
+    // Tab functionality
+    function initializeTabs() {
+        const tabs = document.querySelectorAll('.tab');
+        const tabContents = document.querySelectorAll('.tab-content');
+        
+        tabs.forEach(tab => {
+            tab.addEventListener('click', function() {
+                const tabId = this.getAttribute('data-tab');
+                
+                // Remove active class from all tabs and contents
+                tabs.forEach(t => t.classList.remove('active'));
+                tabContents.forEach(c => c.classList.remove('active'));
+                
+                // Add active class to current tab and content
+                this.classList.add('active');
+                document.getElementById(`${tabId}-tab`).classList.add('active');
+                
+                // Update progress based on active tab
+                updateProgress(tabId);
+            });
+        });
+    }
+
+    // Populate colleges table
+    function populateCollegesTable() {
+        const tableBody = document.getElementById('colleges-table-body');
+        
+        colleges.forEach(college => {
+            const row = document.createElement('tr');
+            
+            const typeClass = college.type === 'Government' ? 'type-govt' : 'type-private';
+            
+            row.innerHTML = `
+                <td>${college.rank}</td>
+                <td>${college.name}</td>
+                <td>${college.location}</td>
+                <td><span class="type-badge ${typeClass}">${college.type}</span></td>
+                <td>${college.admission}</td>
+            `;
+            
+            tableBody.appendChild(row);
+        });
+    }
+
+    // Search and filter functionality
+    function initializeSearchAndFilter() {
+        // Branch search and filter
+        const branchSearch = document.getElementById('branch-search');
+        const branchFilter = document.getElementById('branch-filter');
+        const branchCards = document.querySelectorAll('.branch-card');
+        
+        branchSearch.addEventListener('input', filterBranches);
+        branchFilter.addEventListener('change', filterBranches);
+        
+        function filterBranches() {
+            const searchTerm = branchSearch.value.toLowerCase();
+            const filterValue = branchFilter.value;
+            
+            branchCards.forEach(card => {
+                const category = card.getAttribute('data-category');
+                const title = card.querySelector('h2').textContent.toLowerCase();
+                const content = card.textContent.toLowerCase();
+                
+                const matchesSearch = title.includes(searchTerm) || content.includes(searchTerm);
+                const matchesFilter = filterValue === 'all' || category === filterValue;
+                
+                if (matchesSearch && matchesFilter) {
+                    card.style.display = 'flex';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        }
+        
+        // College search and filter
+        const collegeSearch = document.getElementById('college-search');
+        const collegeFilter = document.getElementById('college-filter');
+        const collegeRows = document.querySelectorAll('.colleges-table tbody tr');
+        
+        collegeSearch.addEventListener('input', filterColleges);
+        collegeFilter.addEventListener('change', filterColleges);
+        
+        function filterColleges() {
+            const searchTerm = collegeSearch.value.toLowerCase();
+            const filterValue = collegeFilter.value;
+            
+            collegeRows.forEach(row => {
+                const name = row.cells[1].textContent.toLowerCase();
+                const location = row.cells[2].textContent.toLowerCase();
+                const type = row.cells[3].textContent.toLowerCase();
+                
+                const matchesSearch = name.includes(searchTerm) || location.includes(searchTerm);
+                const matchesFilter = filterValue === 'all' || 
+                                    (filterValue === 'government' && type.includes('government')) ||
+                                    (filterValue === 'private' && type.includes('private'));
+                
+                if (matchesSearch && matchesFilter) {
+                    row.style.display = '';
+                } else {
+                    row.style.display = 'none';
+                }
+            });
+        }
+    }
+
+    // Progress tracking
+    function initializeProgressTracking() {
+        // Set initial progress
+        updateProgress('branches');
+        
+        // Add click tracking for branch cards
+        const branchCards = document.querySelectorAll('.branch-card');
+        branchCards.forEach(card => {
+            card.addEventListener('click', function() {
+                // Mark as viewed
+                this.classList.add('viewed');
+                
+                // Update progress
+                updateProgressBasedOnViews();
+            });
+        });
+    }
+
+    function updateProgress(tabId) {
+        const progressBar = document.querySelector('.progress-bar');
+        const progressText = document.querySelector('.progress-text');
+        
+        let progress = 0;
+        let text = '';
+        
+        switch(tabId) {
+            case 'branches':
+                progress = 25;
+                text = 'Step 1/4: Explore Engineering Branches';
+                break;
+            case 'colleges':
+                progress = 50;
+                text = 'Step 2/4: Research Top Colleges';
+                break;
+            case 'exams':
+                progress = 75;
+                text = 'Step 3/4: Understand Entrance Exams';
+                break;
+        }
+        
+        progressBar.style.width = `${progress}%`;
+        progressText.textContent = text;
+    }
+
+    function updateProgressBasedOnViews() {
+        const branchCards = document.querySelectorAll('.branch-card');
+        const viewedCards = document.querySelectorAll('.branch-card.viewed');
+        
+        const progress = Math.min(100, 25 + (viewedCards.length / branchCards.length) * 25);
+        const progressBar = document.querySelector('.progress-bar');
+        
+        progressBar.style.width = `${progress}%`;
+    }
+
+    // Navigation functions
+    function goNext() {
+        localStorage.setItem('userProgress', 'Engineering completed');
+        window.location.href = 'Next.html';
+    }
+    
+    function goBack() {
+        window.location.href = 'Career-Guidance.html';
+        
+        
+    }
+
+    // Additional utility functions
+    function toggleFavorite(collegeId) {
+        // Implementation for favoriting colleges
+        console.log(`Toggled favorite for college ID: ${collegeId}`);
+    }
+
+    function compareColleges(college1, college2) {
+        // Implementation for comparing colleges
+        console.log(`Comparing ${college1} and ${college2}`);
+    }
+
+    function exportData() {
+        // Implementation for exporting college data
+        const dataStr = JSON.stringify(colleges, null, 2);
+        const dataBlob = new Blob([dataStr], {type: 'application/json'});
+        
+        const link = document.createElement('a');
+        link.href = URL.createObjectURL(dataBlob);
+        link.download = 'engineering-colleges-data.json';
+        link.click();
+    }
+
+    // College comparison functionality
+    let comparedColleges = [];
+
+    function addToComparison(collegeId) {
+        if (comparedColleges.length < 3 && !comparedColleges.includes(collegeId)) {
+            comparedColleges.push(collegeId);
+            updateComparisonUI();
+        }
+    }
+
+    function removeFromComparison(collegeId) {
+        comparedColleges = comparedColleges.filter(id => id !== collegeId);
+        updateComparisonUI();
+    }
+
+    function updateComparisonUI() {
+        // Implementation for updating comparison UI
+        console.log('Compared colleges:', comparedColleges);
+    }
+
+    // Analytics tracking
+    function trackEvent(category, action, label) {
+        // Implementation for analytics tracking
+        console.log(`Tracking: ${category} - ${action} - ${label}`);
+    }
+
+    // Performance optimization
+    function debounce(func, wait) {
+        let timeout;
+        return function executedFunction(...args) {
+            const later = () => {
+                clearTimeout(timeout);
+                func(...args);
+            };
+            clearTimeout(timeout);
+            timeout = setTimeout(later, wait);
+        };
+    }
+
+    // Apply debouncing to search inputs
+    const branchSearch = document.getElementById('branch-search');
+    const collegeSearch = document.getElementById('college-search');
+    
+    if (branchSearch) {
+        branchSearch.addEventListener('input', debounce(function() {
+            filterBranches();
+        }, 300));
+    }
+    
+    if (collegeSearch) {
+        collegeSearch.addEventListener('input', debounce(function() {
+            filterColleges();
+        }, 300));
+    }
+</script>

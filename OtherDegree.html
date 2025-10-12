@@ -1,0 +1,1254 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Degree Programs Guide - Complete Career Information</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #3498db;
+            --secondary: #2ecc71;
+            --accent: #e74c3c;
+            --dark: #2c3e50;
+            --light: #ecf0f1;
+            --science: #3498db;
+            --commerce: #9b59b6;
+            --arts: #e67e22;
+            --professional: #e74c3c;
+            --research: #1abc9c;
+            --other: #f39c12;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            overflow-x: hidden;
+            color: #333;
+        }
+        
+        /* Header Styles */
+        header {
+            background: linear-gradient(to right, var(--primary), var(--secondary));
+            color: white;
+            padding: 25px 70px 25px 25px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+        
+        h1 {
+            font-size: 2.2rem;
+            margin-bottom: 10px;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .subtitle {
+            font-size: 1.1rem;
+            opacity: 0.9;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .home-button {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background-color: rgba(255, 255, 255, 0.2);
+            color: white;
+            border: 2px solid white;
+            padding: 10px 20px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            z-index: 3;
+        }
+        
+        .home-button:hover {
+            background-color: white;
+            color: var(--primary);
+            transform: translateY(-2px);
+        }
+        
+        .floating-circles {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            z-index: 1;
+        }
+        
+        .circle {
+            position: absolute;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.1);
+            animation: float 15s infinite linear;
+        }
+        
+        .circle:nth-child(1) {
+            width: 80px;
+            height: 80px;
+            top: 10%;
+            left: 20%;
+            animation-delay: 0s;
+        }
+        
+        .circle:nth-child(2) {
+            width: 100px;
+            height: 100px;
+            top: 60%;
+            left: 70%;
+            animation-delay: -5s;
+        }
+        
+        .circle:nth-child(3) {
+            width: 60px;
+            height: 60px;
+            top: 40%;
+            left: 40%;
+            animation-delay: -10s;
+        }
+        
+        @keyframes float {
+            0% {
+                transform: translateY(0) rotate(0deg);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-1000px) rotate(720deg);
+                opacity: 0;
+            }
+        }
+        
+        /* Main Content */
+        .container {
+            max-width: 1200px;
+            width: 100%;
+            margin: 20px auto;
+            padding: 0 20px;
+            flex: 1;
+        }
+        
+        /* Navigation Tabs */
+        .tabs {
+            display: flex;
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            margin-bottom: 25px;
+        }
+        
+        .tab {
+            flex: 1;
+            padding: 15px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 600;
+            color: var(--dark);
+            border-bottom: 3px solid transparent;
+        }
+        
+        .tab.active {
+            border-bottom: 3px solid var(--primary);
+            color: var(--primary);
+            background: rgba(52, 152, 219, 0.1);
+        }
+        
+        .tab:hover:not(.active) {
+            background: rgba(52, 152, 219, 0.05);
+        }
+        
+        /* Tab Content */
+        .tab-content {
+            display: none;
+        }
+        
+        .tab-content.active {
+            display: block;
+            animation: fadeIn 0.5s ease;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        /* Degree Grid */
+        .degree-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 25px;
+            margin-bottom: 30px;
+        }
+        
+        .degree-card {
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            cursor: pointer;
+            position: relative;
+            background: white;
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+        }
+        
+        .degree-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+        }
+        
+        .card-header {
+            padding: 20px;
+            color: white;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            font-size: 1.1rem;
+        }
+        
+        .card-header i {
+            font-size: 1.8rem;
+        }
+        
+        .science .card-header {
+            background: var(--science);
+        }
+        
+        .commerce .card-header {
+            background: var(--commerce);
+        }
+        
+        .arts .card-header {
+            background: var(--arts);
+        }
+        
+        .professional .card-header {
+            background: var(--professional);
+        }
+        
+        .research .card-header {
+            background: var(--research);
+        }
+        
+        .other .card-header {
+            background: var(--other);
+        }
+        
+        .card-content {
+            padding: 20px;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .card-content h3 {
+            margin-bottom: 15px;
+            color: var(--dark);
+            font-size: 1.3rem;
+        }
+        
+        .description {
+            margin-bottom: 15px;
+            color: #555;
+            line-height: 1.5;
+        }
+        
+        .info-item {
+            display: flex;
+            margin-bottom: 12px;
+            align-items: flex-start;
+        }
+        
+        .info-label {
+            font-weight: 600;
+            min-width: 120px;
+            color: var(--dark);
+        }
+        
+        .info-value {
+            flex: 1;
+            color: #555;
+            line-height: 1.5;
+        }
+        
+        .skills-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 5px;
+        }
+        
+        .skill-tag {
+            background: rgba(52, 152, 219, 0.1);
+            color: var(--primary);
+            padding: 4px 10px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 500;
+        }
+        
+        /* Colleges Table */
+        .colleges-container {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            margin-bottom: 30px;
+            overflow-x: auto;
+        }
+        
+        .colleges-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        
+        .colleges-table th {
+            background: var(--primary);
+            color: white;
+            padding: 15px;
+            text-align: left;
+            font-weight: 600;
+        }
+        
+        .colleges-table td {
+            padding: 12px 15px;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .colleges-table tr:nth-child(even) {
+            background: #f9f9f9;
+        }
+        
+        .colleges-table tr:hover {
+            background: rgba(52, 152, 219, 0.05);
+        }
+        
+        .type-badge {
+            display: inline-block;
+            padding: 4px 10px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+        
+        .type-govt {
+            background: rgba(46, 204, 113, 0.2);
+            color: #27ae60;
+        }
+        
+        .type-private {
+            background: rgba(155, 89, 182, 0.2);
+            color: #8e44ad;
+        }
+        
+        /* Footer Navigation */
+        footer {
+            background: linear-gradient(to right, var(--primary), var(--secondary));
+            color: white;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 30px;
+            margin-top: auto;
+            box-shadow: 0 -4px 12px rgba(0, 0, 0, 0.1);
+        }
+        
+        .nav-btn {
+            padding: 12px 25px;
+            border: none;
+            border-radius: 8px;
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+        }
+        
+        .nav-btn:hover {
+            background: white;
+            color: var(--primary);
+            transform: translateY(-2px);
+        }
+        
+        .back-btn {
+            order: 1;
+        }
+        
+        .next-btn {
+            order: 2;
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            header {
+                padding: 20px 60px 20px 20px;
+            }
+            
+            h1 {
+                font-size: 1.8rem;
+            }
+            
+            .tabs {
+                flex-direction: column;
+            }
+            
+            .degree-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            footer {
+                flex-direction: column;
+                gap: 15px;
+            }
+            
+            .nav-btn {
+                width: 100%;
+                justify-content: center;
+            }
+            
+            .colleges-table {
+                font-size: 0.85rem;
+            }
+            
+            .colleges-table th, .colleges-table td {
+                padding: 10px 8px;
+            }
+        }
+        
+        /* Search and Filter */
+        .search-container {
+            margin-bottom: 20px;
+            display: flex;
+            gap: 15px;
+        }
+        
+        .search-box {
+            flex: 1;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            font-size: 1rem;
+        }
+        
+        .filter-select {
+            padding: 12px 20px;
+            border: none;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            font-size: 1rem;
+            background: white;
+            min-width: 150px;
+        }
+        
+        /* Progress Bar */
+        .progress-container {
+            width: 100%;
+            background-color: #e0e0e0;
+            border-radius: 10px;
+            margin: 20px 0;
+            overflow: hidden;
+            height: 10px;
+        }
+        
+        .progress-bar {
+            height: 100%;
+            background: linear-gradient(to right, var(--primary), var(--secondary));
+            width: 0%;
+            transition: width 0.5s ease;
+            border-radius: 10px;
+        }
+        
+        .progress-text {
+            text-align: center;
+            font-weight: 500;
+            color: var(--dark);
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Degree Programs Guide</h1>
+        <p class="subtitle">Complete Information on BSc, BA, BCom & Professional Degrees</p>
+        <button class="home-button" onclick="location.href='index.html'">
+            <i class="fas fa-home"></i> Home
+        </button>
+        <div class="floating-circles">
+            <div class="circle"></div>
+            <div class="circle"></div>
+            <div class="circle"></div>
+        </div>
+    </header>
+
+    <div class="container">
+        <!-- Navigation Tabs -->
+        <div class="tabs">
+            <div class="tab active" data-tab="degrees">Degree Programs</div>
+            <div class="tab" data-tab="colleges">Top Colleges</div>
+            <div class="tab" data-tab="exams">Entrance Exams</div>
+        </div>
+
+        <!-- Degrees Tab Content -->
+        <div class="tab-content active" id="degrees-tab">
+            <div class="search-container">
+                <input type="text" class="search-box" id="degree-search" placeholder="Search degree programs...">
+                <select class="filter-select" id="degree-filter">
+                    <option value="all">All Degrees</option>
+                    <option value="science">Science</option>
+                    <option value="commerce">Commerce</option>
+                    <option value="arts">Arts</option>
+                    <option value="professional">Professional</option>
+                    <option value="research">Research</option>
+                </select>
+            </div>
+
+            <div class="degree-grid" id="degrees-container">
+                <!-- BSc Programs -->
+                <div class="degree-card science" data-category="science">
+                    <div class="card-header">
+                        <i class="fas fa-flask"></i>
+                        <h2>BSc Programs</h2>
+                    </div>
+                    <div class="card-content">
+                        <div class="info-item">
+                            <div class="info-label">Future Scope:</div>
+                            <div class="info-value">Research, academia, scientific roles in industry, higher studies</div>
+                        </div>
+                        <div class="info-item">
+                            <div class="info-label">Popular Specializations:</div>
+                            <div class="info-value">Physics, Chemistry, Mathematics, Computer Science, Biotechnology</div>
+                        </div>
+                        <div class="info-item">
+                            <div class="info-label">Higher Studies:</div>
+                            <div class="info-value">MSc, PhD, Integrated PhD programs in IITs, IISERs</div>
+                        </div>
+                        <div class="info-item">
+                            <div class="info-label">Career Paths:</div>
+                            <div class="info-value">
+                                <div class="skills-list">
+                                    <span class="skill-tag">Research Scientist</span>
+                                    <span class="skill-tag">Lab Technician</span>
+                                    <span class="skill-tag">Data Analyst</span>
+                                    <span class="skill-tag">Professor</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- BSc Computer Science -->
+                <div class="degree-card science" data-category="science">
+                    <div class="card-header">
+                        <i class="fas fa-laptop-code"></i>
+                        <h2>BSc Computer Science</h2>
+                    </div>
+                    <div class="card-content">
+                        <div class="info-item">
+                            <div class="info-label">Future Scope:</div>
+                            <div class="info-value">Strong alternative to BTech for software development roles</div>
+                        </div>
+                        <div class="info-item">
+                            <div class="info-label">Avg Package:</div>
+                            <div class="info-value">4-12 LPA (Top colleges: 8-20 LPA)</div>
+                        </div>
+                        <div class="info-item">
+                            <div class="info-label">Higher Studies:</div>
+                            <div class="info-value">MSc Computer Science, MCA, MTech</div>
+                        </div>
+                        <div class="info-item">
+                            <div class="info-label">Skills:</div>
+                            <div class="info-value">
+                                <div class="skills-list">
+                                    <span class="skill-tag">Programming</span>
+                                    <span class="skill-tag">Database Management</span>
+                                    <span class="skill-tag">Web Development</span>
+                                    <span class="skill-tag">Software Engineering</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- BSc Data Science -->
+                <div class="degree-card science" data-category="science">
+                    <div class="card-header">
+                        <i class="fas fa-chart-bar"></i>
+                        <h2>BSc Data Science</h2>
+                    </div>
+                    <div class="card-content">
+                        <div class="info-item">
+                            <div class="info-label">Future Scope:</div>
+                            <div class="info-value">Direct path into high-growth field of data analytics</div>
+                        </div>
+                        <div class="info-item">
+                            <div class="info-label">Avg Package:</div>
+                            <div class="info-value">5-15 LPA</div>
+                        </div>
+                        <div class="info-item">
+                            <div class="info-label">Career Paths:</div>
+                            <div class="info-value">Data Scientist, Data Analyst, Business Intelligence Analyst</div>
+                        </div>
+                        <div class="info-item">
+                            <div class="info-label">Skills:</div>
+                            <div class="info-value">
+                                <div class="skills-list">
+                                    <span class="skill-tag">Python</span>
+                                    <span class="skill-tag">Statistics</span>
+                                    <span class="skill-tag">SQL</span>
+                                    <span class="skill-tag">Data Visualization</span>
+                                    <span class="skill-tag">Machine Learning</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- BCom Programs -->
+                <div class="degree-card commerce" data-category="commerce">
+                    <div class="card-header">
+                        <i class="fas fa-chart-line"></i>
+                        <h2>BCom Programs</h2>
+                    </div>
+                    <div class="card-content">
+                        <div class="info-item">
+                            <div class="info-label">Future Scope:</div>
+                            <div class="info-value">Foundation for CA, CS, CMA, MBA and corporate roles</div>
+                        </div>
+                        <div class="info-item">
+                            <div class="info-label">Popular Specializations:</div>
+                            <div class="info-value">BCom (Honors), BCom (Computers), BCom (Accounting)</div>
+                        </div>
+                        <div class="info-item">
+                            <div class="info-label">Higher Studies:</div>
+                            <div class="info-value">MCom, MBA, Professional courses (CA, CS, CMA)</div>
+                        </div>
+                        <div class="info-item">
+                            <div class="info-label">Career Paths:</div>
+                            <div class="info-value">
+                                <div class="skills-list">
+                                    <span class="skill-tag">Accountant</span>
+                                    <span class="skill-tag">Tax Consultant</span>
+                                    <span class="skill-tag">Banking</span>
+                                    <span class="skill-tag">Financial Analyst</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- BA Programs -->
+                <div class="degree-card arts" data-category="arts">
+                    <div class="card-header">
+                        <i class="fas fa-palette"></i>
+                        <h2>BA Programs</h2>
+                    </div>
+                    <div class="card-content">
+                        <div class="info-item">
+                            <div class="info-label">Future Scope:</div>
+                            <div class="info-value">Diverse opportunities in humanities, social sciences, creative fields</div>
+                        </div>
+                        <div class="info-item">
+                            <div class="info-label">Popular Specializations:</div>
+                            <div class="info-value">Economics, Psychology, Political Science, English, Sociology</div>
+                        </div>
+                        <div class="info-item">
+                            <div class="info-label">Higher Studies:</div>
+                            <div class="info-value">MA, MBA, Law, Civil Services, Journalism</div>
+                        </div>
+                        <div class="info-item">
+                            <div class="info-label">Career Paths:</div>
+                            <div class="info-value">
+                                <div class="skills-list">
+                                    <span class="skill-tag">Civil Services</span>
+                                    <span class="skill-tag">Journalist</span>
+                                    <span class="skill-tag">Content Writer</span>
+                                    <span class="skill-tag">Social Worker</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- BBA Programs -->
+                <div class="degree-card professional" data-category="professional">
+                    <div class="card-header">
+                        <i class="fas fa-briefcase"></i>
+                        <h2>BBA Programs</h2>
+                    </div>
+                    <div class="card-content">
+                        <div class="info-item">
+                            <div class="info-label">Future Scope:</div>
+                            <div class="info-value">Direct path to corporate roles and management careers</div>
+                        </div>
+                        <div class="info-item">
+                            <div class="info-label">Avg Package:</div>
+                            <div class="info-value">3-8 LPA (Top colleges: 6-15 LPA)</div>
+                        </div>
+                        <div class="info-item">
+                            <div class="info-label">Specializations:</div>
+                            <div class="info-value">BBA (Finance), BBA (Marketing), BBA (HR), BBA (International Business)</div>
+                        </div>
+                        <div class="info-item">
+                            <div class="info-label">Higher Studies:</div>
+                            <div class="info-value">MBA, PGDM, Specialized Master's programs</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Integrated MSc/BS -->
+                <div class="degree-card research" data-category="research">
+                    <div class="card-header">
+                        <i class="fas fa-microscope"></i>
+                        <h2>Integrated MSc/BS</h2>
+                    </div>
+                    <div class="card-content">
+                        <div class="info-item">
+                            <div class="info-label">Future Scope:</div>
+                            <div class="info-value">Direct path to research career or PhD</div>
+                        </div>
+                        <div class="info-item">
+                            <div class="info-label">Institutes:</div>
+                            <div class="info-value">IISERs, NISER, CEBS, IITs (via JAM score)</div>
+                        </div>
+                        <div class="info-item">
+                            <div class="info-label">Duration:</div>
+                            <div class="info-value">5 years (BS-MS integrated program)</div>
+                        </div>
+                        <div class="info-item">
+                            <div class="info-label">Curriculum:</div>
+                            <div class="info-value">Combines BSc and MSc with rigorous research projects</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- BCA -->
+                <div class="degree-card professional" data-category="professional">
+                    <div class="card-header">
+                        <i class="fas fa-code"></i>
+                        <h2>BCA</h2>
+                    </div>
+                    <div class="card-content">
+                        <div class="info-item">
+                            <div class="info-label">Future Scope:</div>
+                            <div class="info-value">Alternative to BTech for software development roles</div>
+                        </div>
+                        <div class="info-item">
+                            <div class="info-label">Avg Package:</div>
+                            <div class="info-value">3-10 LPA</div>
+                        </div>
+                        <div class="info-item">
+                            <div class="info-label">Higher Studies:</div>
+                            <div class="info-value">MCA (Master of Computer Applications), MTech</div>
+                        </div>
+                        <div class="info-item">
+                            <div class="info-label">Career Paths:</div>
+                            <div class="info-value">
+                                <div class="skills-list">
+                                    <span class="skill-tag">Software Developer</span>
+                                    <span class="skill-tag">Web Developer</span>
+                                    <span class="skill-tag">System Analyst</span>
+                                    <span class="skill-tag">Database Administrator</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Colleges Tab Content -->
+        <div class="tab-content" id="colleges-tab">
+            <div class="search-container">
+                <input type="text" class="search-box" id="college-search" placeholder="Search colleges...">
+                <select class="filter-select" id="college-filter">
+                    <option value="all">All Colleges</option>
+                    <option value="government">Government</option>
+                    <option value="private">Private</option>
+                </select>
+            </div>
+
+            <div class="colleges-container">
+                <table class="colleges-table">
+                    <thead>
+                        <tr>
+                            <th>Institute Name</th>
+                            <th>Location</th>
+                            <th>Type</th>
+                            <th>Popular Programs</th>
+                            <th>Admission Through</th>
+                        </tr>
+                    </thead>
+                    <tbody id="colleges-table-body">
+                        <!-- College data will be populated by JavaScript -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- Exams Tab Content -->
+        <div class="tab-content" id="exams-tab">
+            <div class="degree-grid">
+                <!-- CUET Card -->
+                <div class="degree-card science">
+                    <div class="card-header">
+                        <i class="fas fa-university"></i>
+                        <h2>CUET</h2>
+                    </div>
+                    <div class="card-content">
+                        <div class="info-item">
+                            <div class="info-label">Purpose:</div>
+                            <div class="info-value">Admission to BSc, BA, BCom programs in Central Universities</div>
+                        </div>
+                        <div class="info-item">
+                            <div class="info-label">Eligibility:</div>
+                            <div class="info-value">10+2 from recognized board</div>
+                        </div>
+                        <div class="info-item">
+                            <div class="info-label">Exam Pattern:</div>
+                            <div class="info-value">Language, Domain-specific subjects, General Test</div>
+                        </div>
+                        <div class="info-item">
+                            <div class="info-label">Official Website:</div>
+                            <div class="info-value"><a href="https://cuet.samarth.ac.in" target="_blank">cuet.samarth.ac.in</a></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- IISER Aptitude Test -->
+                <div class="degree-card research">
+                    <div class="card-header">
+                        <i class="fas fa-flask"></i>
+                        <h2>IISER Aptitude Test</h2>
+                    </div>
+                    <div class="card-content">
+                        <div class="info-item">
+                            <div class="info-label">Purpose:</div>
+                            <div class="info-value">Admission to 5-year BS-MS programs in IISERs</div>
+                        </div>
+                        <div class="info-item">
+                            <div class="info-label">Eligibility:</div>
+                            <div class="info-value">10+2 with Science stream</div>
+                        </div>
+                        <div class="info-item">
+                            <div class="info-label">Exam Pattern:</div>
+                            <div class="info-value">Physics, Chemistry, Mathematics, Biology</div>
+                        </div>
+                        <div class="info-item">
+                            <div class="info-label">Official Website:</div>
+                            <div class="info-value"><a href="https://iiseradmission.in" target="_blank">iiseradmission.in</a></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- NEST -->
+                <div class="degree-card research">
+                    <div class="card-header">
+                        <i class="fas fa-atom"></i>
+                        <h2>NEST</h2>
+                    </div>
+                    <div class="card-content">
+                        <div class="info-item">
+                            <div class="info-label">Purpose:</div>
+                            <div class="info-value">Admission to 5-year MSc programs in NISER, CEBS</div>
+                        </div>
+                        <div class="info-item">
+                            <div class="info-label">Eligibility:</div>
+                            <div class="info-value">10+2 with Science stream</div>
+                        </div>
+                        <div class="info-item">
+                            <div class="info-label">Exam Pattern:</div>
+                            <div class="info-value">Physics, Chemistry, Mathematics, Biology</div>
+                        </div>
+                        <div class="info-item">
+                            <div class="info-label">Official Website:</div>
+                            <div class="info-value"><a href="https://nestexam.in" target="_blank">nestexam.in</a></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- JAM -->
+                <div class="degree-card science">
+                    <div class="card-header">
+                        <i class="fas fa-graduation-cap"></i>
+                        <h2>JAM</h2>
+                    </div>
+                    <div class="card-content">
+                        <div class="info-item">
+                            <div class="info-label">Purpose:</div>
+                            <div class="info-value">Admission to MSc programs in IITs and IISc</div>
+                        </div>
+                        <div class="info-item">
+                            <div class="info-label">Eligibility:</div>
+                            <div class="info-value">Bachelor's degree in relevant subject</div>
+                        </div>
+                        <div class="info-item">
+                            <div class="info-label">Exam Pattern:</div>
+                            <div class="info-value">Subject-specific (Mathematics, Physics, Chemistry, etc.)</div>
+                        </div>
+                        <div class="info-item">
+                            <div class="info-label">Official Website:</div>
+                            <div class="info-value"><a href="https://jam.iitm.ac.in" target="_blank">jam.iitm.ac.in</a></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- SET -->
+                <div class="degree-card arts">
+                    <div class="card-header">
+                        <i class="fas fa-pen-fancy"></i>
+                        <h2>SET</h2>
+                    </div>
+                    <div class="card-content">
+                        <div class="info-item">
+                            <div class="info-label">Purpose:</div>
+                            <div class="info-value">Admission to undergraduate programs in Symbiosis universities</div>
+                        </div>
+                        <div class="info-item">
+                            <div class="info-label">Eligibility:</div>
+                            <div class="info-value">10+2 from recognized board</div>
+                        </div>
+                        <div class="info-item">
+                            <div class="info-label">Exam Pattern:</div>
+                            <div class="info-value">General English, Quantitative, General Awareness, Analytical & Logical Reasoning</div>
+                        </div>
+                        <div class="info-item">
+                            <div class="info-label">Official Website:</div>
+                            <div class="info-value"><a href="https://set-test.org" target="_blank">set-test.org</a></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <button class="nav-btn back-btn" onclick="goBack()">
+            <i class="fas fa-arrow-left"></i> Back
+        </button>
+        <button class="nav-btn next-btn" onclick="goNext()">
+            Next <i class="fas fa-arrow-right"></i>
+        </button>
+    </footer>
+
+    <script>
+    // College data
+    const colleges = [
+        { name: "University of Delhi", location: "Delhi", type: "Government", programs: "BSc, BA, BCom", admission: "CUET" },
+        { name: "St. Stephen's College", location: "Delhi", type: "Government", programs: "BSc, BA, BCom", admission: "CUET + Interview" },
+        { name: "Hindu College", location: "Delhi", type: "Government", programs: "BSc, BA, BCom", admission: "CUET" },
+        { name: "Loyola College", location: "Chennai, Tamil Nadu", type: "Private", programs: "BSc, BCom, BA", admission: "Merit-based" },
+        { name: "Christ University", location: "Bangalore, Karnataka", type: "Private", programs: "BSc, BBA, BCom, BA", admission: "CUET/Christ Entrance Test" },
+        { name: "St. Xavier's College", location: "Mumbai, Maharashtra", type: "Private", programs: "BSc, BA, BCom", admission: "College Entrance Test" },
+        { name: "Fergusson College", location: "Pune, Maharashtra", type: "Government", programs: "BSc, BA, BCom", admission: "Merit-based" },
+        { name: "Presidency College", location: "Chennai, Tamil Nadu", type: "Government", programs: "BSc, BA", admission: "State-level Entrance" },
+        { name: "IISER Pune", location: "Pune, Maharashtra", type: "Government", programs: "BS-MS", admission: "IISER Aptitude Test" },
+        { name: "IISER Kolkata", location: "Kolkata, West Bengal", type: "Government", programs: "BS-MS", admission: "IISER Aptitude Test" },
+        { name: "NISER", location: "Bhubaneswar, Odisha", type: "Government", programs: "BS-MS", admission: "NEST" },
+        { name: "Miranda House", location: "Delhi", type: "Government", programs: "BSc, BA", admission: "CUET" },
+        { name: "Ramjas College", location: "Delhi", type: "Government", programs: "BSc, BA, BCom", admission: "CUET" },
+        { name: "Hansraj College", location: "Delhi", type: "Government", programs: "BSc, BA, BCom", admission: "CUET" },
+        { name: "Sri Venkateswara College", location: "Delhi", type: "Government", programs: "BSc, BA, BCom", admission: "CUET" },
+        { name: "Lady Shri Ram College", location: "Delhi", type: "Government", programs: "BA, BCom", admission: "CUET" },
+        { name: "St. Joseph's College", location: "Bangalore, Karnataka", type: "Private", programs: "BSc, BCom, BA", admission: "Merit-based" },
+        { name: "Madras Christian College", location: "Chennai, Tamil Nadu", type: "Private", programs: "BSc, BA, BCom", admission: "Merit-based" },
+        { name: "Wilson College", location: "Mumbai, Maharashtra", type: "Private", programs: "BSc, BA, BCom", admission: "College Entrance Test" },
+        { name: "Elphinstone College", location: "Mumbai, Maharashtra", type: "Government", programs: "BSc, BA, BCom", admission: "State-level Entrance" }
+    ];
+
+    // Initialize the page
+    document.addEventListener('DOMContentLoaded', function() {
+        // Initialize tab functionality
+        initializeTabs();
+        
+        // Populate colleges table
+        populateCollegesTable();
+        
+        // Initialize search and filter functionality
+        initializeSearchAndFilter();
+        
+        // Initialize progress tracking
+        initializeProgressTracking();
+    });
+
+    // Tab functionality
+    function initializeTabs() {
+        const tabs = document.querySelectorAll('.tab');
+        const tabContents = document.querySelectorAll('.tab-content');
+        
+        tabs.forEach(tab => {
+            tab.addEventListener('click', function() {
+                const tabId = this.getAttribute('data-tab');
+                
+                // Remove active class from all tabs and contents
+                tabs.forEach(t => t.classList.remove('active'));
+                tabContents.forEach(c => c.classList.remove('active'));
+                
+                // Add active class to current tab and content
+                this.classList.add('active');
+                document.getElementById(`${tabId}-tab`).classList.add('active');
+                
+                // Update progress based on active tab
+                updateProgress(tabId);
+            });
+        });
+    }
+
+    // Populate colleges table
+    function populateCollegesTable() {
+        const tableBody = document.getElementById('colleges-table-body');
+        
+        colleges.forEach(college => {
+            const row = document.createElement('tr');
+            
+            const typeClass = college.type === 'Government' ? 'type-govt' : 'type-private';
+            
+            row.innerHTML = `
+                <td>${college.name}</td>
+                <td>${college.location}</td>
+                <td><span class="type-badge ${typeClass}">${college.type}</span></td>
+                <td>${college.programs}</td>
+                <td>${college.admission}</td>
+            `;
+            
+            tableBody.appendChild(row);
+        });
+    }
+
+    // Search and filter functionality
+    function initializeSearchAndFilter() {
+        // Degree search and filter
+        const degreeSearch = document.getElementById('degree-search');
+        const degreeFilter = document.getElementById('degree-filter');
+        const degreeCards = document.querySelectorAll('.degree-card');
+        
+        degreeSearch.addEventListener('input', filterDegrees);
+        degreeFilter.addEventListener('change', filterDegrees);
+        
+        function filterDegrees() {
+            const searchTerm = degreeSearch.value.toLowerCase();
+            const filterValue = degreeFilter.value;
+            
+            degreeCards.forEach(card => {
+                const category = card.getAttribute('data-category');
+                const title = card.querySelector('h2').textContent.toLowerCase();
+                const content = card.textContent.toLowerCase();
+                
+                const matchesSearch = title.includes(searchTerm) || content.includes(searchTerm);
+                const matchesFilter = filterValue === 'all' || category === filterValue;
+                
+                if (matchesSearch && matchesFilter) {
+                    card.style.display = 'flex';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        }
+        
+        // College search and filter
+        const collegeSearch = document.getElementById('college-search');
+        const collegeFilter = document.getElementById('college-filter');
+        const collegeRows = document.querySelectorAll('.colleges-table tbody tr');
+        
+        collegeSearch.addEventListener('input', filterColleges);
+        collegeFilter.addEventListener('change', filterColleges);
+        
+        function filterColleges() {
+            const searchTerm = collegeSearch.value.toLowerCase();
+            const filterValue = collegeFilter.value;
+            
+            collegeRows.forEach(row => {
+                const name = row.cells[0].textContent.toLowerCase();
+                const location = row.cells[1].textContent.toLowerCase();
+                const type = row.cells[2].textContent.toLowerCase();
+                
+                const matchesSearch = name.includes(searchTerm) || location.includes(searchTerm);
+                const matchesFilter = filterValue === 'all' || 
+                                    (filterValue === 'government' && type.includes('government')) ||
+                                    (filterValue === 'private' && type.includes('private'));
+                
+                if (matchesSearch && matchesFilter) {
+                    row.style.display = '';
+                } else {
+                    row.style.display = 'none';
+                }
+            });
+        }
+    }
+
+    // Progress tracking
+    function initializeProgressTracking() {
+        // Set initial progress
+        updateProgress('degrees');
+        
+        // Add click tracking for degree cards
+        const degreeCards = document.querySelectorAll('.degree-card');
+        degreeCards.forEach(card => {
+            card.addEventListener('click', function() {
+                // Mark as viewed
+                this.classList.add('viewed');
+                
+                // Update progress
+                updateProgressBasedOnViews();
+            });
+        });
+    }
+
+    function updateProgress(tabId) {
+        const progressBar = document.querySelector('.progress-bar');
+        const progressText = document.querySelector('.progress-text');
+        
+        let progress = 0;
+        let text = '';
+        
+        switch(tabId) {
+            case 'degrees':
+                progress = 25;
+                text = 'Step 1/3: Explore Degree Programs';
+                break;
+            case 'colleges':
+                progress = 50;
+                text = 'Step 2/3: Research Top Colleges';
+                break;
+            case 'exams':
+                progress = 75;
+                text = 'Step 3/3: Understand Entrance Exams';
+                break;
+        }
+        
+        if (progressBar) {
+            progressBar.style.width = `${progress}%`;
+        }
+        if (progressText) {
+            progressText.textContent = text;
+        }
+    }
+
+    function updateProgressBasedOnViews() {
+        const degreeCards = document.querySelectorAll('.degree-card');
+        const viewedCards = document.querySelectorAll('.degree-card.viewed');
+        const progressBar = document.querySelector('.progress-bar');
+        
+        if (progressBar) {
+            const progress = Math.min(100, 25 + (viewedCards.length / degreeCards.length) * 25);
+            progressBar.style.width = `${progress}%`;
+        }
+    }
+
+    // Navigation functions
+    function goNext() {
+        localStorage.setItem('userProgress', 'Degree programs completed');
+        alert('Proceeding to next section...');
+        // window.location.href = 'Next.html';
+    }
+    
+    function goBack() {
+        // window.location.href = 'Career-Guidance.html';
+        alert('Going back to previous section...');
+    }
+
+    // Additional utility functions
+    function toggleFavorite(collegeId) {
+        // Implementation for favoriting colleges
+        console.log(`Toggled favorite for college ID: ${collegeId}`);
+    }
+
+    function compareColleges(college1, college2) {
+        // Implementation for comparing colleges
+        console.log(`Comparing ${college1} and ${college2}`);
+    }
+
+    function exportData() {
+        // Implementation for exporting college data
+        const dataStr = JSON.stringify(colleges, null, 2);
+        const dataBlob = new Blob([dataStr], {type: 'application/json'});
+        
+        const link = document.createElement('a');
+        link.href = URL.createObjectURL(dataBlob);
+        link.download = 'degree-colleges-data.json';
+        link.click();
+    }
+
+    // College comparison functionality
+    let comparedColleges = [];
+
+    function addToComparison(collegeId) {
+        if (comparedColleges.length < 3 && !comparedColleges.includes(collegeId)) {
+            comparedColleges.push(collegeId);
+            updateComparisonUI();
+        }
+    }
+
+    function removeFromComparison(collegeId) {
+        comparedColleges = comparedColleges.filter(id => id !== collegeId);
+        updateComparisonUI();
+    }
+
+    function updateComparisonUI() {
+        // Implementation for updating comparison UI
+        console.log('Compared colleges:', comparedColleges);
+    }
+
+    // Analytics tracking
+    function trackEvent(category, action, label) {
+        // Implementation for analytics tracking
+        console.log(`Tracking: ${category} - ${action} - ${label}`);
+    }
+
+    // Performance optimization
+    function debounce(func, wait) {
+        let timeout;
+        return function executedFunction(...args) {
+            const later = () => {
+                clearTimeout(timeout);
+                func(...args);
+            };
+            clearTimeout(timeout);
+            timeout = setTimeout(later, wait);
+        };
+    }
+
+    // Apply debouncing to search inputs
+    const degreeSearch = document.getElementById('degree-search');
+    const collegeSearch = document.getElementById('college-search');
+    
+    if (degreeSearch) {
+        degreeSearch.addEventListener('input', debounce(function() {
+            const event = new Event('input');
+            degreeSearch.dispatchEvent(event);
+        }, 300));
+    }
+    
+    if (collegeSearch) {
+        collegeSearch.addEventListener('input', debounce(function() {
+            const event = new Event('input');
+            collegeSearch.dispatchEvent(event);
+        }, 300));
+    }
+</script>

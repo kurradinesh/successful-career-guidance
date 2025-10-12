@@ -1,0 +1,592 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>MEC Career Path</title>
+  <style>
+    :root {
+      --primary: #3498db;
+      --secondary: #2ecc71;
+      --accent: #e74c3c;
+      --dark: #2c3e50;
+      --light: #ecf0f1;
+      --engineering: #3498db;
+      --architecture: #9b59b6;
+      --defence: #e67e22;
+      --other: #1abc9c;
+    }
+    
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+    
+    body {
+      background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      overflow-x: hidden;
+    }
+    
+    /* Header Styles */
+    header {
+      background: linear-gradient(to right, var(--primary), var(--secondary));
+      color: white;
+      padding: 25px 70px 25px 25px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    }
+    
+    h1 {
+      font-size: 2.2rem;
+      margin-bottom: 10px;
+      position: relative;
+      z-index: 2;
+    }
+    
+    .subtitle {
+      font-size: 1.1rem;
+      opacity: 0.9;
+      position: relative;
+      z-index: 2;
+    }
+    
+    .home-button {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      background-color: rgba(255, 255, 255, 0.2);
+      color: white;
+      border: 2px solid white;
+      padding: 10px 20px;
+      border-radius: 8px;
+      cursor: pointer;
+      font-weight: bold;
+      transition: all 0.3s ease;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      z-index: 3;
+    }
+    
+    .home-button:hover {
+      background-color: white;
+      color: var(--primary);
+      transform: translateY(-2px);
+    }
+    
+    .floating-circles {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      z-index: 1;
+    }
+    
+    .circle {
+      position: absolute;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.1);
+      animation: float 15s infinite linear;
+    }
+    
+    .circle:nth-child(1) {
+      width: 80px;
+      height: 80px;
+      top: 10%;
+      left: 20%;
+      animation-delay: 0s;
+    }
+    
+    .circle:nth-child(2) {
+      width: 100px;
+      height: 100px;
+      top: 60%;
+      left: 70%;
+      animation-delay: -5s;
+    }
+    
+    .circle:nth-child(3) {
+      width: 60px;
+      height: 60px;
+      top: 40%;
+      left: 40%;
+      animation-delay: -10s;
+    }
+    
+    @keyframes float {
+      0% {
+        transform: translateY(0) rotate(0deg);
+        opacity: 1;
+      }
+      100% {
+        transform: translateY(-1000px) rotate(720deg);
+        opacity: 0;
+      }
+    }
+    
+    /* Main Content */
+    .container {
+      max-width: 1200px;
+      width: 100%;
+      margin: 20px auto;
+      padding: 0 20px;
+      flex: 1;
+    }
+    
+    /* Section Grid (scrollable) */
+    section {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 25px;
+      padding: 20px;
+      height: calc(100vh - 180px); /* viewport minus header/footer */
+      overflow-y: auto; /* scrollable cards */
+      margin-bottom: 20px;
+    }
+
+    /* Exam Cards */
+    .exam {
+      background: white;
+      padding: 0;
+      border-radius: 15px;
+      box-shadow: 0 6px 15px rgba(0,0,0,0.1);
+      transition: all 0.3s ease;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+    }
+    .exam:hover { 
+      transform: translateY(-5px); 
+      box-shadow: 0 8px 20px rgba(0,0,0,0.15); 
+    }
+
+    .card-header {
+      padding: 20px;
+      color: white;
+      font-weight: bold;
+      display: flex;
+      align-items: center;
+      gap: 15px;
+      font-size: 1.1rem;
+    }
+    
+    .card-header i {
+      font-size: 1.8rem;
+    }
+    
+    .ca .card-header {
+      background: var(--primary);
+    }
+    
+    .business .card-header {
+      background: var(--secondary);
+    }
+    
+    .economics .card-header {
+      background: var(--architecture);
+    }
+    
+    .law .card-header {
+      background: var(--defence);
+    }
+    
+    .card-content {
+      padding: 20px;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+    }
+    
+    .card-content h3 {
+      margin-bottom: 15px;
+      color: var(--dark);
+      font-size: 1.3rem;
+    }
+    
+    .description {
+      margin-bottom: 15px;
+      color: #555;
+      line-height: 1.5;
+    }
+    
+    .eligibility {
+      background: #f8f9fa;
+      padding: 12px;
+      border-radius: 8px;
+      margin-bottom: 20px;
+      font-size: 0.95rem;
+      border-left: 4px solid var(--accent);
+      line-height: 1.5;
+    }
+    
+    .options-list {
+      list-style: none;
+      flex: 1;
+    }
+    
+    .options-list li {
+      padding: 10px 0;
+      border-bottom: 1px solid #eee;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      transition: all 0.3s ease;
+    }
+    
+    .options-list li:hover {
+      background: #f5f5f5;
+      padding-left: 10px;
+    }
+    
+    .checkbox {
+      width: 20px;
+      height: 20px;
+      border-radius: 4px;
+      border: 2px solid #ddd;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.3s ease;
+      flex-shrink: 0;
+    }
+    
+    .checked .checkbox {
+      background: var(--secondary);
+      border-color: var(--secondary);
+    }
+    
+    .checked .checkbox::after {
+      content: "✓";
+      color: white;
+      font-weight: bold;
+    }
+    
+    .exam-link {
+      color: var(--primary);
+      text-decoration: none;
+      font-weight: 500;
+      transition: color 0.3s ease;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    
+    .exam-link:hover {
+      color: var(--dark);
+      text-decoration: underline;
+    }
+    
+    .exam-link i {
+      font-size: 0.9rem;
+    }
+    
+    /* Footer Navigation */
+    footer {
+      background: linear-gradient(to right, var(--primary), var(--secondary));
+      color: white;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px 30px;
+      margin-top: auto;
+      box-shadow: 0 -4px 12px rgba(0, 0, 0, 0.1);
+    }
+    
+    .nav-btn {
+      padding: 12px 25px;
+      border: none;
+      border-radius: 8px;
+      background: rgba(255, 255, 255, 0.2);
+      color: white;
+      font-weight: bold;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      border: 2px solid rgba(255, 255, 255, 0.3);
+    }
+    
+    .nav-btn:hover {
+      background: white;
+      color: var(--primary);
+      transform: translateY(-2px);
+    }
+    
+    .back-btn {
+      order: 1;
+    }
+    
+    .next-btn {
+      order: 2;
+    }
+    
+    /* Responsive Design */
+    @media (max-width: 768px) {
+      header {
+        padding: 20px 60px 20px 20px;
+      }
+      
+      h1 {
+        font-size: 1.8rem;
+      }
+      
+      section {
+        grid-template-columns: 1fr;
+      }
+      
+      footer {
+        flex-direction: column;
+        gap: 15px;
+      }
+      
+      .nav-btn {
+        width: 100%;
+        justify-content: center;
+      }
+    }
+    
+    /* Progress Bar */
+    .progress-container {
+      width: 100%;
+      background-color: #e0e0e0;
+      border-radius: 10px;
+      margin: 20px 0;
+      overflow: hidden;
+      height: 10px;
+    }
+    
+    .progress-bar {
+      height: 100%;
+      background: linear-gradient(to right, var(--primary), var(--secondary));
+      width: 0%;
+      transition: width 0.5s ease;
+      border-radius: 10px;
+    }
+    
+    .progress-text {
+      text-align: center;
+      font-weight: 500;
+      color: var(--dark);
+      margin-bottom: 10px;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>MEC Career Path</h1>
+    <p class="subtitle">Commerce + Maths options after MEC</p>
+    <button class="home-button" onclick="location.href='index.html'">
+      <span>🏠</span> Home
+    </button>
+    <div class="floating-circles">
+      <div class="circle"></div>
+      <div class="circle"></div>
+      <div class="circle"></div>
+    </div>
+  </header>
+
+  <section>
+    <!-- Chartered Accountant / CMA / CS -->
+    <div class="exam ca">
+      <div class="card-header">
+        <span>📊</span>
+        <h2>Chartered Accountant (CA) / CMA / CS</h2>
+      </div>
+      <div class="card-content">
+        <p class="description">Professional Commerce streams.</p>
+        <div class="eligibility">
+          ✅ Eligibility: 10+2 pass (any percentage).
+        </div>
+        <ul class="options-list">
+          <li>
+            <div class="checkbox"></div>
+            <a href="https://www.icai.org" target="_blank" class="exam-link">
+              CA Foundation / Intermediate / Final
+            </a>
+          </li>
+          <li>
+            <div class="checkbox"></div>
+            <a href="https://icmai.in/" target="_blank" class="exam-link">
+              CMA Foundation / Intermediate / Final
+            </a>
+          </li>
+          <li>
+            <div class="checkbox"></div>
+            <a href="https://www.icsi.edu/" target="_blank" class="exam-link">
+              CS Foundation / Executive / Professional
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Business, Finance & Management -->
+    <div class="exam business">
+      <div class="card-header">
+        <span>💼</span>
+        <h2>Business, Finance & Management</h2>
+      </div>
+      <div class="card-content">
+        <p class="description">BBA, BBM, B.Com, International Business, Banking, MBA later.</p>
+        <div class="eligibility">
+          ✅ Eligibility: 10+2 with Commerce/Maths, 50% aggregate.
+        </div>
+        <ul class="options-list">
+          <li>
+            <div class="checkbox"></div>
+            <a href="https://www.ugc.ac.in/bba-admission" target="_blank" class="exam-link">
+              BBA (UG Admissions / State CET)
+            </a>
+          </li>
+          <li>
+            <div class="checkbox"></div>
+            <a href="https://www.ugc.ac.in/bbm-admission" target="_blank" class="exam-link">
+              BBM (UG Admissions / State CET)
+            </a>
+          </li>
+          <li>
+            <div class="checkbox"></div>
+            <a href="https://www.colleges.du.ac.in/" target="_blank" class="exam-link">
+              B.Com (University Admissions)
+            </a>
+          </li>
+          <li>
+            <div class="checkbox"></div>
+            <a href="https://www.iift.ac.in/admissions" target="_blank" class="exam-link">
+              International Business (IIFT / Other Colleges)
+            </a>
+          </li>
+          <li>
+            <div class="checkbox"></div>
+            <a href="https://www.ibps.in/" target="_blank" class="exam-link">
+              Banking / IBPS Exams
+            </a>
+          </li>
+          <li>
+            <div class="checkbox"></div>
+            <a href="https://www.aicte-india.org/" target="_blank" class="exam-link">
+              MBA Admissions (AICTE / CAT / MAT)
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Economics & Statistics -->
+    <div class="exam economics">
+      <div class="card-header">
+        <span>📈</span>
+        <h2>Economics & Statistics</h2>
+      </div>
+      <div class="card-content">
+        <p class="description">BA Economics, B.Sc Statistics, Actuarial Science, Data Analytics.</p>
+        <div class="eligibility">
+          ✅ Eligibility: 10+2 with Maths, 55–60% aggregate.
+        </div>
+        <ul class="options-list">
+          <li>
+            <div class="checkbox"></div>
+            <a href="https://admission.uod.ac.in/" target="_blank" class="exam-link">
+              BA Economics
+            </a>
+          </li>
+          <li>
+            <div class="checkbox"></div>
+            <a href="https://www.isical.ac.in/" target="_blank" class="exam-link">
+              B.Sc Statistics (ISI Kolkata)
+            </a>
+          </li>
+          <li>
+            <div class="checkbox"></div>
+            <a href="https://www.actuariesindia.org/" target="_blank" class="exam-link">
+              Actuarial Science (Institute of Actuaries India)
+            </a>
+          </li>
+          <li>
+            <div class="checkbox"></div>
+            <a href="https://www.iisc.ac.in/" target="_blank" class="exam-link">
+              Data Analytics (IISc / Other Colleges)
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Law & Civil Services -->
+    <div class="exam law">
+      <div class="card-header">
+        <span>⚖️</span>
+        <h2>Law & Civil Services</h2>
+      </div>
+      <div class="card-content">
+        <p class="description">CLAT for Law, UPSC & State PSC after graduation.</p>
+        <div class="eligibility">
+          ✅ Eligibility: Law – 45% (General), 40% (SC/ST).
+        </div>
+        <ul class="options-list">
+          <li>
+            <div class="checkbox"></div>
+            <a href="https://consortiumofnlus.ac.in/" target="_blank" class="exam-link">
+              CLAT (Law Admission)
+            </a>
+          </li>
+          <li>
+            <div class="checkbox"></div>
+            <a href="https://www.upsc.gov.in/" target="_blank" class="exam-link">
+              UPSC Civil Services
+            </a>
+          </li>
+          <li>
+            <div class="checkbox"></div>
+            <a href="https://psc.ap.gov.in/" target="_blank" class="exam-link">
+              State PSC (AP / Telangana / Others)
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <button class="nav-btn back-btn" onclick="goBack()">
+      <span>⬅</span> Back
+    </button>
+    <button class="nav-btn next-btn" onclick="goNext()">
+      Next <span>➡</span>
+    </button>
+  </footer>
+
+  <script>
+    function goNext() {
+      localStorage.setItem('userProgress', 'MEC completed');
+      window.location.href = 'Next.html';
+    }
+    
+    function goBack() {
+      window.location.href = 'academic.html';
+    }
+    
+    // Add interactive checkbox functionality
+    document.addEventListener('DOMContentLoaded', function() {
+      const checkboxes = document.querySelectorAll('.checkbox');
+      
+      checkboxes.forEach(checkbox => {
+        checkbox.addEventListener('click', function() {
+          const listItem = this.closest('li');
+          listItem.classList.toggle('checked');
+        });
+      });
+    });
+  </script>
+</body>
+</html>
