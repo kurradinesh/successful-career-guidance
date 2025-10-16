@@ -31,7 +31,7 @@
       overflow-x: hidden;
     }
     
-    /* Header Styles */
+    
     header {
       background: linear-gradient(to right, var(--primary), var(--secondary));
       color: white;
@@ -132,7 +132,7 @@
       }
     }
     
-    /* Main Content */
+   
     .container {
       max-width: 1200px;
       width: 100%;
@@ -141,18 +141,18 @@
       flex: 1;
     }
     
-    /* Section Grid (scrollable) */
+   
     section {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
       gap: 25px;
       padding: 20px;
-      height: calc(100vh - 180px); /* viewport minus header/footer */
-      overflow-y: auto; /* scrollable cards */
+      height: calc(100vh - 180px); 
+      overflow-y: auto; 
       margin-bottom: 20px;
     }
 
-    /* Exam Cards */
+   
     .exam {
       background: white;
       padding: 0;
@@ -289,7 +289,7 @@
       font-size: 0.9rem;
     }
     
-    /* Footer Navigation */
+    
     footer {
       background: linear-gradient(to right, var(--primary), var(--secondary));
       color: white;
@@ -355,7 +355,7 @@
       }
     }
     
-    /* Progress Bar */
+    
     .progress-container {
       width: 100%;
       background-color: #e0e0e0;
@@ -396,7 +396,7 @@
   </header>
 
   <section>
-    <!-- Chartered Accountant / CMA / CS -->
+   
     <div class="exam ca">
       <div class="card-header">
         <span>📊</span>
@@ -430,7 +430,7 @@
       </div>
     </div>
 
-    <!-- Business, Finance & Management -->
+    
     <div class="exam business">
       <div class="card-header">
         <span>💼</span>
@@ -482,7 +482,7 @@
       </div>
     </div>
 
-    <!-- Economics & Statistics -->
+   
     <div class="exam economics">
       <div class="card-header">
         <span>📈</span>
@@ -522,7 +522,7 @@
       </div>
     </div>
 
-    <!-- Law & Civil Services -->
+    
     <div class="exam law">
       <div class="card-header">
         <span>⚖️</span>
@@ -562,21 +562,21 @@
       <span>⬅</span> Back
     </button>
     <button class="nav-btn next-btn" onclick="goNext()">
-      Next <span>➡</span>
+      Next- ➡
     </button>
   </footer>
 
   <script>
     function goNext() {
       localStorage.setItem('userProgress', 'MEC completed');
-      window.location.href = 'Next.html';
+      alert('Moving to next section...');
     }
     
     function goBack() {
       window.location.href = 'academic.html';
     }
     
-    // Add interactive checkbox functionality
+    
     document.addEventListener('DOMContentLoaded', function() {
       const checkboxes = document.querySelectorAll('.checkbox');
       

@@ -1,0 +1,2061 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Career Path Navigator</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* CSS Variables for consistent theming */
+        :root {
+            --primary-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            --secondary-gradient: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            --accent-gradient: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+            --success-gradient: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);
+            --warning-gradient: linear-gradient(135deg, #fa709a 0%, #fee140 100%);
+            --info-gradient: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);
+            --dark-color: #2d3748;
+            --light-color: #f7fafc;
+            --shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+            --transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+            background-size: 400% 400%;
+            animation: gradientBG 15s ease infinite;
+            font-family: 'Segoe UI', Tahoma, sans-serif;
+            margin: 0;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        @keyframes gradientBG {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .floating-shapes {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            overflow: hidden;
+        }
+
+        .shape {
+            position: absolute;
+            border-radius: 50%;
+            opacity: 0.1;
+            animation: float 15s infinite linear;
+        }
+
+        .shape:nth-child(1) {
+            width: 80px;
+            height: 80px;
+            background: var(--light-color);
+            top: 20%;
+            left: 10%;
+            animation-delay: 0s;
+        }
+
+        .shape:nth-child(2) {
+            width: 120px;
+            height: 120px;
+            background: var(--light-color);
+            top: 60%;
+            left: 80%;
+            animation-delay: -5s;
+        }
+
+        .shape:nth-child(3) {
+            width: 60px;
+            height: 60px;
+            background: var(--light-color);
+            top: 80%;
+            left: 20%;
+            animation-delay: -10s;
+        }
+
+        .shape:nth-child(4) {
+            width: 100px;
+            height: 100px;
+            background: var(--light-color);
+            top: 30%;
+            left: 70%;
+            animation-delay: -7s;
+        }
+
+        @keyframes float {
+            0% {
+                transform: translateY(0) rotate(0deg);
+                opacity: 0.1;
+            }
+            25% {
+                transform: translateY(-20px) rotate(90deg);
+                opacity: 0.15;
+            }
+            50% {
+                transform: translateY(-40px) rotate(180deg);
+                opacity: 0.2;
+            }
+            75% {
+                transform: translateY(-20px) rotate(270deg);
+                opacity: 0.15;
+            }
+            100% {
+                transform: translateY(0) rotate(360deg);
+                opacity: 0.1;
+            }
+        }
+
+        .top-bar {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            display: flex;
+            gap: 15px;
+            z-index: 10;
+        }
+
+        .top-bar button {
+            background: var(--primary-gradient);
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            font-size: 16px;
+            border-radius: 30px;
+            cursor: pointer;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .top-bar button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+            transition: 0.5s;
+        }
+
+        .top-bar button:hover::before {
+            left: 100%;
+        }
+
+        .top-bar button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 25px rgba(0, 0, 0, 0.2);
+        }
+
+        .header {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 20px 40px;
+            box-shadow: var(--shadow);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .header-content {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .logo-icon {
+            color: #667eea;
+            font-size: 28px;
+        }
+
+        .logo-text {
+            font-size: 24px;
+            font-weight: 700;
+            background: var(--primary-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 30px;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--dark-color);
+            font-weight: 500;
+            transition: var(--transition);
+            position: relative;
+        }
+
+        .nav-links a:hover {
+            color: #667eea;
+        }
+
+        .nav-links a.active {
+            color: #667eea;
+        }
+
+        .nav-links a.active::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: var(--primary-gradient);
+        }
+
+        .main-container {
+            max-width: 1400px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+
+        .page-title {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .page-title h1 {
+            font-size: 42px;
+            margin-bottom: 15px;
+            background: var(--primary-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .page-title p {
+            font-size: 18px;
+            color: var(--dark-color);
+            max-width: 700px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+
+        .navigation-table {
+            width: 100%;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: var(--shadow);
+            margin-bottom: 40px;
+            border-collapse: collapse;
+        }
+
+        .navigation-table th {
+            padding: 20px;
+            font-size: 22px;
+            color: var(--dark-color);
+            border-bottom: 2px solid #667eea;
+            text-align: center;
+        }
+
+        .navigation-table td {
+            padding: 25px;
+            text-align: center;
+            vertical-align: top;
+            border-bottom: 1px solid #eee;
+        }
+
+        .nav-card {
+            background: white;
+            border-radius: 15px;
+            padding: 25px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: var(--transition);
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+        }
+
+        .nav-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .nav-icon {
+            font-size: 40px;
+            margin-bottom: 15px;
+            background: var(--primary-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .nav-card h3 {
+            font-size: 18px;
+            margin-bottom: 10px;
+            color: var(--dark-color);
+        }
+
+        .nav-card p {
+            color: #666;
+            font-size: 14px;
+            line-height: 1.5;
+        }
+
+        .hero-section {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 50px;
+            box-shadow: var(--shadow);
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .hero-section h1 {
+            font-size: 42px;
+            margin-bottom: 20px;
+            background: var(--primary-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero-section p {
+            font-size: 18px;
+            color: #555;
+            max-width: 800px;
+            margin: 0 auto 30px;
+            line-height: 1.6;
+        }
+
+        .btn-main {
+            background: var(--primary-gradient);
+            color: white;
+            border: none;
+            padding: 14px 36px;
+            font-size: 18px;
+            border-radius: 30px;
+            cursor: pointer;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+            display: inline-block;
+            text-decoration: none;
+            margin: 10px;
+        }
+
+        .btn-main::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 5px;
+            height: 5px;
+            background: rgba(255, 255, 255, 0.5);
+            opacity: 0;
+            border-radius: 100%;
+            transform: scale(1, 1) translate(-50%);
+            transform-origin: 50% 50%;
+        }
+
+        .btn-main:hover::after {
+            animation: ripple 1s ease-out;
+        }
+
+        @keyframes ripple {
+            0% {
+                transform: scale(0, 0);
+                opacity: 0.5;
+            }
+            100% {
+                transform: scale(40, 40);
+                opacity: 0;
+            }
+        }
+
+        .btn-main:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 25px rgba(0, 0, 0, 0.2);
+        }
+
+        .btn-secondary {
+            background: var(--secondary-gradient);
+            color: white;
+            border: none;
+            padding: 14px 36px;
+            font-size: 18px;
+            border-radius: 30px;
+            cursor: pointer;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+            display: inline-block;
+            text-decoration: none;
+            margin: 10px;
+        }
+
+        .btn-secondary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 25px rgba(0, 0, 0, 0.2);
+        }
+
+        .footer {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 40px 20px;
+            margin-top: 60px;
+            text-align: center;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-bottom: 20px;
+        }
+
+        .footer-links a {
+            text-decoration: none;
+            color: #555;
+            transition: var(--transition);
+        }
+
+        .footer-links a:hover {
+            color: #667eea;
+        }
+
+        .copyright {
+            color: #777;
+            font-size: 14px;
+        }
+
+        .particles {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+        }
+
+        .particle {
+            position: absolute;
+            background: rgba(255, 255, 255, 0.5);
+            border-radius: 50%;
+            animation: particleFloat 15s infinite linear;
+        }
+
+        @keyframes particleFloat {
+            0% {
+                transform: translateY(100vh) rotate(0deg);
+                opacity: 0;
+            }
+            10% {
+                opacity: 1;
+            }
+            90% {
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-100px) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        .fade-in {
+            animation: fadeIn 0.8s ease forwards;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Modal Styles */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            z-index: 1000;
+            overflow-y: auto;
+        }
+
+        .modal-content {
+            background: white;
+            margin: 40px auto;
+            padding: 40px;
+            border-radius: 20px;
+            width: 90%;
+            max-width: 1000px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            position: relative;
+            animation: modalFadeIn 0.5s ease;
+        }
+
+        @keyframes modalFadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid #eee;
+        }
+
+        .modal-title {
+            font-size: 32px;
+            background: var(--primary-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .close-modal {
+            background: none;
+            border: none;
+            font-size: 28px;
+            cursor: pointer;
+            color: #777;
+            transition: var(--transition);
+        }
+
+        .close-modal:hover {
+            color: #333;
+            transform: rotate(90deg);
+        }
+
+        .modal-body {
+            line-height: 1.7;
+        }
+
+        .modal-section {
+            margin-bottom: 30px;
+        }
+
+        .modal-section h3 {
+            font-size: 22px;
+            margin-bottom: 15px;
+            color: var(--dark-color);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .modal-section h3 i {
+            color: #667eea;
+        }
+
+        .modal-section p {
+            margin-bottom: 15px;
+            color: #555;
+        }
+
+        .modal-list {
+            list-style-type: none;
+            margin-left: 20px;
+        }
+
+        .modal-list li {
+            padding: 8px 0;
+            position: relative;
+            padding-left: 25px;
+        }
+
+        .modal-list li::before {
+            content: '•';
+            position: absolute;
+            left: 0;
+            color: #667eea;
+            font-size: 20px;
+        }
+
+        .modal-footer {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 1px solid #eee;
+        }
+
+        .back-btn {
+            background: var(--secondary-gradient);
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 30px;
+            cursor: pointer;
+            font-weight: 500;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .back-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .next-btn {
+            background: var(--primary-gradient);
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 30px;
+            cursor: pointer;
+            font-weight: 500;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .next-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Back to Home Button */
+        .back-home-btn {
+            position: fixed;
+            bottom: 30px;
+            left: 30px;
+            background: var(--secondary-gradient);
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 30px;
+            cursor: pointer;
+            font-weight: 500;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            z-index: 100;
+            box-shadow: var(--shadow);
+        }
+
+        .back-home-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Enhanced Styles */
+        .highlight-card {
+            background: var(--info-gradient);
+            border-left: 5px solid #667eea;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+        }
+
+        .stat-card {
+            background: white;
+            border-radius: 15px;
+            padding: 20px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            text-align: center;
+            margin: 10px;
+            flex: 1;
+            min-width: 150px;
+        }
+
+        .stat-number {
+            font-size: 32px;
+            font-weight: bold;
+            background: var(--primary-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 10px;
+        }
+
+        .stat-label {
+            color: #666;
+            font-size: 14px;
+        }
+
+        .stats-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin: 20px 0;
+        }
+
+        .timeline {
+            position: relative;
+            max-width: 800px;
+            margin: 30px auto;
+        }
+
+        .timeline::after {
+            content: '';
+            position: absolute;
+            width: 6px;
+            background: var(--primary-gradient);
+            top: 0;
+            bottom: 0;
+            left: 50%;
+            margin-left: -3px;
+        }
+
+        .timeline-item {
+            padding: 10px 40px;
+            position: relative;
+            width: 50%;
+            box-sizing: border-box;
+        }
+
+        .timeline-item:nth-child(odd) {
+            left: 0;
+        }
+
+        .timeline-item:nth-child(even) {
+            left: 50%;
+        }
+
+        .timeline-content {
+            padding: 20px;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .timeline-item::after {
+            content: '';
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background: var(--primary-gradient);
+            border-radius: 50%;
+            top: 15px;
+            z-index: 1;
+        }
+
+        .timeline-item:nth-child(odd)::after {
+            right: -10px;
+        }
+
+        .timeline-item:nth-child(even)::after {
+            left: -10px;
+        }
+
+        /* Additional animations */
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.05);
+            }
+            100% {
+                transform: scale(1);
+            }
+        }
+
+        .pulse {
+            animation: pulse 2s infinite;
+        }
+
+        .bounce {
+            animation: bounce 2s infinite;
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {
+                transform: translateY(0);
+            }
+            40% {
+                transform: translateY(-10px);
+            }
+            60% {
+                transform: translateY(-5px);
+            }
+        }
+
+        /* Resource Section */
+        .resource-section {
+            margin: 30px 0;
+            padding: 20px;
+            background: #f8f9fa;
+            border-radius: 10px;
+        }
+
+        .resource-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .resource-card {
+            background: white;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: var(--transition);
+        }
+
+        .resource-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        }
+
+        .resource-card h4 {
+            color: #667eea;
+            margin-bottom: 10px;
+            font-size: 18px;
+        }
+
+        .resource-card p {
+            color: #666;
+            font-size: 14px;
+            margin-bottom: 15px;
+        }
+
+        .resource-link {
+            display: inline-block;
+            background: var(--primary-gradient);
+            color: white;
+            padding: 8px 15px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-size: 14px;
+            transition: var(--transition);
+        }
+
+        .resource-link:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Video Section */
+        .video-section {
+            margin: 30px 0;
+        }
+
+        .video-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .video-card {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: var(--transition);
+        }
+
+        .video-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        }
+
+        .video-thumbnail {
+            width: 100%;
+            height: 180px;
+            background: #ddd;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #999;
+            font-size: 14px;
+        }
+
+        .video-info {
+            padding: 15px;
+        }
+
+        .video-info h4 {
+            color: #333;
+            margin-bottom: 10px;
+            font-size: 16px;
+        }
+
+        .video-info p {
+            color: #666;
+            font-size: 14px;
+            margin-bottom: 10px;
+        }
+
+        .video-link {
+            display: inline-block;
+            color: #667eea;
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 500;
+        }
+
+        .video-link:hover {
+            text-decoration: underline;
+        }
+
+        /* Degree-specific sections */
+        .degree-section {
+            margin: 30px 0;
+            padding: 20px;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+
+        .degree-section h3 {
+            color: #667eea;
+            margin-bottom: 15px;
+            font-size: 20px;
+        }
+
+        .degree-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 15px;
+            margin-top: 15px;
+        }
+
+        .degree-card {
+            background: #f8f9fa;
+            padding: 15px;
+            border-radius: 8px;
+            border-left: 4px solid #667eea;
+        }
+
+        .degree-card h4 {
+            color: #333;
+            margin-bottom: 8px;
+            font-size: 16px;
+        }
+
+        .degree-card p {
+            color: #666;
+            font-size: 14px;
+            margin-bottom: 10px;
+        }
+
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                gap: 15px;
+            }
+            
+            .nav-links {
+                gap: 15px;
+            }
+            
+            .navigation-table {
+                overflow-x: auto;
+            }
+            
+            .navigation-table th, .navigation-table td {
+                padding: 15px 10px;
+            }
+            
+            .nav-card {
+                padding: 15px;
+            }
+            
+            .modal-content {
+                padding: 20px;
+                width: 95%;
+            }
+            
+            .back-home-btn {
+                bottom: 20px;
+                left: 20px;
+                padding: 10px 20px;
+                font-size: 14px;
+            }
+            
+            .resource-grid, .video-container, .degree-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="floating-shapes">
+        <div class="shape"></div>
+        <div class="shape"></div>
+        <div class="shape"></div>
+        <div class="shape"></div>
+    </div>
+
+    <div class="top-bar">
+        <button onclick="window.location.href='index.html'">Home</button>
+        <button onclick="window.location.href='login.html'">Login</button>
+    </div>
+
+    <div class="header">
+        <div class="header-content">
+            <div class="logo-container">
+                <i class="fas fa-graduation-cap logo-icon"></i>
+                <div class="logo-text">IK Career Path Navigator</div>
+            </div>
+            <div class="nav-links">
+                <a href="career-paths.html" class="active">Career Paths</a>
+                <a href="placement-prep.html">Placement Prep</a>
+                <a href="opportunities.html">Opportunities</a>
+                <a href="professional-presence.html">Professional Presence</a>
+                <a href="higher-studies.html">Higher Studies</a>
+                <a href="free-guidance.html">Free Guidance</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="main-container">
+        <div class="page-title fade-in">
+            <h1>IK Career Path Navigator</h1>
+            <p>Your complete career guidance platform with comprehensive roadmaps to success. Explore career options, prepare for placements, find opportunities, and get expert guidance.</p>
+        </div>
+
+        <table class="navigation-table fade-in">
+            <thead>
+                <tr>
+                    <th>Career Paths</th>
+                    <th>Placement Prep</th>
+                    <th>Opportunities</th>
+                    <th>Professional Presence</th>
+                    <th>Higher Studies</th>
+                    <th>Free Guidance</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>
+                        <div class="nav-card" onclick="openModal('career-paths')">
+                            <i class="fas fa-road nav-icon"></i>
+                            <h3>Explore Career Options</h3>
+                            <p>Discover various career paths with detailed roadmaps</p>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="nav-card" onclick="openModal('placement-prep')">
+                            <i class="fas fa-briefcase nav-icon"></i>
+                            <h3>Job Preparation</h3>
+                            <p>Resume building, interview prep, and placement guidance</p>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="nav-card" onclick="openModal('opportunities')">
+                            <i class="fas fa-bullseye nav-icon"></i>
+                            <h3>Find Opportunities</h3>
+                            <p>Job openings, internships, and career fairs</p>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="nav-card" onclick="openModal('professional-presence')">
+                            <i class="fas fa-user-tie nav-icon"></i>
+                            <h3>Build Your Brand</h3>
+                            <p>LinkedIn optimization and professional networking</p>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="nav-card" onclick="openModal('higher-studies')">
+                            <i class="fas fa-graduation-cap nav-icon"></i>
+                            <h3>Advanced Education</h3>
+                            <p>Master's, PhD, and specialized certifications</p>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="nav-card" onclick="openModal('free-guidance')">
+                            <i class="fas fa-hands-helping nav-icon"></i>
+                            <h3>Expert Advice</h3>
+                            <p>Free counseling and mentorship programs</p>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+        <div class="hero-section fade-in">
+            <h1>Your Complete Career Guidance Platform</h1>
+            <p>Choose your career path and follow our comprehensive roadmaps to success. From learning resources to job placement, we guide you at every step.</p>
+            <div>
+                <a href="#" class="btn-main">Explore Career Paths</a>
+                <a href="#" class="btn-secondary">Get Free Guidance</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="footer">
+        <div class="footer-content">
+            <div class="footer-links">
+                <a href="about.html">About Us</a>
+                <a href="contact.html">Contact</a>
+                <a href="privacy.html">Privacy Policy</a>
+                <a href="terms.html">Terms of Service</a>
+            </div>
+            <div class="copyright">
+                &copy; 2023 IK Career Path Navigator. All rights reserved.
+            </div>
+        </div>
+    </div>
+
+    <!-- Back to Home Button -->
+    <button id="backButton" class="back-home-btn">
+        <i class="fas fa-arrow-left"></i> Back to Other Degrees
+    </button>
+
+    <!-- Career Paths Modal -->
+    <div id="career-paths-modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 class="modal-title">Career Paths</h2>
+                <button class="close-modal" onclick="closeModal('career-paths')">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="modal-section">
+                    <h3><i class="fas fa-info-circle"></i> Overview</h3>
+                    <p>Choose your path based on your interest and skill set. A world of opportunities awaits, whether you prefer a structured corporate environment, the challenge of public service, or the freedom of entrepreneurship.</p>
+                    
+                    <div class="highlight-card">
+                        <p><strong>Did you know?</strong> The average person changes careers 5-7 times during their working life. Choosing the right path early can save you time and effort.</p>
+                    </div>
+                </div>
+
+                <div class="modal-section">
+                    <h3><i class="fas fa-building"></i> Corporate Sector</h3>
+                    <p>Apply for roles like analyst, consultant, or project coordinator in leading MNCs.</p>
+                    <ul class="modal-list">
+                        <li><strong>Business Analyst:</strong> Analyze business processes and recommend improvements</li>
+                        <li><strong>Project Coordinator:</strong> Assist in planning and executing projects</li>
+                        <li><strong>Marketing Associate:</strong> Develop and implement marketing strategies</li>
+                        <li><strong>HR Specialist:</strong> Manage recruitment, training, and employee relations</li>
+                        <li><strong>Sales Executive:</strong> Drive business growth through client acquisition</li>
+                    </ul>
+                </div>
+
+                <div class="modal-section">
+                    <h3><i class="fas fa-landmark"></i> Public Sector</h3>
+                    <p>Attempt competitive government exams like UPSC, SSC, or specialized banking roles.</p>
+                    <ul class="modal-list">
+                        <li><strong>UPSC Civil Services:</strong> IAS, IPS, IFS and other central government services</li>
+                        <li><strong>SSC:</strong> Staff Selection Commission for various government departments</li>
+                        <li><strong>Banking:</strong> PO, Clerk positions in public sector banks</li>
+                        <li><strong>State PSCs:</strong> State-level administrative services</li>
+                        <li><strong>Defense Services:</strong> Army, Navy, Air Force through NDA, CDS exams</li>
+                    </ul>
+                </div>
+
+                <div class="modal-section">
+                    <h3><i class="fas fa-rocket"></i> Entrepreneurship</h3>
+                    <p>Have a unique idea? Start your own business or become a freelancer in a high-demand field.</p>
+                    <ul class="modal-list">
+                        <li><strong>Startup Founder:</strong> Launch and scale your own business venture</li>
+                        <li><strong>Freelancer:</strong> Offer specialized services on platforms like Upwork, Fiverr</li>
+                        <li><strong>Consultant:</strong> Provide expert advice in your area of specialization</li>
+                        <li><strong>Content Creator:</strong> Build an audience through blogging, YouTube, etc.</li>
+                        <li><strong>E-commerce:</strong> Start an online store selling products or services</li>
+                    </ul>
+                </div>
+
+                <div class="modal-section">
+                    <h3><i class="fas fa-laptop-code"></i> Technology & IT</h3>
+                    <p>High-growth field with diverse opportunities in software development, data science, cybersecurity, and more.</p>
+                    <ul class="modal-list">
+                        <li><strong>Software Development:</strong> Front-end, back-end, full-stack development</li>
+                        <li><strong>Data Science:</strong> Data analysis, machine learning, AI engineering</li>
+                        <li><strong>Cybersecurity:</strong> Security analysis, ethical hacking, security architecture</li>
+                        <li><strong>Cloud Computing:</strong> AWS, Azure, Google Cloud specialists</li>
+                        <li><strong>IT Management:</strong> Project management, IT consulting, solutions architecture</li>
+                    </ul>
+                    
+                    <div class="stats-container">
+                        <div class="stat-card">
+                            <div class="stat-number">15%</div>
+                            <div class="stat-label">Annual Growth</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-number">₹6-15L</div>
+                            <div class="stat-label">Starting Salary</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-number">2M+</div>
+                            <div class="stat-label">Jobs by 2025</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="modal-section">
+                    <h3><i class="fas fa-chart-line"></i> Business & Management</h3>
+                    <p>Leadership roles across various industries with focus on strategy, operations, and growth.</p>
+                    <ul class="modal-list">
+                        <li><strong>Marketing:</strong> Digital marketing, brand management, market research</li>
+                        <li><strong>Finance:</strong> Investment banking, financial analysis, accounting</li>
+                        <li><strong>Human Resources:</strong> Talent acquisition, HR business partner, organizational development</li>
+                        <li><strong>Operations:</strong> Supply chain management, process improvement, logistics</li>
+                        <li><strong>Consulting:</strong> Management consulting, strategy consulting, business analysis</li>
+                    </ul>
+                </div>
+
+                <div class="modal-section">
+                    <h3><i class="fas fa-road"></i> Career Progression Timeline</h3>
+                    <div class="timeline">
+                        <div class="timeline-item">
+                            <div class="timeline-content">
+                                <h4>Entry Level (0-2 years)</h4>
+                                <p>Junior roles, internships, foundational skill development</p>
+                            </div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-content">
+                                <h4>Mid Level (3-7 years)</h4>
+                                <p>Specialist roles, team leadership, advanced certifications</p>
+                            </div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-content">
+                                <h4>Senior Level (8-15 years)</h4>
+                                <p>Management positions, strategic decision-making, mentorship</p>
+                            </div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-content">
+                                <h4>Executive Level (15+ years)</h4>
+                                <p>Director, VP, C-level positions, organizational leadership</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="resource-section">
+                    <h3><i class="fas fa-external-link-alt"></i> Helpful Resources</h3>
+                    <div class="resource-grid">
+                        <div class="resource-card">
+                            <h4>LinkedIn Learning</h4>
+                            <p>Online courses for skill development in various career paths</p>
+                            <a href="https://www.linkedin.com/learning/" target="_blank" class="resource-link">Visit</a>
+                        </div>
+                        <div class="resource-card">
+                            <h4>Coursera</h4>
+                            <p>Professional certificates and specializations</p>
+                            <a href="https://www.coursera.org/" target="_blank" class="resource-link">Visit</a>
+                        </div>
+                        <div class="resource-card">
+                            <h4>CareerOneStop</h4>
+                            <p>Explore careers, wages, and employment trends</p>
+                            <a href="https://www.careeronestop.org/" target="_blank" class="resource-link">Visit</a>
+                        </div>
+                        <div class="resource-card">
+                            <h4>edX</h4>
+                            <p>Online courses from top universities worldwide</p>
+                            <a href="https://www.edx.org" target="_blank" class="resource-link">Visit</a>
+                        </div>
+                        <div class="resource-card">
+                            <h4>FutureLearn</h4>
+                            <p>Short courses to boost your career</p>
+                            <a href="https://www.futurelearn.com" target="_blank" class="resource-link">Visit</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="video-section">
+                    <h3><i class="fas fa-video"></i> Career Guidance Videos</h3>
+                    <div class="video-container">
+                        <div class="video-card">
+                            <div class="video-thumbnail">Career Exploration Video</div>
+                            <div class="video-info">
+                                <h4>How to Choose the Right Career Path</h4>
+                                <p>Tips for selecting a career that aligns with your skills and interests</p>
+                                <a href="#" class="video-link">Watch Video</a>
+                            </div>
+                        </div>
+                        <div class="video-card">
+                            <div class="video-thumbnail">Tech Careers Video</div>
+                            <div class="video-info">
+                                <h4>Top 10 Tech Careers for 2023</h4>
+                                <p>Explore the most in-demand technology jobs</p>
+                                <a href="#" class="video-link">Watch Video</a>
+                            </div>
+                        </div>
+                        <div class="video-card">
+                            <div class="video-thumbnail">Career Change Video</div>
+                            <div class="video-info">
+                                <h4>How to Successfully Change Careers</h4>
+                                <p>Strategies for transitioning to a new field</p>
+                                <a href="#" class="video-link">Watch Video</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="back-btn" onclick="closeModal('career-paths')"><i class="fas fa-arrow-left"></i> Back</button>
+                <button class="next-btn" onclick="window.location.href='career-paths-details.html'">Explore More <i class="fas fa-arrow-right"></i></button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Placement Prep Modal -->
+    <div id="placement-prep-modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 class="modal-title">Placement Preparation</h2>
+                <button class="close-modal" onclick="closeModal('placement-prep')">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="modal-section">
+                    <h3><i class="fas fa-info-circle"></i> Overview</h3>
+                    <p>Boost your employability and crack your dream job with focused, strategic preparation. Covering all aspects from aptitude to technical skills is key to success.</p>
+                    
+                    <div class="highlight-card">
+                        <p><strong>Success Tip:</strong> Candidates who prepare thoroughly for interviews are 3x more likely to receive job offers compared to those who don't.</p>
+                    </div>
+                </div>
+
+                <div class="modal-section">
+                    <h3><i class="fas fa-file-alt"></i> Resume Building</h3>
+                    <p>Create professional resumes that stand out to employers:</p>
+                    <ul class="modal-list">
+                        <li><strong>Template Library:</strong> Industry-specific resume templates</li>
+                        <li><strong>ATS Optimization:</strong> Ensure your resume passes automated screening</li>
+                        <li><strong>Content Guidance:</strong> What to include and what to avoid</li>
+                        <li><strong>Professional Review:</strong> Expert feedback on your resume</li>
+                        <li><strong>Cover Letters:</strong> Customizable cover letter templates</li>
+                    </ul>
+                </div>
+
+                <div class="modal-section">
+                    <h3><i class="fas fa-comments"></i> Interview Preparation</h3>
+                    <p>Prepare for various types of interviews with our comprehensive resources:</p>
+                    <ul class="modal-list">
+                        <li><strong>Technical Interviews:</strong> Coding challenges, system design questions</li>
+                        <li><strong>Behavioral Interviews:</strong> STAR method, common questions, best practices</li>
+                        <li><strong>Case Interviews:</strong> Business case practice for consulting roles</li>
+                        <li><strong>Mock Interviews:</strong> Practice with industry professionals</li>
+                        <li><strong>Company-specific Prep:</strong> Tailored preparation for top employers</li>
+                    </ul>
+                </div>
+
+                <div class="modal-section">
+                    <h3><i class="fas fa-brain"></i> Skill Assessment</h3>
+                    <p>Evaluate and improve your skills with our assessment tools:</p>
+                    <ul class="modal-list">
+                        <li><strong>Aptitude Tests:</strong> Quantitative, verbal, logical reasoning practice</li>
+                        <li><strong>Technical Tests:</strong> Programming, database, networking assessments</li>
+                        <li><strong>Personality Tests:</strong> Understand your work style and preferences</li>
+                        <li><strong>Domain Knowledge:</strong> Industry-specific knowledge evaluation</li>
+                        <li><strong>Progress Tracking:</strong> Monitor your improvement over time</li>
+                    </ul>
+                </div>
+
+                <div class="modal-section">
+                    <h3><i class="fas fa-tools"></i> Practice Platforms</h3>
+                    <p>Sharpen your skills with these recommended practice platforms:</p>
+                    <ul class="modal-list">
+                        <li><strong>PrepInsta:</strong> Aptitude, logical reasoning, and verbal ability practice</li>
+                        <li><strong>IndiaBIX:</strong> Comprehensive placement preparation resources</li>
+                        <li><strong>GeeksforGeeks:</strong> Technical interview preparation resources</li>
+                        <li><strong>LeetCode:</strong> Coding challenges for technical interviews</li>
+                        <li><strong>HackerRank:</strong> Coding practice and competitions</li>
+                    </ul>
+                </div>
+
+                <div class="modal-section">
+                    <h3><i class="fas fa-users"></i> Soft Skills Development</h3>
+                    <p>Enhance your communication, teamwork, and problem-solving skills through workshops and practice.</p>
+                    <ul class="modal-list">
+                        <li><strong>Communication Skills:</strong> Verbal and written communication improvement</li>
+                        <li><strong>Teamwork:</strong> Collaboration and conflict resolution techniques</li>
+                        <li><strong>Problem-solving:</strong> Analytical thinking and decision-making skills</li>
+                        <li><strong>Leadership:</strong> Team management and project leadership abilities</li>
+                        <li><strong>Time Management:</strong> Prioritization and productivity techniques</li>
+                    </ul>
+                </div>
+
+                <div class="resource-section">
+                    <h3><i class="fas fa-external-link-alt"></i> Helpful Resources</h3>
+                    <div class="resource-grid">
+                        <div class="resource-card">
+                            <h4>IndiaBix</h4>
+                            <p>Aptitude questions and interview preparation</p>
+                            <a href="https://www.indiabix.com/" target="_blank" class="resource-link">Visit</a>
+                        </div>
+                        <div class="resource-card">
+                            <h4>GeeksforGeeks</h4>
+                            <p>Technical interview preparation resources</p>
+                            <a href="https://www.geeksforgeeks.org/" target="_blank" class="resource-link">Visit</a>
+                        </div>
+                        <div class="resource-card">
+                            <h4>LeetCode</h4>
+                            <p>Coding challenges for technical interviews</p>
+                            <a href="https://leetcode.com/" target="_blank" class="resource-link">Visit</a>
+                        </div>
+                        <div class="resource-card">
+                            <h4>PrepInsta</h4>
+                            <p>Aptitude and placement preparation</p>
+                            <a href="https://www.prepinsta.com/" target="_blank" class="resource-link">Visit</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="video-section">
+                    <h3><i class="fas fa-video"></i> Interview Preparation Videos</h3>
+                    <div class="video-container">
+                        <div class="video-card">
+                            <div class="video-thumbnail">Interview Tips Video</div>
+                            <div class="video-info">
+                                <h4>Top 10 Interview Mistakes to Avoid</h4>
+                                <p>Common pitfalls and how to overcome them</p>
+                                <a href="#" class="video-link">Watch Video</a>
+                            </div>
+                        </div>
+                        <div class="video-card">
+                            <div class="video-thumbnail">Resume Writing Video</div>
+                            <div class="video-info">
+                                <h4>How to Write a Winning Resume</h4>
+                                <p>Tips for creating an effective resume</p>
+                                <a href="#" class="video-link">Watch Video</a>
+                            </div>
+                        </div>
+                        <div class="video-card">
+                            <div class="video-thumbnail">Salary Negotiation Video</div>
+                            <div class="video-info">
+                                <h4>How to Negotiate Your Salary</h4>
+                                <p>Strategies for getting the compensation you deserve</p>
+                                <a href="#" class="video-link">Watch Video</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="back-btn" onclick="closeModal('placement-prep')"><i class="fas fa-arrow-left"></i> Back</button>
+                <button class="next-btn" onclick="window.location.href='placement-prep-details.html'">Get Prepared <i class="fas fa-arrow-right"></i></button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Opportunities Modal -->
+    <div id="opportunities-modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 class="modal-title">Career Opportunities</h2>
+                <button class="close-modal" onclick="closeModal('opportunities')">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="modal-section">
+                    <h3><i class="fas fa-info-circle"></i> Overview</h3>
+                    <p>Find the right opportunity to kickstart your career. These platforms are excellent resources for freshers and experienced professionals alike.</p>
+                    
+                    <div class="highlight-card">
+                        <p><strong>Market Insight:</strong> The Indian job market is expected to grow by 22% in the next 5 years, with technology and healthcare sectors leading the growth.</p>
+                    </div>
+                </div>
+
+                <div class="modal-section">
+                    <h3><i class="fas fa-briefcase"></i> Job Openings</h3>
+                    <p>Find full-time positions matching your skills and interests:</p>
+                    <ul class="modal-list">
+                        <li><strong>Entry-level Positions:</strong> Roles for recent graduates</li>
+                        <li><strong>Mid-career Opportunities:</strong> Positions for experienced professionals</li>
+                        <li><strong>Senior Roles:</strong> Leadership and management positions</li>
+                        <li><strong>Remote Work:</strong> Location-independent job opportunities</li>
+                        <li><strong>Industry-specific:</strong> Filter by technology, healthcare, finance, etc.</li>
+                    </ul>
+                </div>
+
+                <div class="modal-section">
+                    <h3><i class="fas fa-user-graduate"></i> Internships</h3>
+                    <p>Gain practical experience through internship opportunities:</p>
+                    <ul class="modal-list">
+                        <li><strong>Summer Internships:</strong> 2-3 month programs during summer break</li>
+                        <li><strong>Semester Internships:</strong> Part-time opportunities during academic semesters</li>
+                        <li><strong>Virtual Internships:</strong> Remote internship experiences</li>
+                        <li><strong>Research Internships:</strong> Academic and industry research positions</li>
+                        <li><strong>International Internships:</strong> Global internship opportunities</li>
+                    </ul>
+                </div>
+
+                <div class="modal-section">
+                    <h3><i class="fas fa-calendar-alt"></i> Career Fairs & Events</h3>
+                    <p>Connect with employers at career fairs and networking events:</p>
+                    <ul class="modal-list">
+                        <li><strong>Campus Recruitment:</strong> Company visits to educational institutions</li>
+                        <li><strong>Industry Conferences:</strong> Professional development and networking</li>
+                        <li><strong>Virtual Career Fairs:</strong> Online events with multiple employers</li>
+                        <li><strong>Alumni Networking:</strong> Connect with graduates from your institution</li>
+                        <li><strong>Workshops & Seminars:</strong> Skill development and industry insights</li>
+                    </ul>
+                </div>
+
+                <div class="resource-section">
+                    <h3><i class="fas fa-external-link-alt"></i> Job Portals</h3>
+                    <div class="resource-grid">
+                        <div class="resource-card">
+                            <h4>Naukri.com</h4>
+                            <p>India's leading job search platform</p>
+                            <a href="https://www.naukri.com/" target="_blank" class="resource-link">Visit</a>
+                        </div>
+                        <div class="resource-card">
+                            <h4>LinkedIn Jobs</h4>
+                            <p>Professional networking and job search</p>
+                            <a href="https://www.linkedin.com/jobs/" target="_blank" class="resource-link">Visit</a>
+                        </div>
+                        <div class="resource-card">
+                            <h4>Indeed</h4>
+                            <p>Global job search platform</p>
+                            <a href="https://www.indeed.com/" target="_blank" class="resource-link">Visit</a>
+                        </div>
+                        <div class="resource-card">
+                            <h4>Internshala</h4>
+                            <p>The leading platform for internships in India</p>
+                            <a href="https://internshala.com" target="_blank" class="resource-link">Visit</a>
+                        </div>
+                        <div class="resource-card">
+                            <h4>Wellfound</h4>
+                            <p>Exciting roles in startups (formerly AngelList Talent)</p>
+                            <a href="https://wellfound.com/" target="_blank" class="resource-link">Visit</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="video-section">
+                    <h3><i class="fas fa-video"></i> Job Search Videos</h3>
+                    <div class="video-container">
+                        <div class="video-card">
+                            <div class="video-thumbnail">Job Search Video</div>
+                            <div class="video-info">
+                                <h4>How to Find Hidden Job Opportunities</h4>
+                                <p>Strategies for uncovering unadvertised positions</p>
+                                <a href="#" class="video-link">Watch Video</a>
+                            </div>
+                        </div>
+                        <div class="video-card">
+                            <div class="video-thumbnail">Networking Video</div>
+                            <div class="video-info">
+                                <h4>Effective Networking Strategies</h4>
+                                <p>How to build professional connections</p>
+                                <a href="#" class="video-link">Watch Video</a>
+                            </div>
+                        </div>
+                        <div class="video-card">
+                            <div class="video-thumbnail">Internship Video</div>
+                            <div class="video-info">
+                                <h4>How to Land Your Dream Internship</h4>
+                                <p>Tips for securing valuable internship experiences</p>
+                                <a href="#" class="video-link">Watch Video</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="back-btn" onclick="closeModal('opportunities')"><i class="fas fa-arrow-left"></i> Back</button>
+                <button class="next-btn" onclick="window.location.href='opportunities-details.html'">Find Opportunities <i class="fas fa-arrow-right"></i></button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Professional Presence Modal -->
+    <div id="professional-presence-modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 class="modal-title">Professional Presence</h2>
+                <button class="close-modal" onclick="closeModal('professional-presence')">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="modal-section">
+                    <h3><i class="fas fa-info-circle"></i> Overview</h3>
+                    <p>In the digital age, your online presence is your new resume. Build a strong digital identity to attract recruiters and network effectively.</p>
+                    
+                    <div class="highlight-card">
+                        <p><strong>LinkedIn Impact:</strong> 87% of recruiters use LinkedIn to find and vet candidates. An optimized profile increases your visibility significantly.</p>
+                    </div>
+                </div>
+
+                <div class="modal-section">
+                    <h3><i class="fab fa-linkedin"></i> LinkedIn Optimization</h3>
+                    <p>Create an all-star LinkedIn profile showcasing your skills, projects, and experiences:</p>
+                    <ul class="modal-list">
+                        <li><strong>Profile Completeness:</strong> Ensure all sections are filled optimally</li>
+                        <li><strong>Keyword Optimization:</strong> Improve discoverability by recruiters</li>
+                        <li><strong>Professional Headline:</strong> Craft an impactful professional summary</li>
+                        <li><strong>Recommendations:</strong> Build credibility through endorsements</li>
+                        <li><strong>Content Strategy:</strong> Share relevant industry content</li>
+                    </ul>
+                </div>
+
+                <div class="modal-section">
+                    <h3><i class="fas fa-network-wired"></i> Professional Networking</h3>
+                    <p>Network actively by engaging with industry leaders, joining relevant groups, and sharing insightful content:</p>
+                    <ul class="modal-list">
+                        <li><strong>Industry Events:</strong> Conferences, seminars, and meetups</li>
+                        <li><strong>Alumni Networks:</strong> Connect with graduates from your institution</li>
+                        <li><strong>Professional Associations:</strong> Join industry-specific organizations</li>
+                        <li><strong>Mentorship Programs:</strong> Find mentors in your field of interest</li>
+                        <li><strong>Online Communities:</strong> Participate in professional forums and groups</li>
+                    </ul>
+                </div>
+
+                <div class="modal-section">
+                    <h3><i class="fas fa-id-card"></i> Personal Branding</h3>
+                    <p>Develop an online portfolio to display your work using various platforms:</p>
+                    <ul class="modal-list">
+                        <li><strong>Online Portfolio:</strong> Showcase your work and achievements</li>
+                        <li><strong>Thought Leadership:</strong> Share insights and expertise in your field</li>
+                        <li><strong>Professional Website:</strong> Create a personal website or blog</li>
+                        <li><strong>Social Media Presence:</strong> Maintain professional social media accounts</li>
+                        <li><strong>Public Speaking:</strong> Present at conferences and events</li>
+                    </ul>
+                </div>
+
+                <div class="modal-section">
+                    <h3><i class="fas fa-tools"></i> Portfolio Platforms</h3>
+                    <p>Choose the right platform to showcase your work:</p>
+                    <ul class="modal-list">
+                        <li><strong>GitHub:</strong> For developers to showcase coding projects</li>
+                        <li><strong>Behance:</strong> For designers to display creative work</li>
+                        <li><strong>Wix/WordPress:</strong> For creating personal websites</li>
+                        <li><strong>Medium:</strong> For sharing professional insights and articles</li>
+                        <li><strong>YouTube:</strong> For creating educational or demonstration content</li>
+                    </ul>
+                </div>
+
+                <div class="resource-section">
+                    <h3><i class="fas fa-external-link-alt"></i> Professional Development Resources</h3>
+                    <div class="resource-grid">
+                        <div class="resource-card">
+                            <h4>LinkedIn Learning</h4>
+                            <p>Courses on professional development and soft skills</p>
+                            <a href="https://www.linkedin.com/learning/" target="_blank" class="resource-link">Visit</a>
+                        </div>
+                        <div class="resource-card">
+                            <h4>Meetup</h4>
+                            <p>Find professional networking events in your area</p>
+                            <a href="https://www.meetup.com/" target="_blank" class="resource-link">Visit</a>
+                        </div>
+                        <div class="resource-card">
+                            <h4>Toastmasters</h4>
+                            <p>Improve public speaking and leadership skills</p>
+                            <a href="https://www.toastmasters.org/" target="_blank" class="resource-link">Visit</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="video-section">
+                    <h3><i class="fas fa-video"></i> Professional Development Videos</h3>
+                    <div class="video-container">
+                        <div class="video-card">
+                            <div class="video-thumbnail">LinkedIn Video</div>
+                            <div class="video-info">
+                                <h4>How to Optimize Your LinkedIn Profile</h4>
+                                <p>Tips for creating a standout LinkedIn presence</p>
+                                <a href="#" class="video-link">Watch Video</a>
+                            </div>
+                        </div>
+                        <div class="video-card">
+                            <div class="video-thumbnail">Networking Video</div>
+                            <div class="video-info">
+                                <h4>Mastering Professional Networking</h4>
+                                <p>Strategies for building valuable connections</p>
+                                <a href="#" class="video-link">Watch Video</a>
+                            </div>
+                        </div>
+                        <div class="video-card">
+                            <div class="video-thumbnail">Personal Branding Video</div>
+                            <div class="video-info">
+                                <h4>Building Your Personal Brand</h4>
+                                <p>How to establish yourself as an industry expert</p>
+                                <a href="#" class="video-link">Watch Video</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="back-btn" onclick="closeModal('professional-presence')"><i class="fas fa-arrow-left"></i> Back</button>
+                <button class="next-btn" onclick="window.location.href='professional-presence-details.html'">Build Your Presence <i class="fas fa-arrow-right"></i></button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Higher Studies Modal -->
+    <div id="higher-studies-modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 class="modal-title">Higher Studies</h2>
+                <button class="close-modal" onclick="closeModal('higher-studies')">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="modal-section">
+                    <h3><i class="fas fa-info-circle"></i> Overview</h3>
+                    <p>Further education can open doors to specialized roles and higher earning potential. Explore these popular paths for postgraduate studies.</p>
+                    
+                    <div class="highlight-card">
+                        <p><strong>ROI Insight:</strong> Professionals with postgraduate degrees earn 25-30% more over their lifetime compared to those with only undergraduate degrees.</p>
+                    </div>
+                </div>
+
+                <div class="modal-section">
+                    <h3><i class="fas fa-user-graduate"></i> Master's Degrees</h3>
+                    <p>Specialize in your field with postgraduate education:</p>
+                    <ul class="modal-list">
+                        <li><strong>MBA Programs:</strong> Business administration and management</li>
+                        <li><strong>Technical Master's:</strong> Engineering, computer science, data science</li>
+                        <li><strong>Research Master's:</strong> MPhil, research-focused programs</li>
+                        <li><strong>Professional Master's:</strong> Applied programs with industry focus</li>
+                        <li><strong>Dual Degrees:</strong> Combined master's programs</li>
+                    </ul>
+                </div>
+
+                <div class="modal-section">
+                    <h3><i class="fas fa-book-open"></i> Doctoral Programs</h3>
+                    <p>Pursue advanced research with PhD programs:</p>
+                    <ul class="modal-list">
+                        <li><strong>Research PhD:</strong> Traditional research doctoral programs</li>
+                        <li><strong>Professional Doctorate:</strong> Applied research in professional fields</li>
+                        <li><strong>Funding Opportunities:</strong> Scholarships, assistantships, and grants</li>
+                        <li><strong>International Programs:</strong> PhD opportunities abroad</li>
+                        <li><strong>Industry Partnerships:</strong> Corporate-sponsored research</li>
+                    </ul>
+                </div>
+
+                <div class="modal-section">
+                    <h3><i class="fas fa-certificate"></i> Certifications & Specializations</h3>
+                    <p>Enhance your skills with specialized certifications:</p>
+                    <ul class="modal-list">
+                        <li><strong>Professional Certifications:</strong> Industry-recognized credentials</li>
+                        <li><strong>Online Specializations:</strong> Coursera, edX, Udacity programs</li>
+                        <li><strong>Technical Certifications:</strong> Cloud, cybersecurity, data science</li>
+                        <li><strong>Management Certifications:</strong> PMP, Six Sigma, Agile</li>
+                        <li><strong>Short-term Programs:</strong> Executive education and workshops</li>
+                    </ul>
+                </div>
+
+                <div class="modal-section">
+                    <h3><i class="fas fa-globe"></i> Study Abroad Options</h3>
+                    <p>For technical specialization. Prepare for GRE & IELTS/TOEFL:</p>
+                    <ul class="modal-list">
+                        <li><strong>MS/M.Tech Abroad:</strong> Technical programs in foreign universities</li>
+                        <li><strong>MBA Abroad:</strong> International business programs</li>
+                        <li><strong>Research Programs:</strong> PhD and postdoctoral opportunities</li>
+                        <li><strong>Exchange Programs:</strong> Semester abroad opportunities</li>
+                        <li><strong>Scholarships:</strong> Funding options for international education</li>
+                    </ul>
+                </div>
+
+                <div class="modal-section">
+                    <h3><i class="fas fa-graduation-cap"></i> Indian Higher Education</h3>
+                    <p>Prepare for GATE for M.Tech admissions in IITs/NITs:</p>
+                    <ul class="modal-list">
+                        <li><strong>M.Tech in IITs/NITs:</strong> Technical postgraduate programs</li>
+                        <li><strong>MBA in IIMs:</strong> Management programs in premier institutes</li>
+                        <li><strong>Research Programs:</strong> PhD in Indian universities and institutes</li>
+                        <li><strong>Integrated Programs:</strong> Combined bachelor's and master's degrees</li>
+                        <li><strong>Diploma Courses:</strong> Specialized diploma programs</li>
+                    </ul>
+                </div>
+
+                <div class="resource-section">
+                    <h3><i class="fas fa-external-link-alt"></i> Higher Education Resources</h3>
+                    <div class="resource-grid">
+                        <div class="resource-card">
+                            <h4>EducationUSA</h4>
+                            <p>Official source on US higher education</p>
+                            <a href="https://educationusa.state.gov/" target="_blank" class="resource-link">Visit</a>
+                        </div>
+                        <div class="resource-card">
+                            <h4>Top Universities</h4>
+                            <p>Global university rankings and information</p>
+                            <a href="https://www.topuniversities.com/" target="_blank" class="resource-link">Visit</a>
+                        </div>
+                        <div class="resource-card">
+                            <h4>Coursera</h4>
+                            <p>Online degrees and professional certificates</p>
+                            <a href="https://www.coursera.org/" target="_blank" class="resource-link">Visit</a>
+                        </div>
+                        <div class="resource-card">
+                            <h4>MastersPortal</h4>
+                            <p>Find and compare master's programs worldwide</p>
+                            <a href="https://www.mastersportal.com" target="_blank" class="resource-link">Visit</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="video-section">
+                    <h3><i class="fas fa-video"></i> Higher Education Videos</h3>
+                    <div class="video-container">
+                        <div class="video-card">
+                            <div class="video-thumbnail">Graduate School Video</div>
+                            <div class="video-info">
+                                <h4>Is Graduate School Right for You?</h4>
+                                <p>Factors to consider before pursuing advanced degrees</p>
+                                <a href="#" class="video-link">Watch Video</a>
+                            </div>
+                        </div>
+                        <div class="video-card">
+                            <div class="video-thumbnail">MBA Video</div>
+                            <div class="video-info">
+                                <h4>MBA vs. Specialized Master's Degrees</h4>
+                                <p>Comparing different business education options</p>
+                                <a href="#" class="video-link">Watch Video</a>
+                            </div>
+                        </div>
+                        <div class="video-card">
+                            <div class="video-thumbnail">PhD Video</div>
+                            <div class="video-info">
+                                <h4>What to Expect in a PhD Program</h4>
+                                <p>Insights into doctoral education and research</p>
+                                <a href="#" class="video-link">Watch Video</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="back-btn" onclick="closeModal('higher-studies')"><i class="fas fa-arrow-left"></i> Back</button>
+                <button class="next-btn" onclick="window.location.href='higher-studies-details.html'">Explore Programs <i class="fas fa-arrow-right"></i></button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Free Guidance Modal -->
+    <div id="free-guidance-modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 class="modal-title">Free Career Guidance</h2>
+                <button class="close-modal" onclick="closeModal('free-guidance')">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="modal-section">
+                    <h3><i class="fas fa-info-circle"></i> Overview</h3>
+                    <p>Access expert mentorship and valuable learning resources without any cost. These platforms are dedicated to helping you navigate your career path.</p>
+                    
+                    <div class="highlight-card">
+                        <p><strong>Success Story:</strong> 78% of users who utilized our free guidance services reported making more confident career decisions and achieving their goals faster.</p>
+                    </div>
+                </div>
+
+                <div class="modal-section">
+                    <h3><i class="fas fa-comments"></i> Career Counseling</h3>
+                    <p>Get personalized guidance from career experts:</p>
+                    <ul class="modal-list">
+                        <li><strong>Career Assessment:</strong> Identify your strengths and interests</li>
+                        <li><strong>Path Selection:</strong> Choose the right career path for you</li>
+                        <li><strong>Goal Setting:</strong> Define short-term and long-term career goals</li>
+                        <li><strong>Decision Support:</strong> Help with career-changing decisions</li>
+                        <li><strong>Progress Review:</strong> Regular check-ins on your career development</li>
+                    </ul>
+                </div>
+
+                <div class="modal-section">
+                    <h3><i class="fas fa-user-friends"></i> Mentorship Programs</h3>
+                    <p>Connect with experienced professionals in your field:</p>
+                    <ul class="modal-list">
+                        <li><strong>Industry Mentors:</strong> Professionals from various industries</li>
+                        <li><strong>Alumni Mentors:</strong> Graduates from your educational institution</li>
+                        <li><strong>Peer Mentoring:</strong> Support from fellow students or professionals</li>
+                        <li><strong>Group Mentoring:</strong> Small group sessions with mentors</li>
+                        <li><strong>Career Transition Mentoring:</strong> Guidance for career changes</li>
+                    </ul>
+                </div>
+
+                <div class="modal-section">
+                    <h3><i class="fas fa-hands-helping"></i> Expert Sessions</h3>
+                    <p>Learn from industry experts through various formats:</p>
+                    <ul class="modal-list">
+                        <li><strong>Webinars:</strong> Live online sessions with Q&A</li>
+                        <li><strong>Workshops:</strong> Hands-on skill development sessions</li>
+                        <li><strong>Panel Discussions:</strong> Multiple experts sharing insights</li>
+                        <li><strong>One-on-One Consultations:</strong> Personalized advice sessions</li>
+                        <li><strong>Resource Library:</strong> Articles, guides, and toolkits</li>
+                    </ul>
+                </div>
+
+                <div class="modal-section">
+                    <h3><i class="fas fa-graduation-cap"></i> Free Learning Resources</h3>
+                    <p>Find a wide range of free courses with optional certificates:</p>
+                    <ul class="modal-list">
+                        <li><strong>Coursera:</strong> Free courses from top universities</li>
+                        <li><strong>edX:</strong> Free online courses from renowned institutions</li>
+                        <li><strong>Khan Academy:</strong> Free educational resources</li>
+                        <li><strong>Google Digital Garage:</strong> Free digital marketing courses</li>
+                        <li><strong>Microsoft Learn:</strong> Free technology training</li>
+                    </ul>
+                </div>
+
+                <div class="resource-section">
+                    <h3><i class="fas fa-external-link-alt"></i> Free Guidance Resources</h3>
+                    <div class="resource-grid">
+                        <div class="resource-card">
+                            <h4>National Career Service</h4>
+                            <p>Government portal for career guidance and job listings</p>
+                            <a href="https://ncs.gov.in/" target="_blank" class="resource-link">Visit</a>
+                        </div>
+                        <div class="resource-card">
+                            <h4>CareerGuide</h4>
+                            <p>Free career counseling and assessment tools</p>
+                            <a href="https://www.careerguide.com/" target="_blank" class="resource-link">Visit</a>
+                        </div>
+                        <div class="resource-card">
+                            <h4>Skill India</h4>
+                            <p>Government initiative for skill development</p>
+                            <a href="https://www.skillindia.gov.in/" target="_blank" class="resource-link">Visit</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="video-section">
+                    <h3><i class="fas fa-video"></i> Career Guidance Videos</h3>
+                    <div class="video-container">
+                        <div class="video-card">
+                            <div class="video-thumbnail">Career Counseling Video</div>
+                            <div class="video-info">
+                                <h4>How Career Counseling Can Help You</h4>
+                                <p>Benefits of professional career guidance</p>
+                                <a href="#" class="video-link">Watch Video</a>
+                            </div>
+                        </div>
+                        <div class="video-card">
+                            <div class="video-thumbnail">Mentorship Video</div>
+                            <div class="video-info">
+                                <h4>Finding the Right Mentor</h4>
+                                <p>How to identify and approach potential mentors</p>
+                                <a href="#" class="video-link">Watch Video</a>
+                            </div>
+                        </div>
+                        <div class="video-card">
+                            <div class="video-thumbnail">Goal Setting Video</div>
+                            <div class="video-info">
+                                <h4>Setting Effective Career Goals</h4>
+                                <p>Strategies for defining and achieving career objectives</p>
+                                <a href="#" class="video-link">Watch Video</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="back-btn" onclick="closeModal('free-guidance')"><i class="fas fa-arrow-left"></i> Back</button>
+                <button class="next-btn" onclick="window.location.href='free-guidance-details.html'">Get Guidance <i class="fas fa-arrow-right"></i></button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Modal functions
+        function openModal(modalType) {
+            const modal = document.getElementById(`${modalType}-modal`);
+            if (modal) {
+                modal.style.display = 'block';
+                document.body.style.overflow = 'hidden'; // Prevent scrolling
+            }
+        }
+
+        function closeModal(modalType) {
+            const modal = document.getElementById(`${modalType}-modal`);
+            if (modal) {
+                modal.style.display = 'none';
+                document.body.style.overflow = 'auto'; // Re-enable scrolling
+            }
+        }
+
+        // Close modal when clicking outside content
+        window.onclick = function(event) {
+            const modals = document.querySelectorAll('.modal');
+            modals.forEach(modal => {
+                if (event.target === modal) {
+                    modal.style.display = 'none';
+                    document.body.style.overflow = 'auto';
+                }
+            });
+        }
+
+        // Initialize animations
+        document.addEventListener('DOMContentLoaded', function() {
+            // Add fade-in animation to elements as they scroll into view
+            const observerOptions = {
+                root: null,
+                rootMargin: '0px',
+                threshold: 0.1
+            };
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('fade-in');
+                    }
+                });
+            }, observerOptions);
+
+            // Observe all elements with fade-in class
+            document.querySelectorAll('.fade-in').forEach(el => {
+                observer.observe(el);
+            });
+
+            // Add back button functionality
+            document.getElementById('backButton').addEventListener('click', function() {
+                window.location.href = 'otherdegree.html';
+            });
+        });
+
+        // Add keyboard event to close modals with ESC key
+        document.addEventListener('keydown', function(event) {
+            if (event.key === 'Escape') {
+                const modals = document.querySelectorAll('.modal');
+                modals.forEach(modal => {
+                    if (modal.style.display === 'block') {
+                        modal.style.display = 'none';
+                        document.body.style.overflow = 'auto';
+                    }
+                });
+            }
+        });
+    </script>
+
+</body>
+</html>

@@ -331,6 +331,42 @@
             order: 2;
         }
         
+        /* Back Button */
+        .back-button-container {
+            position: fixed;
+            bottom: 30px;
+            left: 30px;
+            z-index: 100;
+        }
+        
+        .back-button {
+            background: linear-gradient(135deg, #ff6b6b, #ff5252);
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 50px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(255, 107, 107, 0.4);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            animation: pulse 2s infinite;
+        }
+        
+        .back-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(255, 107, 107, 0.6);
+            background: linear-gradient(135deg, #ff5252, #ff1744);
+        }
+        
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+        
         /* Responsive Design */
         @media (max-width: 1200px) {
             .path-container {
@@ -359,6 +395,11 @@
             .nav-btn {
                 width: 100%;
                 justify-content: center;
+            }
+            
+            .back-button-container {
+                bottom: 20px;
+                left: 20px;
             }
         }
         
@@ -620,6 +661,13 @@
         </button>
     </footer>
 
+    <!-- Back Button -->
+    <div class="back-button-container">
+        <button class="back-button" onclick="goBack()">
+            <i class="fas fa-arrow-left"></i> Go Back
+        </button>
+    </div>
+
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             // Add click functionality to checkboxes
@@ -648,12 +696,11 @@
         function goNext() {
             localStorage.setItem('userProgress', 'BiPC completed');
             alert('Moving to next section...');
-            // window.location.href = 'Next.html';
+             window.location.href = 'Career-Guidance-bipc.html';
         }
         
         function goBack() {
-            alert('Going back to previous page...');
-            // window.location.href = 'academic.html';
+            window.location.href = 'academic.html';
         }
         
         // Progress tracking
@@ -688,10 +735,16 @@
             }
         `;
         document.head.appendChild(style);
-    function goBack() {
-      window.location.href = 'academic.html';
-    }
-  
+
+        // Show/hide back button based on scroll position
+        window.addEventListener('scroll', function() {
+            const backButton = document.querySelector('.back-button-container');
+            if (window.scrollY > 500) {
+                backButton.style.display = 'block';
+            } else {
+                backButton.style.display = 'none';
+            }
+        });
     </script>
 </body>
 </html>

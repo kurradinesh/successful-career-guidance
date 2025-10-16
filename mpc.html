@@ -33,7 +33,7 @@
             overflow-x: hidden;
         }
         
-        /* Header Styles */
+       
         header {
             background: linear-gradient(to right, var(--primary), var(--secondary));
             color: white;
@@ -134,7 +134,7 @@
             }
         }
         
-        /* Main Content */
+        
         .container {
             max-width: 1200px;
             width: 100%;
@@ -288,8 +288,8 @@
             font-size: 0.9rem;
         }
         
-        /* Footer Navigation */
-        footer {
+        
+       footer {
             background: linear-gradient(to right, var(--primary), var(--secondary));
             color: white;
             display: flex;
@@ -329,7 +329,7 @@
             order: 2;
         }
         
-        /* Responsive Design */
+       
         @media (max-width: 768px) {
             header {
                 padding: 20px 60px 20px 20px;
@@ -354,7 +354,7 @@
             }
         }
         
-        /* Progress Bar */
+        
         .progress-container {
             width: 100%;
             background-color: #e0e0e0;
@@ -580,7 +580,7 @@
 
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            // Add click functionality to checkboxes
+            
             const checkboxes = document.querySelectorAll('.checkbox');
             checkboxes.forEach(checkbox => {
                 checkbox.addEventListener('click', function() {
@@ -590,7 +590,6 @@
                 });
             });
             
-            // Add animation to cards on load
             const cards = document.querySelectorAll('.path-card');
             cards.forEach((card, index) => {
                 card.style.opacity = '0';
@@ -603,11 +602,10 @@
                 }, index * 200);
             });
             
-            // Initialize progress
             updateProgress();
         });
         
-        // Navigation functions
+        
         function goNext() {
             localStorage.setItem('userProgress', 'MPC completed');
             alert('Moving to next section...');
@@ -619,7 +617,7 @@
             // window.location.href = 'academic.html';
         }
         
-        // Progress tracking
+      
         function updateProgress() {
             const totalItems = document.querySelectorAll('.checkbox').length;
             const checkedItems = document.querySelectorAll('.checked').length;
@@ -628,7 +626,7 @@
             document.getElementById('progress-percent').textContent = `${progressPercent}%`;
             document.getElementById('progress-bar').style.width = `${progressPercent}%`;
             
-            // Change progress bar color based on completion
+           
             const progressBar = document.getElementById('progress-bar');
             if (progressPercent < 25) {
                 progressBar.style.background = '#e74c3c';

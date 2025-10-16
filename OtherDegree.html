@@ -491,6 +491,47 @@
             color: var(--dark);
             margin-bottom: 10px;
         }
+        
+        /* Modal styles */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.5);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+        
+        .modal-content {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            max-width: 600px;
+            width: 90%;
+            max-height: 80vh;
+            overflow-y: auto;
+            position: relative;
+            box-shadow: 0 5px 25px rgba(0,0,0,0.2);
+        }
+        
+        .modal-close {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: none;
+            border: none;
+            font-size: 24px;
+            cursor: pointer;
+            color: #666;
+        }
+        
+        .modal-close:hover {
+            color: #e74c3c;
+        }
     </style>
 </head>
 <body>
@@ -517,6 +558,11 @@
 
         <!-- Degrees Tab Content -->
         <div class="tab-content active" id="degrees-tab">
+            <div class="progress-text">Step 1/3: Explore Degree Programs</div>
+            <div class="progress-container">
+                <div class="progress-bar" style="width: 25%"></div>
+            </div>
+            
             <div class="search-container">
                 <input type="text" class="search-box" id="degree-search" placeholder="Search degree programs...">
                 <select class="filter-select" id="degree-filter">
@@ -785,6 +831,11 @@
 
         <!-- Colleges Tab Content -->
         <div class="tab-content" id="colleges-tab">
+            <div class="progress-text">Step 2/3: Research Top Colleges</div>
+            <div class="progress-container">
+                <div class="progress-bar" style="width: 50%"></div>
+            </div>
+            
             <div class="search-container">
                 <input type="text" class="search-box" id="college-search" placeholder="Search colleges...">
                 <select class="filter-select" id="college-filter">
@@ -814,6 +865,11 @@
 
         <!-- Exams Tab Content -->
         <div class="tab-content" id="exams-tab">
+            <div class="progress-text">Step 3/3: Understand Entrance Exams</div>
+            <div class="progress-container">
+                <div class="progress-bar" style="width: 75%"></div>
+            </div>
+            
             <div class="degree-grid">
                 <!-- CUET Card -->
                 <div class="degree-card science">
@@ -958,297 +1014,370 @@
     </footer>
 
     <script>
-    // College data
-    const colleges = [
-        { name: "University of Delhi", location: "Delhi", type: "Government", programs: "BSc, BA, BCom", admission: "CUET" },
-        { name: "St. Stephen's College", location: "Delhi", type: "Government", programs: "BSc, BA, BCom", admission: "CUET + Interview" },
-        { name: "Hindu College", location: "Delhi", type: "Government", programs: "BSc, BA, BCom", admission: "CUET" },
-        { name: "Loyola College", location: "Chennai, Tamil Nadu", type: "Private", programs: "BSc, BCom, BA", admission: "Merit-based" },
-        { name: "Christ University", location: "Bangalore, Karnataka", type: "Private", programs: "BSc, BBA, BCom, BA", admission: "CUET/Christ Entrance Test" },
-        { name: "St. Xavier's College", location: "Mumbai, Maharashtra", type: "Private", programs: "BSc, BA, BCom", admission: "College Entrance Test" },
-        { name: "Fergusson College", location: "Pune, Maharashtra", type: "Government", programs: "BSc, BA, BCom", admission: "Merit-based" },
-        { name: "Presidency College", location: "Chennai, Tamil Nadu", type: "Government", programs: "BSc, BA", admission: "State-level Entrance" },
-        { name: "IISER Pune", location: "Pune, Maharashtra", type: "Government", programs: "BS-MS", admission: "IISER Aptitude Test" },
-        { name: "IISER Kolkata", location: "Kolkata, West Bengal", type: "Government", programs: "BS-MS", admission: "IISER Aptitude Test" },
-        { name: "NISER", location: "Bhubaneswar, Odisha", type: "Government", programs: "BS-MS", admission: "NEST" },
-        { name: "Miranda House", location: "Delhi", type: "Government", programs: "BSc, BA", admission: "CUET" },
-        { name: "Ramjas College", location: "Delhi", type: "Government", programs: "BSc, BA, BCom", admission: "CUET" },
-        { name: "Hansraj College", location: "Delhi", type: "Government", programs: "BSc, BA, BCom", admission: "CUET" },
-        { name: "Sri Venkateswara College", location: "Delhi", type: "Government", programs: "BSc, BA, BCom", admission: "CUET" },
-        { name: "Lady Shri Ram College", location: "Delhi", type: "Government", programs: "BA, BCom", admission: "CUET" },
-        { name: "St. Joseph's College", location: "Bangalore, Karnataka", type: "Private", programs: "BSc, BCom, BA", admission: "Merit-based" },
-        { name: "Madras Christian College", location: "Chennai, Tamil Nadu", type: "Private", programs: "BSc, BA, BCom", admission: "Merit-based" },
-        { name: "Wilson College", location: "Mumbai, Maharashtra", type: "Private", programs: "BSc, BA, BCom", admission: "College Entrance Test" },
-        { name: "Elphinstone College", location: "Mumbai, Maharashtra", type: "Government", programs: "BSc, BA, BCom", admission: "State-level Entrance" }
-    ];
+        // College data
+        const colleges = [
+            { name: "University of Delhi", location: "Delhi", type: "Government", programs: "BSc, BA, BCom", admission: "CUET" },
+            { name: "St. Stephen's College", location: "Delhi", type: "Government", programs: "BSc, BA, BCom", admission: "CUET + Interview" },
+            { name: "Hindu College", location: "Delhi", type: "Government", programs: "BSc, BA, BCom", admission: "CUET" },
+            { name: "Loyola College", location: "Chennai, Tamil Nadu", type: "Private", programs: "BSc, BCom, BA", admission: "Merit-based" },
+            { name: "Christ University", location: "Bangalore, Karnataka", type: "Private", programs: "BSc, BBA, BCom, BA", admission: "CUET/Christ Entrance Test" },
+            { name: "St. Xavier's College", location: "Mumbai, Maharashtra", type: "Private", programs: "BSc, BA, BCom", admission: "College Entrance Test" },
+            { name: "Fergusson College", location: "Pune, Maharashtra", type: "Government", programs: "BSc, BA, BCom", admission: "Merit-based" },
+            { name: "Presidency College", location: "Chennai, Tamil Nadu", type: "Government", programs: "BSc, BA", admission: "State-level Entrance" },
+            { name: "IISER Pune", location: "Pune, Maharashtra", type: "Government", programs: "BS-MS", admission: "IISER Aptitude Test" },
+            { name: "IISER Kolkata", location: "Kolkata, West Bengal", type: "Government", programs: "BS-MS", admission: "IISER Aptitude Test" },
+            { name: "NISER", location: "Bhubaneswar, Odisha", type: "Government", programs: "BS-MS", admission: "NEST" },
+            { name: "Miranda House", location: "Delhi", type: "Government", programs: "BSc, BA", admission: "CUET" },
+            { name: "Ramjas College", location: "Delhi", type: "Government", programs: "BSc, BA, BCom", admission: "CUET" },
+            { name: "Hansraj College", location: "Delhi", type: "Government", programs: "BSc, BA, BCom", admission: "CUET" },
+            { name: "Sri Venkateswara College", location: "Delhi", type: "Government", programs: "BSc, BA, BCom", admission: "CUET" },
+            { name: "Lady Shri Ram College", location: "Delhi", type: "Government", programs: "BA, BCom", admission: "CUET" },
+            { name: "St. Joseph's College", location: "Bangalore, Karnataka", type: "Private", programs: "BSc, BCom, BA", admission: "Merit-based" },
+            { name: "Madras Christian College", location: "Chennai, Tamil Nadu", type: "Private", programs: "BSc, BA, BCom", admission: "Merit-based" },
+            { name: "Wilson College", location: "Mumbai, Maharashtra", type: "Private", programs: "BSc, BA, BCom", admission: "College Entrance Test" },
+            { name: "Elphinstone College", location: "Mumbai, Maharashtra", type: "Government", programs: "BSc, BA, BCom", admission: "State-level Entrance" }
+        ];
 
-    // Initialize the page
-    document.addEventListener('DOMContentLoaded', function() {
-        // Initialize tab functionality
-        initializeTabs();
-        
-        // Populate colleges table
-        populateCollegesTable();
-        
-        // Initialize search and filter functionality
-        initializeSearchAndFilter();
-        
-        // Initialize progress tracking
-        initializeProgressTracking();
-    });
+        // Initialize the page
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('Degree Programs Guide initialized');
+            
+            // Initialize tab functionality
+            initializeTabs();
+            
+            // Populate colleges table
+            populateCollegesTable();
+            
+            // Initialize search and filter functionality
+            initializeSearchAndFilter();
+            
+            // Add event listeners to navigation buttons
+            document.querySelector('.next-btn').addEventListener('click', goNext);
+            document.querySelector('.back-btn').addEventListener('click', goBack);
+            
+            // Add click event to degree cards for detailed view
+            addDegreeCardClickEvents();
+        });
 
-    // Tab functionality
-    function initializeTabs() {
-        const tabs = document.querySelectorAll('.tab');
-        const tabContents = document.querySelectorAll('.tab-content');
-        
-        tabs.forEach(tab => {
-            tab.addEventListener('click', function() {
-                const tabId = this.getAttribute('data-tab');
-                
-                // Remove active class from all tabs and contents
-                tabs.forEach(t => t.classList.remove('active'));
-                tabContents.forEach(c => c.classList.remove('active'));
-                
-                // Add active class to current tab and content
-                this.classList.add('active');
-                document.getElementById(`${tabId}-tab`).classList.add('active');
-                
-                // Update progress based on active tab
-                updateProgress(tabId);
+        // Tab functionality
+        function initializeTabs() {
+            const tabs = document.querySelectorAll('.tab');
+            const tabContents = document.querySelectorAll('.tab-content');
+            
+            tabs.forEach(tab => {
+                tab.addEventListener('click', function() {
+                    const tabId = this.getAttribute('data-tab');
+                    
+                    // Remove active class from all tabs and contents
+                    tabs.forEach(t => t.classList.remove('active'));
+                    tabContents.forEach(c => c.classList.remove('active'));
+                    
+                    // Add active class to current tab and content
+                    this.classList.add('active');
+                    document.getElementById(`${tabId}-tab`).classList.add('active');
+                });
             });
-        });
-    }
+        }
 
-    // Populate colleges table
-    function populateCollegesTable() {
-        const tableBody = document.getElementById('colleges-table-body');
-        
-        colleges.forEach(college => {
-            const row = document.createElement('tr');
+        // Populate colleges table
+        function populateCollegesTable() {
+            const tableBody = document.getElementById('colleges-table-body');
+            tableBody.innerHTML = ''; // Clear existing content
             
-            const typeClass = college.type === 'Government' ? 'type-govt' : 'type-private';
-            
-            row.innerHTML = `
-                <td>${college.name}</td>
-                <td>${college.location}</td>
-                <td><span class="type-badge ${typeClass}">${college.type}</span></td>
-                <td>${college.programs}</td>
-                <td>${college.admission}</td>
-            `;
-            
-            tableBody.appendChild(row);
-        });
-    }
+            colleges.forEach((college, index) => {
+                const row = document.createElement('tr');
+                row.setAttribute('data-college-id', index);
+                
+                const typeClass = college.type === 'Government' ? 'type-govt' : 'type-private';
+                
+                row.innerHTML = `
+                    <td>${college.name}</td>
+                    <td>${college.location}</td>
+                    <td><span class="type-badge ${typeClass}">${college.type}</span></td>
+                    <td>${college.programs}</td>
+                    <td>${college.admission}</td>
+                `;
+                
+                // Add click event to college rows
+                row.addEventListener('click', function() {
+                    showCollegeDetails(college, index);
+                });
+                
+                tableBody.appendChild(row);
+            });
+        }
 
-    // Search and filter functionality
-    function initializeSearchAndFilter() {
-        // Degree search and filter
-        const degreeSearch = document.getElementById('degree-search');
-        const degreeFilter = document.getElementById('degree-filter');
-        const degreeCards = document.querySelectorAll('.degree-card');
+        // Search and filter functionality
+        function initializeSearchAndFilter() {
+            // Degree search and filter
+            const degreeSearch = document.getElementById('degree-search');
+            const degreeFilter = document.getElementById('degree-filter');
+            const degreeCards = document.querySelectorAll('.degree-card');
+            
+            if (degreeSearch && degreeFilter) {
+                degreeSearch.addEventListener('input', debounce(filterDegrees, 300));
+                degreeFilter.addEventListener('change', filterDegrees);
+            }
+            
+            function filterDegrees() {
+                const searchTerm = degreeSearch.value.toLowerCase();
+                const filterValue = degreeFilter.value;
+                
+                degreeCards.forEach(card => {
+                    const category = card.getAttribute('data-category');
+                    const title = card.querySelector('h2').textContent.toLowerCase();
+                    const content = card.textContent.toLowerCase();
+                    
+                    const matchesSearch = title.includes(searchTerm) || content.includes(searchTerm);
+                    const matchesFilter = filterValue === 'all' || category === filterValue;
+                    
+                    if (matchesSearch && matchesFilter) {
+                        card.style.display = 'flex';
+                    } else {
+                        card.style.display = 'none';
+                    }
+                });
+            }
+            
+            // College search and filter
+            const collegeSearch = document.getElementById('college-search');
+            const collegeFilter = document.getElementById('college-filter');
+            const collegeRows = document.querySelectorAll('.colleges-table tbody tr');
+            
+            if (collegeSearch && collegeFilter) {
+                collegeSearch.addEventListener('input', debounce(filterColleges, 300));
+                collegeFilter.addEventListener('change', filterColleges);
+            }
+            
+            function filterColleges() {
+                const searchTerm = collegeSearch.value.toLowerCase();
+                const filterValue = collegeFilter.value;
+                
+                collegeRows.forEach(row => {
+                    const name = row.cells[0].textContent.toLowerCase();
+                    const location = row.cells[1].textContent.toLowerCase();
+                    const type = row.cells[2].textContent.toLowerCase();
+                    
+                    const matchesSearch = name.includes(searchTerm) || location.includes(searchTerm);
+                    const matchesFilter = filterValue === 'all' || 
+                                        (filterValue === 'government' && type.includes('government')) ||
+                                        (filterValue === 'private' && type.includes('private'));
+                    
+                    if (matchesSearch && matchesFilter) {
+                        row.style.display = '';
+                    } else {
+                        row.style.display = 'none';
+                    }
+                });
+            }
+        }
+
+        // Navigation functions - CORRECTED VERSION
+        function goNext() {
+            try {
+                // Save user progress
+                localStorage.setItem('userProgress', 'Degree programs completed');
+                localStorage.setItem('lastVisited', new Date().toISOString());
+                
+                // Navigate to afterdegree.html
+                console.log('Navigating to afterdegree.html');
+                window.location.href = 'afterdegree.html';
+            } catch (error) {
+                console.error('Navigation error:', error);
+                alert('Error navigating to next page. Please check if afterdegree.html exists in the same directory.');
+            }
+        }
         
-        degreeSearch.addEventListener('input', filterDegrees);
-        degreeFilter.addEventListener('change', filterDegrees);
-        
-        function filterDegrees() {
-            const searchTerm = degreeSearch.value.toLowerCase();
-            const filterValue = degreeFilter.value;
+        function goBack() {
+            try {
+                // Navigate back to the previous page
+                console.log('Navigating back to Next.html');
+                window.location.href = 'Next.html';
+            } catch (error) {
+                console.error('Navigation error:', error);
+                alert('Error navigating back. Please check if Next.html exists.');
+            }
+        }
+
+        // Degree card click events for detailed view
+        function addDegreeCardClickEvents() {
+            const degreeCards = document.querySelectorAll('.degree-card');
             
             degreeCards.forEach(card => {
-                const category = card.getAttribute('data-category');
-                const title = card.querySelector('h2').textContent.toLowerCase();
-                const content = card.textContent.toLowerCase();
-                
-                const matchesSearch = title.includes(searchTerm) || content.includes(searchTerm);
-                const matchesFilter = filterValue === 'all' || category === filterValue;
-                
-                if (matchesSearch && matchesFilter) {
-                    card.style.display = 'flex';
-                } else {
-                    card.style.display = 'none';
-                }
+                card.addEventListener('click', function(e) {
+                    // Don't trigger if clicking on a link
+                    if (e.target.tagName === 'A') return;
+                    
+                    const degreeName = this.querySelector('h2').textContent;
+                    showDegreeDetails(degreeName, this);
+                });
             });
         }
-        
-        // College search and filter
-        const collegeSearch = document.getElementById('college-search');
-        const collegeFilter = document.getElementById('college-filter');
-        const collegeRows = document.querySelectorAll('.colleges-table tbody tr');
-        
-        collegeSearch.addEventListener('input', filterColleges);
-        collegeFilter.addEventListener('change', filterColleges);
-        
-        function filterColleges() {
-            const searchTerm = collegeSearch.value.toLowerCase();
-            const filterValue = collegeFilter.value;
+
+        // Show degree details in a modal
+        function showDegreeDetails(degreeName, cardElement) {
+            // Create modal HTML
+            const modalHTML = `
+                <div class="modal-overlay">
+                    <div class="modal-content">
+                        <button class="modal-close">&times;</button>
+                        <h2>${degreeName} - Detailed Information</h2>
+                        <div class="modal-body">
+                            ${cardElement.querySelector('.card-content').innerHTML}
+                            <div style="margin-top: 20px; padding: 15px; background: #f8f9fa; border-radius: 8px;">
+                                <h3 style="color: #2c3e50; margin-bottom: 10px;">Additional Resources</h3>
+                                <ul style="list-style-type: none; padding: 0;">
+                                    <li style="padding: 5px 0;">📚 <a href="#" style="color: #3498db;">Syllabus & Curriculum</a></li>
+                                    <li style="padding: 5px 0;">🎯 <a href="#" style="color: #3498db;">Career Opportunities</a></li>
+                                    <li style="padding: 5px 0;">💰 <a href="#" style="color: #3498db;">Scholarship Information</a></li>
+                                    <li style="padding: 5px 0;">🏛️ <a href="#" style="color: #3498db;">Top Colleges</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `;
             
-            collegeRows.forEach(row => {
-                const name = row.cells[0].textContent.toLowerCase();
-                const location = row.cells[1].textContent.toLowerCase();
-                const type = row.cells[2].textContent.toLowerCase();
-                
-                const matchesSearch = name.includes(searchTerm) || location.includes(searchTerm);
-                const matchesFilter = filterValue === 'all' || 
-                                    (filterValue === 'government' && type.includes('government')) ||
-                                    (filterValue === 'private' && type.includes('private'));
-                
-                if (matchesSearch && matchesFilter) {
-                    row.style.display = '';
-                } else {
-                    row.style.display = 'none';
+            // Add modal to page
+            document.body.insertAdjacentHTML('beforeend', modalHTML);
+            
+            // Add close functionality
+            const modalOverlay = document.querySelector('.modal-overlay');
+            const closeButton = document.querySelector('.modal-close');
+            
+            closeButton.addEventListener('click', function() {
+                document.body.removeChild(modalOverlay);
+            });
+            
+            modalOverlay.addEventListener('click', function(e) {
+                if (e.target === modalOverlay) {
+                    document.body.removeChild(modalOverlay);
                 }
             });
         }
-    }
 
-    // Progress tracking
-    function initializeProgressTracking() {
-        // Set initial progress
-        updateProgress('degrees');
-        
-        // Add click tracking for degree cards
-        const degreeCards = document.querySelectorAll('.degree-card');
-        degreeCards.forEach(card => {
-            card.addEventListener('click', function() {
-                // Mark as viewed
-                this.classList.add('viewed');
-                
-                // Update progress
-                updateProgressBasedOnViews();
+        // Show college details
+        function showCollegeDetails(college, index) {
+            const modalHTML = `
+                <div class="modal-overlay">
+                    <div class="modal-content">
+                        <button class="modal-close">&times;</button>
+                        <h2>${college.name}</h2>
+                        <div style="margin-bottom: 20px;">
+                            <p><strong>Location:</strong> ${college.location}</p>
+                            <p><strong>Type:</strong> ${college.type}</p>
+                            <p><strong>Programs:</strong> ${college.programs}</p>
+                            <p><strong>Admission:</strong> ${college.admission}</p>
+                        </div>
+                        <div style="display: flex; gap: 10px;">
+                            <button class="favorite-btn" style="padding: 10px 15px; background: #e74c3c; color: white; border: none; border-radius: 5px; cursor: pointer;">Add to Favorites</button>
+                            <button class="compare-btn" style="padding: 10px 15px; background: #3498db; color: white; border: none; border-radius: 5px; cursor: pointer;">Add to Compare</button>
+                        </div>
+                    </div>
+                </div>
+            `;
+            
+            // Add modal to page
+            document.body.insertAdjacentHTML('beforeend', modalHTML);
+            
+            // Add functionality
+            const modalOverlay = document.querySelector('.modal-overlay');
+            const closeButton = document.querySelector('.modal-close');
+            const favoriteBtn = document.querySelector('.favorite-btn');
+            const compareBtn = document.querySelector('.compare-btn');
+            
+            closeButton.addEventListener('click', function() {
+                document.body.removeChild(modalOverlay);
             });
-        });
-    }
-
-    function updateProgress(tabId) {
-        const progressBar = document.querySelector('.progress-bar');
-        const progressText = document.querySelector('.progress-text');
-        
-        let progress = 0;
-        let text = '';
-        
-        switch(tabId) {
-            case 'degrees':
-                progress = 25;
-                text = 'Step 1/3: Explore Degree Programs';
-                break;
-            case 'colleges':
-                progress = 50;
-                text = 'Step 2/3: Research Top Colleges';
-                break;
-            case 'exams':
-                progress = 75;
-                text = 'Step 3/3: Understand Entrance Exams';
-                break;
+            
+            modalOverlay.addEventListener('click', function(e) {
+                if (e.target === modalOverlay) {
+                    document.body.removeChild(modalOverlay);
+                }
+            });
+            
+            favoriteBtn.addEventListener('click', function() {
+                toggleFavorite(index);
+                this.textContent = 'Added to Favorites!';
+                this.style.background = '#27ae60';
+            });
+            
+            compareBtn.addEventListener('click', function() {
+                addToComparison(index);
+                this.textContent = 'Added to Compare!';
+                this.style.background = '#27ae60';
+            });
         }
-        
-        if (progressBar) {
-            progressBar.style.width = `${progress}%`;
+
+        // Additional utility functions
+        function toggleFavorite(collegeId) {
+            let favorites = JSON.parse(localStorage.getItem('favoriteColleges') || '[]');
+            
+            if (favorites.includes(collegeId)) {
+                favorites = favorites.filter(id => id !== collegeId);
+                console.log(`Removed college ID: ${collegeId} from favorites`);
+            } else {
+                favorites.push(collegeId);
+                console.log(`Added college ID: ${collegeId} to favorites`);
+            }
+            
+            localStorage.setItem('favoriteColleges', JSON.stringify(favorites));
         }
-        if (progressText) {
-            progressText.textContent = text;
+
+        // College comparison functionality
+        let comparedColleges = [];
+
+        function addToComparison(collegeId) {
+            if (comparedColleges.length < 3 && !comparedColleges.includes(collegeId)) {
+                comparedColleges.push(collegeId);
+                updateComparisonUI();
+                console.log(`Added college ${collegeId} to comparison`);
+            } else if (comparedColleges.length >= 3) {
+                alert('You can compare up to 3 colleges at a time.');
+            }
         }
-    }
 
-    function updateProgressBasedOnViews() {
-        const degreeCards = document.querySelectorAll('.degree-card');
-        const viewedCards = document.querySelectorAll('.degree-card.viewed');
-        const progressBar = document.querySelector('.progress-bar');
-        
-        if (progressBar) {
-            const progress = Math.min(100, 25 + (viewedCards.length / degreeCards.length) * 25);
-            progressBar.style.width = `${progress}%`;
+        function updateComparisonUI() {
+            console.log('Currently compared colleges:', comparedColleges);
         }
-    }
 
-    // Navigation functions
-    function goNext() {
-        localStorage.setItem('userProgress', 'Degree programs completed');
-        alert('Proceeding to next section...');
-        // window.location.href = 'Next.html';
-    }
-    
-    function goBack() {
-        // window.location.href = 'Career-Guidance.html';
-        alert('Going back to previous section...');
-    }
-
-    // Additional utility functions
-    function toggleFavorite(collegeId) {
-        // Implementation for favoriting colleges
-        console.log(`Toggled favorite for college ID: ${collegeId}`);
-    }
-
-    function compareColleges(college1, college2) {
-        // Implementation for comparing colleges
-        console.log(`Comparing ${college1} and ${college2}`);
-    }
-
-    function exportData() {
-        // Implementation for exporting college data
-        const dataStr = JSON.stringify(colleges, null, 2);
-        const dataBlob = new Blob([dataStr], {type: 'application/json'});
-        
-        const link = document.createElement('a');
-        link.href = URL.createObjectURL(dataBlob);
-        link.download = 'degree-colleges-data.json';
-        link.click();
-    }
-
-    // College comparison functionality
-    let comparedColleges = [];
-
-    function addToComparison(collegeId) {
-        if (comparedColleges.length < 3 && !comparedColleges.includes(collegeId)) {
-            comparedColleges.push(collegeId);
-            updateComparisonUI();
-        }
-    }
-
-    function removeFromComparison(collegeId) {
-        comparedColleges = comparedColleges.filter(id => id !== collegeId);
-        updateComparisonUI();
-    }
-
-    function updateComparisonUI() {
-        // Implementation for updating comparison UI
-        console.log('Compared colleges:', comparedColleges);
-    }
-
-    // Analytics tracking
-    function trackEvent(category, action, label) {
-        // Implementation for analytics tracking
-        console.log(`Tracking: ${category} - ${action} - ${label}`);
-    }
-
-    // Performance optimization
-    function debounce(func, wait) {
-        let timeout;
-        return function executedFunction(...args) {
-            const later = () => {
+        // Performance optimization - Debounce function
+        function debounce(func, wait) {
+            let timeout;
+            return function executedFunction(...args) {
+                const later = () => {
+                    clearTimeout(timeout);
+                    func(...args);
+                };
                 clearTimeout(timeout);
-                func(...args);
+                timeout = setTimeout(later, wait);
             };
-            clearTimeout(timeout);
-            timeout = setTimeout(later, wait);
-        };
-    }
+        }
 
-    // Apply debouncing to search inputs
-    const degreeSearch = document.getElementById('degree-search');
-    const collegeSearch = document.getElementById('college-search');
-    
-    if (degreeSearch) {
-        degreeSearch.addEventListener('input', debounce(function() {
-            const event = new Event('input');
-            degreeSearch.dispatchEvent(event);
-        }, 300));
-    }
-    
-    if (collegeSearch) {
-        collegeSearch.addEventListener('input', debounce(function() {
-            const event = new Event('input');
-            collegeSearch.dispatchEvent(event);
-        }, 300));
-    }
-</script>
+        // Keyboard shortcuts
+        document.addEventListener('keydown', function(e) {
+            // Ctrl + → for next page
+            if (e.ctrlKey && e.key === 'ArrowRight') {
+                e.preventDefault();
+                goNext();
+            }
+            
+            // Ctrl + ← for previous page
+            if (e.ctrlKey && e.key === 'ArrowLeft') {
+                e.preventDefault();
+                goBack();
+            }
+            
+            // Escape to close modals
+            if (e.key === 'Escape') {
+                const modal = document.querySelector('.modal-overlay');
+                if (modal) {
+                    document.body.removeChild(modal);
+                }
+            }
+        });
+
+        console.log('Degree Programs Guide script loaded successfully');
+    </script>
+</body>
+</html>

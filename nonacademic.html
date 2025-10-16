@@ -1,0 +1,1271 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Non-Academic Career Paths | Explore Your Future</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Montserrat:wght@700;800;900&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --arts: #FF6B6B;
+            --vocational: #4ECDC4;
+            --digital: #45B7D1;
+            --sports: #FFBE0B;
+            --dark: #2D3047;
+            --light: #F7F9FC;
+            --gradient-arts: linear-gradient(135deg, #FF6B6B, #FF8E8E);
+            --gradient-vocational: linear-gradient(135deg, #4ECDC4, #6EE7E7);
+            --gradient-digital: linear-gradient(135deg, #45B7D1, #67C8E3);
+            --gradient-sports: linear-gradient(135deg, #FFBE0B, #FFD166);
+            --card-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            --hover-shadow: 0 15px 40px rgba(0, 0, 0, 0.12);
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--light);
+            color: var(--dark);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Header Styles */
+        header {
+            background: linear-gradient(135deg, var(--dark), #3D405B);
+            color: white;
+            padding: 1.5rem 0;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 800;
+            font-size: 1.8rem;
+        }
+        
+        .logo i {
+            color: var(--sports);
+            font-size: 2rem;
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+        }
+        
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+        
+        .nav-links a:hover {
+            color: var(--sports);
+        }
+        
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--sports);
+            transition: width 0.3s ease;
+        }
+        
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+        
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, var(--dark), #3D405B);
+            color: white;
+            padding: 5rem 0;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="%23ffffff" fill-opacity="0.05" d="M0,96L48,112C96,128,192,160,288,186.7C384,213,480,235,576,213.3C672,192,768,128,864,128C960,128,1056,192,1152,192C1248,192,1344,128,1392,96L1440,64L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path></svg>');
+            background-size: cover;
+            background-position: center;
+        }
+        
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .hero h1 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 3.5rem;
+            margin-bottom: 1.5rem;
+            font-weight: 800;
+        }
+        
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+        
+        .cta-button {
+            display: inline-block;
+            background: var(--sports);
+            color: var(--dark);
+            padding: 0.8rem 2rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(255, 190, 11, 0.4);
+        }
+        
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(255, 190, 11, 0.6);
+        }
+        
+        /* Stats Section */
+        .stats {
+            background: white;
+            padding: 3rem 0;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+        
+        .stats-container {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            gap: 2rem;
+        }
+        
+        .stat-item {
+            text-align: center;
+            flex: 1;
+            min-width: 200px;
+        }
+        
+        .stat-number {
+            font-size: 3rem;
+            font-weight: 700;
+            color: var(--dark);
+            margin-bottom: 0.5rem;
+        }
+        
+        .stat-label {
+            font-size: 1.1rem;
+            color: var(--dark);
+            font-weight: 500;
+        }
+        
+        /* Section Styles */
+        .section {
+            padding: 5rem 0;
+        }
+        
+        .section-title {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 2.5rem;
+            text-align: center;
+            margin-bottom: 3rem;
+            color: var(--dark);
+            position: relative;
+        }
+        
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: var(--sports);
+            border-radius: 2px;
+        }
+        
+        /* Cards Grid */
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 2rem;
+        }
+        
+        .card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: var(--card-shadow);
+            transition: all 0.4s ease;
+            position: relative;
+            height: 100%;
+        }
+        
+        .card:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--hover-shadow);
+        }
+        
+        .card-icon {
+            height: 120px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            color: white;
+        }
+        
+        .arts .card-icon {
+            background: var(--gradient-arts);
+        }
+        
+        .vocational .card-icon {
+            background: var(--gradient-vocational);
+        }
+        
+        .digital .card-icon {
+            background: var(--gradient-digital);
+        }
+        
+        .sports .card-icon {
+            background: var(--gradient-sports);
+        }
+        
+        .card-content {
+            padding: 1.5rem;
+        }
+        
+        .card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--dark);
+        }
+        
+        .card p {
+            margin-bottom: 1.5rem;
+            color: #555;
+        }
+        
+        .card-features {
+            list-style: none;
+        }
+        
+        .card-features li {
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+        }
+        
+        .card-features li i {
+            margin-right: 10px;
+        }
+        
+        .arts .card-features li i {
+            color: var(--arts);
+        }
+        
+        .vocational .card-features li i {
+            color: var(--vocational);
+        }
+        
+        .digital .card-features li i {
+            color: var(--digital);
+        }
+        
+        .sports .card-features li i {
+            color: var(--sports);
+        }
+        
+        /* Career Pathways Section */
+        .pathways-section {
+            background: var(--light);
+            padding: 5rem 0;
+        }
+        
+        .pathways-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+        
+        .pathway-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: var(--card-shadow);
+            transition: all 0.4s ease;
+            position: relative;
+        }
+        
+        .pathway-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--hover-shadow);
+        }
+        
+        .pathway-header {
+            padding: 1.5rem;
+            color: white;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .arts-pathway .pathway-header {
+            background: var(--gradient-arts);
+        }
+        
+        .vocational-pathway .pathway-header {
+            background: var(--gradient-vocational);
+        }
+        
+        .digital-pathway .pathway-header {
+            background: var(--gradient-digital);
+        }
+        
+        .sports-pathway .pathway-header {
+            background: var(--gradient-sports);
+        }
+        
+        .pathway-header h3 {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .pathway-body {
+            padding: 1.5rem;
+        }
+        
+        .pathway-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 0;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .pathway-item:last-child {
+            border-bottom: none;
+        }
+        
+        .pathway-info h4 {
+            font-size: 1.1rem;
+            margin-bottom: 0.3rem;
+            color: var(--dark);
+        }
+        
+        .pathway-meta {
+            display: flex;
+            gap: 1rem;
+        }
+        
+        .pathway-duration, .pathway-salary {
+            background: var(--light);
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 500;
+        }
+        
+        .arts-pathway .pathway-duration, .arts-pathway .pathway-salary {
+            color: var(--arts);
+        }
+        
+        .vocational-pathway .pathway-duration, .vocational-pathway .pathway-salary {
+            color: var(--vocational);
+        }
+        
+        .digital-pathway .pathway-duration, .digital-pathway .pathway-salary {
+            color: var(--digital);
+        }
+        
+        .sports-pathway .pathway-duration, .sports-pathway .pathway-salary {
+            color: var(--sports);
+        }
+        
+        /* Success Stories */
+        .success-stories {
+            background: white;
+            padding: 5rem 0;
+        }
+        
+        .stories-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+        
+        .story-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: var(--card-shadow);
+            transition: all 0.4s ease;
+            position: relative;
+        }
+        
+        .story-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--hover-shadow);
+        }
+        
+        .story-image {
+            height: 200px;
+            background: var(--light);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--dark);
+            font-size: 3rem;
+        }
+        
+        .arts-story .story-image {
+            background: var(--gradient-arts);
+            color: white;
+        }
+        
+        .vocational-story .story-image {
+            background: var(--gradient-vocational);
+            color: white;
+        }
+        
+        .digital-story .story-image {
+            background: var(--gradient-digital);
+            color: white;
+        }
+        
+        .sports-story .story-image {
+            background: var(--gradient-sports);
+            color: white;
+        }
+        
+        .story-content {
+            padding: 1.5rem;
+        }
+        
+        .story-content h3 {
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+            color: var(--dark);
+        }
+        
+        .story-content p {
+            margin-bottom: 1rem;
+            color: #555;
+        }
+        
+        .story-stats {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 1rem;
+            padding-top: 1rem;
+            border-top: 1px solid #eee;
+        }
+        
+        .story-stat {
+            text-align: center;
+        }
+        
+        .story-stat-value {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--dark);
+        }
+        
+        .story-stat-label {
+            font-size: 0.8rem;
+            color: #777;
+        }
+        
+        /* Back Button */
+        .back-button-container {
+            position: fixed;
+            bottom: 30px;
+            left: 30px;
+            z-index: 100;
+        }
+        
+        .back-button {
+            background: #ff6b6b;
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 50px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(255, 107, 107, 0.4);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            animation: pulse 2s infinite;
+        }
+        
+        .back-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(255, 107, 107, 0.6);
+            background: #ff5252;
+        }
+        
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+        
+        /* Footer */
+        footer {
+            background: var(--dark);
+            color: white;
+            padding: 4rem 0 2rem;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+        
+        .footer-column h3 {
+            font-size: 1.3rem;
+            margin-bottom: 1.5rem;
+            color: var(--sports);
+        }
+        
+        .footer-links {
+            list-style: none;
+        }
+        
+        .footer-links li {
+            margin-bottom: 0.8rem;
+        }
+        
+        .footer-links a {
+            color: #ccc;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        
+        .footer-links a:hover {
+            color: var(--sports);
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+        
+        .social-links a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            color: white;
+            transition: all 0.3s ease;
+        }
+        
+        .social-links a:hover {
+            background: var(--sports);
+            transform: translateY(-3px);
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: #aaa;
+            font-size: 0.9rem;
+        }
+        
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .animate-fadeInUp {
+            animation: fadeInUp 0.8s ease forwards;
+        }
+        
+        .hidden {
+            opacity: 0;
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .nav-links {
+                display: none;
+            }
+            
+            .info-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .info-btn {
+                width: 100%;
+                max-width: 300px;
+                justify-content: center;
+            }
+            
+            .back-button-container {
+                bottom: 20px;
+                left: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <i class="fas fa-road"></i>
+                    <span>CareerExplorer</span>
+                </div>
+                <div class="nav-links">
+                    <a href="#overview">Overview</a>
+                    <a href="#pathways">Career Pathways</a>
+                    <a href="#success">Success Stories</a>
+                    <a href="#resources">Resources</a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1>Your Path to Success Beyond Academics</h1>
+                <p>Discover exciting career opportunities that value your skills, creativity, and passion over traditional academic routes.</p>
+                <a href="#pathways" class="cta-button">Explore Career Paths <i class="fas fa-arrow-right"></i></a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section class="stats">
+        <div class="container">
+            <div class="stats-container">
+                <div class="stat-item">
+                    <div class="stat-number">85%</div>
+                    <div class="stat-label">Employment Rate</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">40+</div>
+                    <div class="stat-label">Career Options</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">₹3-8L</div>
+                    <div class="stat-label">Average Starting Salary</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">30%</div>
+                    <div class="stat-label">Faster Career Entry</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Overview Section -->
+    <section id="overview" class="section">
+        <div class="container">
+            <h2 class="section-title">Why Choose Non-Academic Paths?</h2>
+            <div class="cards-grid">
+                <div class="card arts animate-fadeInUp hidden">
+                    <div class="card-icon">
+                        <i class="fas fa-palette"></i>
+                    </div>
+                    <div class="card-content">
+                        <h3>🎨 Arts & Design</h3>
+                        <p>Unleash your creativity in fields that value imagination and artistic expression over traditional academics.</p>
+                        <ul class="card-features">
+                            <li><i class="fas fa-check"></i> Fashion Design & Styling</li>
+                            <li><i class="fas fa-check"></i> Interior Design & Decoration</li>
+                            <li><i class="fas fa-check"></i> Animation & Visual Effects</li>
+                            <li><i class="fas fa-check"></i> Photography & Videography</li>
+                            <li><i class="fas fa-check"></i> Fine Arts & Illustration</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="card vocational animate-fadeInUp hidden">
+                    <div class="card-icon">
+                        <i class="fas fa-tools"></i>
+                    </div>
+                    <div class="card-content">
+                        <h3>⚙️ Vocational Training</h3>
+                        <p>Master practical skills that are always in demand with hands-on training and certification programs.</p>
+                        <ul class="card-features">
+                            <li><i class="fas fa-check"></i> ITI & Polytechnic Courses</li>
+                            <li><i class="fas fa-check"></i> Electrician & Electrical Work</li>
+                            <li><i class="fas fa-check"></i> Automotive & Mechanical Repair</li>
+                            <li><i class="fas fa-check"></i> Carpentry & Woodworking</li>
+                            <li><i class="fas fa-check"></i> Plumbing & Sanitation</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="card digital animate-fadeInUp hidden">
+                    <div class="card-icon">
+                        <i class="fas fa-laptop-code"></i>
+                    </div>
+                    <div class="card-content">
+                        <h3>💻 Digital Skills</h3>
+                        <p>Enter the digital economy with skills that offer flexibility, creativity, and global opportunities.</p>
+                        <ul class="card-features">
+                            <li><i class="fas fa-check"></i> Web Development & Design</li>
+                            <li><i class="fas fa-check"></i> Graphic Design & Branding</li>
+                            <li><i class="fas fa-check"></i> Video Editing & Production</li>
+                            <li><i class="fas fa-check"></i> Digital Marketing & SEO</li>
+                            <li><i class="fas fa-check"></i> Freelancing & Remote Work</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="card sports animate-fadeInUp hidden">
+                    <div class="card-icon">
+                        <i class="fas fa-trophy"></i>
+                    </div>
+                    <div class="card-content">
+                        <h3>🏅 Sports & Talent</h3>
+                        <p>Turn your passion and natural talents into a rewarding career with proper training and guidance.</p>
+                        <ul class="card-features">
+                            <li><i class="fas fa-check"></i> Professional Sports</li>
+                            <li><i class="fas fa-check"></i> Music & Performing Arts</li>
+                            <li><i class="fas fa-check"></i> Dance & Choreography</li>
+                            <li><i class="fas fa-check"></i> Drama & Acting</li>
+                            <li><i class="fas fa-check"></i> Entertainment Industry</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Career Pathways Section -->
+    <section id="pathways" class="pathways-section">
+        <div class="container">
+            <h2 class="section-title">Career Pathways & Opportunities</h2>
+            <div class="pathways-container">
+                <div class="pathway-card arts-pathway animate-fadeInUp hidden">
+                    <div class="pathway-header">
+                        <i class="fas fa-palette fa-2x"></i>
+                        <div>
+                            <h3>Arts & Design</h3>
+                            <p>Creative career paths</p>
+                        </div>
+                    </div>
+                    <div class="pathway-body">
+                        <div class="pathway-item">
+                            <div class="pathway-info">
+                                <h4>Fashion Designer</h4>
+                                <p>Create clothing and accessory designs</p>
+                            </div>
+                            <div class="pathway-meta">
+                                <span class="pathway-duration">2-3 Years</span>
+                                <span class="pathway-salary">₹4-12L</span>
+                            </div>
+                        </div>
+                        <div class="pathway-item">
+                            <div class="pathway-info">
+                                <h4>Interior Designer</h4>
+                                <p>Design functional and beautiful spaces</p>
+                            </div>
+                            <div class="pathway-meta">
+                                <span class="pathway-duration">2-3 Years</span>
+                                <span class="pathway-salary">₹3-10L</span>
+                            </div>
+                        </div>
+                        <div class="pathway-item">
+                            <div class="pathway-info">
+                                <h4>Animator</h4>
+                                <p>Create moving graphics and visual effects</p>
+                            </div>
+                            <div class="pathway-meta">
+                                <span class="pathway-duration">1-2 Years</span>
+                                <span class="pathway-salary">₹3-8L</span>
+                            </div>
+                        </div>
+                        <div class="pathway-item">
+                            <div class="pathway-info">
+                                <h4>Photographer</h4>
+                                <p>Professional image capturing and editing</p>
+                            </div>
+                            <div class="pathway-meta">
+                                <span class="pathway-duration">1-2 Years</span>
+                                <span class="pathway-salary">₹3-15L</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="pathway-card vocational-pathway animate-fadeInUp hidden">
+                    <div class="pathway-header">
+                        <i class="fas fa-tools fa-2x"></i>
+                        <div>
+                            <h3>Vocational Training</h3>
+                            <p>Skill-based careers</p>
+                        </div>
+                    </div>
+                    <div class="pathway-body">
+                        <div class="pathway-item">
+                            <div class="pathway-info">
+                                <h4>Electrician</h4>
+                                <p>Electrical systems installation & repair</p>
+                            </div>
+                            <div class="pathway-meta">
+                                <span class="pathway-duration">1-2 Years</span>
+                                <span class="pathway-salary">₹3-8L</span>
+                            </div>
+                        </div>
+                        <div class="pathway-item">
+                            <div class="pathway-info">
+                                <h4>Automobile Mechanic</h4>
+                                <p>Vehicle maintenance and repair</p>
+                            </div>
+                            <div class="pathway-meta">
+                                <span class="pathway-duration">1-2 Years</span>
+                                <span class="pathway-salary">₹3-7L</span>
+                            </div>
+                        </div>
+                        <div class="pathway-item">
+                            <div class="pathway-info">
+                                <h4>Plumber</h4>
+                                <p>Pipe systems installation & maintenance</p>
+                            </div>
+                            <div class="pathway-meta">
+                                <span class="pathway-duration">1-2 Years</span>
+                                <span class="pathway-salary">₹3-6L</span>
+                            </div>
+                        </div>
+                        <div class="pathway-item">
+                            <div class="pathway-info">
+                                <h4>Carpenter</h4>
+                                <p>Woodworking and furniture making</p>
+                            </div>
+                            <div class="pathway-meta">
+                                <span class="pathway-duration">1-2 Years</span>
+                                <span class="pathway-salary">₹3-7L</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="pathway-card digital-pathway animate-fadeInUp hidden">
+                    <div class="pathway-header">
+                        <i class="fas fa-laptop-code fa-2x"></i>
+                        <div>
+                            <h3>Digital Skills</h3>
+                            <p>Tech and online careers</p>
+                        </div>
+                    </div>
+                    <div class="pathway-body">
+                        <div class="pathway-item">
+                            <div class="pathway-info">
+                                <h4>Web Developer</h4>
+                                <p>Website and application development</p>
+                            </div>
+                            <div class="pathway-meta">
+                                <span class="pathway-duration">6-12 Months</span>
+                                <span class="pathway-salary">₹4-15L</span>
+                            </div>
+                        </div>
+                        <div class="pathway-item">
+                            <div class="pathway-info">
+                                <h4>Graphic Designer</h4>
+                                <p>Visual content creation</p>
+                            </div>
+                            <div class="pathway-meta">
+                                <span class="pathway-duration">6-12 Months</span>
+                                <span class="pathway-salary">₹3-10L</span>
+                            </div>
+                        </div>
+                        <div class="pathway-item">
+                            <div class="pathway-info">
+                                <h4>Video Editor</h4>
+                                <p>Video content production and editing</p>
+                            </div>
+                            <div class="pathway-meta">
+                                <span class="pathway-duration">6-12 Months</span>
+                                <span class="pathway-salary">₹3-12L</span>
+                            </div>
+                        </div>
+                        <div class="pathway-item">
+                            <div class="pathway-info">
+                                <h4>Digital Marketer</h4>
+                                <p>Online promotion and advertising</p>
+                            </div>
+                            <div class="pathway-meta">
+                                <span class="pathway-duration">6-12 Months</span>
+                                <span class="pathway-salary">₹3-10L</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="pathway-card sports-pathway animate-fadeInUp hidden">
+                    <div class="pathway-header">
+                        <i class="fas fa-trophy fa-2x"></i>
+                        <div>
+                            <h3>Sports & Talent</h3>
+                            <p>Passion-driven careers</p>
+                        </div>
+                    </div>
+                    <div class="pathway-body">
+                        <div class="pathway-item">
+                            <div class="pathway-info">
+                                <h4>Professional Athlete</h4>
+                                <p>Competitive sports participation</p>
+                            </div>
+                            <div class="pathway-meta">
+                                <span class="pathway-duration">Varies</span>
+                                <span class="pathway-salary">₹5-50L+</span>
+                            </div>
+                        </div>
+                        <div class="pathway-item">
+                            <div class="pathway-info">
+                                <h4>Musician</h4>
+                                <p>Music performance and production</p>
+                            </div>
+                            <div class="pathway-meta">
+                                <span class="pathway-duration">Varies</span>
+                                <span class="pathway-salary">₹3-20L</span>
+                            </div>
+                        </div>
+                        <div class="pathway-item">
+                            <div class="pathway-info">
+                                <h4>Dancer/Choreographer</h4>
+                                <p>Dance performance and direction</p>
+                            </div>
+                            <div class="pathway-meta">
+                                <span class="pathway-duration">Varies</span>
+                                <span class="pathway-salary">₹3-15L</span>
+                            </div>
+                        </div>
+                        <div class="pathway-item">
+                            <div class="pathway-info">
+                                <h4>Actor/Performer</h4>
+                                <p>Acting in films, TV, or theater</p>
+                            </div>
+                            <div class="pathway-meta">
+                                <span class="pathway-duration">Varies</span>
+                                <span class="pathway-salary">₹5-50L+</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Success Stories Section -->
+    <section id="success" class="section success-stories">
+        <div class="container">
+            <h2 class="section-title">Success Stories</h2>
+            <div class="stories-container">
+                <div class="story-card arts-story animate-fadeInUp hidden">
+                    <div class="story-image">
+                        <i class="fas fa-paint-brush"></i>
+                    </div>
+                    <div class="story-content">
+                        <h3>Riya Sharma - Fashion Designer</h3>
+                        <p>After 10th grade, Riya pursued a diploma in Fashion Design. Today, she runs her own successful clothing brand with clients across the country.</p>
+                        <div class="story-stats">
+                            <div class="story-stat">
+                                <div class="story-stat-value">₹12L</div>
+                                <div class="story-stat-label">Annual Income</div>
+                            </div>
+                            <div class="story-stat">
+                                <div class="story-stat-value">5 Years</div>
+                                <div class="story-stat-label">Experience</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="story-card vocational-story animate-fadeInUp hidden">
+                    <div class="story-image">
+                        <i class="fas fa-bolt"></i>
+                    </div>
+                    <div class="story-content">
+                        <h3>Raj Kumar - Electrical Contractor</h3>
+                        <p>Raj completed ITI in Electrical Engineering and now owns a successful electrical contracting business employing 15 people.</p>
+                        <div class="story-stats">
+                            <div class="story-stat">
+                                <div class="story-stat-value">₹8L</div>
+                                <div class="story-stat-label">Annual Income</div>
+                            </div>
+                            <div class="story-stat">
+                                <div class="story-stat-value">7 Years</div>
+                                <div class="story-stat-label">Experience</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="story-card digital-story animate-fadeInUp hidden">
+                    <div class="story-image">
+                        <i class="fas fa-code"></i>
+                    </div>
+                    <div class="story-content">
+                        <h3>Arun Mehta - Web Developer</h3>
+                        <p>Arun learned web development through online courses after 10th. He now works as a senior developer at a tech startup and earns a handsome salary.</p>
+                        <div class="story-stats">
+                            <div class="story-stat">
+                                <div class="story-stat-value">₹15L</div>
+                                <div class="story-stat-label">Annual Income</div>
+                            </div>
+                            <div class="story-stat">
+                                <div class="story-stat-value">4 Years</div>
+                                <div class="story-stat-label">Experience</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="story-card sports-story animate-fadeInUp hidden">
+                    <div class="story-image">
+                        <i class="fas fa-running"></i>
+                    </div>
+                    <div class="story-content">
+                        <h3>Priya Singh - Professional Athlete</h3>
+                        <p>Priya focused on athletics after 10th grade. She now represents India in international competitions and has won several medals.</p>
+                        <div class="story-stats">
+                            <div class="story-stat">
+                                <div class="story-stat-value">₹20L</div>
+                                <div class="story-stat-label">Annual Income</div>
+                            </div>
+                            <div class="story-stat">
+                                <div class="story-stat-value">6 Years</div>
+                                <div class="story-stat-label">Experience</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Resources Section -->
+    <section id="resources" class="section">
+        <div class="container">
+            <h2 class="section-title">Resources & Next Steps</h2>
+            <div class="cards-grid">
+                <div class="card arts animate-fadeInUp hidden">
+                    <div class="card-icon">
+                        <i class="fas fa-graduation-cap"></i>
+                    </div>
+                    <div class="card-content">
+                        <h3>Training Programs</h3>
+                        <p>Find the right courses and certifications to kickstart your career.</p>
+                        <ul class="card-features">
+                            <li><i class="fas fa-check"></i> Government ITI Programs</li>
+                            <li><i class="fas fa-check"></i> Polytechnic Diplomas</li>
+                            <li><i class="fas fa-check"></i> Private Vocational Institutes</li>
+                            <li><i class="fas fa-check"></i> Online Certification Courses</li>
+                            <li><i class="fas fa-check"></i> Apprenticeship Opportunities</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="card vocational animate-fadeInUp hidden">
+                    <div class="card-icon">
+                        <i class="fas fa-handshake"></i>
+                    </div>
+                    <div class="card-content">
+                        <h3>Career Guidance</h3>
+                        <p>Get personalized advice to choose the right path for your skills and interests.</p>
+                        <ul class="card-features">
+                            <li><i class="fas fa-check"></i> Career Counseling Sessions</li>
+                            <li><i class="fas fa-check"></i> Skill Assessment Tests</li>
+                            <li><i class="fas fa-check"></i> Industry Mentorship Programs</li>
+                            <li><i class="fas fa-check"></i> Career Fairs & Workshops</li>
+                            <li><i class="fas fa-check"></i> Internship Placements</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="card digital animate-fadeInUp hidden">
+                    <div class="card-icon">
+                        <i class="fas fa-wallet"></i>
+                    </div>
+                    <div class="card-content">
+                        <h3>Financial Support</h3>
+                        <p>Explore scholarships and financial aid options for vocational training.</p>
+                        <ul class="card-features">
+                            <li><i class="fas fa-check"></i> Government Scholarships</li>
+                            <li><i class="fas fa-check"></i> Skill Development Schemes</li>
+                            <li><i class="fas fa-check"></i> Educational Loans</li>
+                            <li><i class="fas fa-check"></i> Corporate Sponsorships</li>
+                            <li><i class="fas fa-check"></i> NGO Funding Programs</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Back Button -->
+    <div class="back-button-container">
+        <button class="back-button" onclick="goToNextPage()">
+            <i class="fas fa-arrow-left"></i> Back to Main Menu
+        </button>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>CareerExplorer</h3>
+                    <p>Your guide to successful non-academic career paths after 10th grade. Discover opportunities that match your skills and passions.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+                <div class="footer-column">
+                    <h3>Quick Links</h3>
+                    <ul class="footer-links">
+                        <li><a href="#overview">Career Paths</a></li>
+                        <li><a href="#pathways">Opportunities</a></li>
+                        <li><a href="#success">Success Stories</a></li>
+                        <li><a href="#resources">Resources</a></li>
+                        <li><a href="#">Contact Us</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Popular Careers</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">Web Development</a></li>
+                        <li><a href="#">Graphic Design</a></li>
+                        <li><a href="#">Electrician</a></li>
+                        <li><a href="#">Fashion Design</a></li>
+                        <li><a href="#">Automobile Mechanic</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Contact Info</h3>
+                    <ul class="footer-links">
+                        <li><i class="fas fa-envelope"></i> info@careerexplorer.com</li>
+                        <li><i class="fas fa-phone"></i> +91 98765 43210</li>
+                        <li><i class="fas fa-map-marker-alt"></i> 123 Career Street, Mumbai, India</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2023 CareerExplorer. All rights reserved. | Designed with <i class="fas fa-heart" style="color: #FF6B6B;"></i> for students</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Scroll animation
+        document.addEventListener('DOMContentLoaded', function() {
+            const animatedElements = document.querySelectorAll('.animate-fadeInUp');
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.remove('hidden');
+                    }
+                });
+            }, { threshold: 0.1 });
+            
+            animatedElements.forEach(element => {
+                observer.observe(element);
+            });
+        });
+        
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+        
+        // Function to navigate to next page
+      
+        function goToNextPage() {
+    window.location.href = "after10th.html"; 
+}
+        
+        // Show/hide back button based on scroll position
+        window.addEventListener('scroll', function() {
+            const backButton = document.querySelector('.back-button-container');
+            if (window.scrollY > 500) {
+                backButton.style.display = 'block';
+            } else {
+                backButton.style.display = 'none';
+            }
+        });
+    </script>
+</body>
+</html>

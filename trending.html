@@ -1,48 +1,1285 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Trending Careers</title>
-  <style>
-    body { font-family: Arial, sans-serif; margin: 0; background: #eef9ff; }
-    header { background: #1abc9c; color: white; text-align: center; padding: 20px; }
-    section { padding: 20px; }
-    .career { background: white; padding: 20px; margin: 15px 0; border-radius: 10px; box-shadow: 0 4px 10px rgba(0,0,0,0.1); }
-    h2 { color: #16a085; }
-    footer { background: #1abc9c; color: white; text-align: center; padding: 15px; margin-top: 20px; }
-    a { color: white; text-decoration: none; background: #117a65; padding: 8px 16px; border-radius: 5px; }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trending Careers of the Future | Career Explorer</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Montserrat:wght@700;800;900&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --ai: #8A2BE2;
+            --cybersecurity: #FF6B6B;
+            --digital-marketing: #4ECDC4;
+            --biotech: #45B7D1;
+            --dark: #1A1A2E;
+            --light: #F7F9FC;
+            --gradient-ai: linear-gradient(135deg, #8A2BE2, #9370DB);
+            --gradient-cybersecurity: linear-gradient(135deg, #FF6B6B, #FF8E8E);
+            --gradient-digital-marketing: linear-gradient(135deg, #4ECDC4, #6EE7E7);
+            --gradient-biotech: linear-gradient(135deg, #45B7D1, #67C8E3);
+            --card-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            --hover-shadow: 0 15px 40px rgba(0, 0, 0, 0.12);
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--light);
+            color: var(--dark);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Header Styles */
+        header {
+            background: linear-gradient(135deg, var(--dark), #16213E);
+            color: white;
+            padding: 1.5rem 0;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 800;
+            font-size: 1.8rem;
+        }
+        
+        .logo i {
+            color: var(--ai);
+            font-size: 2rem;
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+        }
+        
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+        
+        .nav-links a:hover {
+            color: var(--ai);
+        }
+        
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--ai);
+            transition: width 0.3s ease;
+        }
+        
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+        
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, var(--dark), #16213E);
+            color: white;
+            padding: 5rem 0;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="%238A2BE2" fill-opacity="0.05" d="M0,96L48,112C96,128,192,160,288,186.7C384,213,480,235,576,213.3C672,192,768,128,864,128C960,128,1056,192,1152,192C1248,192,1344,128,1392,96L1440,64L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path></svg>');
+            background-size: cover;
+            background-position: center;
+        }
+        
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .hero h1 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 3.5rem;
+            margin-bottom: 1.5rem;
+            font-weight: 800;
+        }
+        
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+        
+        .cta-button {
+            display: inline-block;
+            background: var(--ai);
+            color: white;
+            padding: 0.8rem 2rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(138, 43, 226, 0.4);
+        }
+        
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(138, 43, 226, 0.6);
+        }
+        
+        /* Stats Section */
+        .stats {
+            background: white;
+            padding: 3rem 0;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+        
+        .stats-container {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            gap: 2rem;
+        }
+        
+        .stat-item {
+            text-align: center;
+            flex: 1;
+            min-width: 200px;
+        }
+        
+        .stat-number {
+            font-size: 3rem;
+            font-weight: 700;
+            color: var(--dark);
+            margin-bottom: 0.5rem;
+        }
+        
+        .stat-label {
+            font-size: 1.1rem;
+            color: var(--dark);
+            font-weight: 500;
+        }
+        
+        /* Section Styles */
+        .section {
+            padding: 5rem 0;
+        }
+        
+        .section-title {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 2.5rem;
+            text-align: center;
+            margin-bottom: 3rem;
+            color: var(--dark);
+            position: relative;
+        }
+        
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: var(--ai);
+            border-radius: 2px;
+        }
+        
+        /* Cards Grid */
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 2rem;
+        }
+        
+        .card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: var(--card-shadow);
+            transition: all 0.4s ease;
+            position: relative;
+            height: 100%;
+        }
+        
+        .card:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--hover-shadow);
+        }
+        
+        .card-icon {
+            height: 120px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            color: white;
+        }
+        
+        .ai .card-icon {
+            background: var(--gradient-ai);
+        }
+        
+        .cybersecurity .card-icon {
+            background: var(--gradient-cybersecurity);
+        }
+        
+        .digital-marketing .card-icon {
+            background: var(--gradient-digital-marketing);
+        }
+        
+        .biotech .card-icon {
+            background: var(--gradient-biotech);
+        }
+        
+        .card-content {
+            padding: 1.5rem;
+        }
+        
+        .card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--dark);
+        }
+        
+        .card p {
+            margin-bottom: 1.5rem;
+            color: #555;
+        }
+        
+        .card-features {
+            list-style: none;
+        }
+        
+        .card-features li {
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+        }
+        
+        .card-features li i {
+            margin-right: 10px;
+        }
+        
+        .ai .card-features li i {
+            color: var(--ai);
+        }
+        
+        .cybersecurity .card-features li i {
+            color: var(--cybersecurity);
+        }
+        
+        .digital-marketing .card-features li i {
+            color: var(--digital-marketing);
+        }
+        
+        .biotech .card-features li i {
+            color: var(--biotech);
+        }
+        
+        /* Career Pathways Section */
+        .pathways-section {
+            background: var(--light);
+            padding: 5rem 0;
+        }
+        
+        .pathways-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+        
+        .pathway-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: var(--card-shadow);
+            transition: all 0.4s ease;
+            position: relative;
+        }
+        
+        .pathway-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--hover-shadow);
+        }
+        
+        .pathway-header {
+            padding: 1.5rem;
+            color: white;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .ai-pathway .pathway-header {
+            background: var(--gradient-ai);
+        }
+        
+        .cybersecurity-pathway .pathway-header {
+            background: var(--gradient-cybersecurity);
+        }
+        
+        .digital-marketing-pathway .pathway-header {
+            background: var(--gradient-digital-marketing);
+        }
+        
+        .biotech-pathway .pathway-header {
+            background: var(--gradient-biotech);
+        }
+        
+        .pathway-header h3 {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .pathway-body {
+            padding: 1.5rem;
+        }
+        
+        .pathway-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 0;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .pathway-item:last-child {
+            border-bottom: none;
+        }
+        
+        .pathway-info h4 {
+            font-size: 1.1rem;
+            margin-bottom: 0.3rem;
+            color: var(--dark);
+        }
+        
+        .pathway-meta {
+            display: flex;
+            gap: 1rem;
+        }
+        
+        .pathway-duration, .pathway-salary {
+            background: var(--light);
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 500;
+        }
+        
+        .ai-pathway .pathway-duration, .ai-pathway .pathway-salary {
+            color: var(--ai);
+        }
+        
+        .cybersecurity-pathway .pathway-duration, .cybersecurity-pathway .pathway-salary {
+            color: var(--cybersecurity);
+        }
+        
+        .digital-marketing-pathway .pathway-duration, .digital-marketing-pathway .pathway-salary {
+            color: var(--digital-marketing);
+        }
+        
+        .biotech-pathway .pathway-duration, .biotech-pathway .pathway-salary {
+            color: var(--biotech);
+        }
+        
+        /* Success Stories */
+        .success-stories {
+            background: white;
+            padding: 5rem 0;
+        }
+        
+        .stories-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+        
+        .story-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: var(--card-shadow);
+            transition: all 0.4s ease;
+            position: relative;
+        }
+        
+        .story-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--hover-shadow);
+        }
+        
+        .story-image {
+            height: 200px;
+            background: var(--light);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--dark);
+            font-size: 3rem;
+        }
+        
+        .ai-story .story-image {
+            background: var(--gradient-ai);
+            color: white;
+        }
+        
+        .cybersecurity-story .story-image {
+            background: var(--gradient-cybersecurity);
+            color: white;
+        }
+        
+        .digital-marketing-story .story-image {
+            background: var(--gradient-digital-marketing);
+            color: white;
+        }
+        
+        .biotech-story .story-image {
+            background: var(--gradient-biotech);
+            color: white;
+        }
+        
+        .story-content {
+            padding: 1.5rem;
+        }
+        
+        .story-content h3 {
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+            color: var(--dark);
+        }
+        
+        .story-content p {
+            margin-bottom: 1rem;
+            color: #555;
+        }
+        
+        .story-stats {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 1rem;
+            padding-top: 1rem;
+            border-top: 1px solid #eee;
+        }
+        
+        .story-stat {
+            text-align: center;
+        }
+        
+        .story-stat-value {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--dark);
+        }
+        
+        .story-stat-label {
+            font-size: 0.8rem;
+            color: #777;
+        }
+        
+        /* Back Button */
+        .back-button-container {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            z-index: 100;
+        }
+        
+        .back-button {
+            background: var(--ai);
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 50px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(138, 43, 226, 0.4);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            animation: pulse 2s infinite;
+        }
+        
+        .back-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(138, 43, 226, 0.6);
+            background: #7B1FA2;
+        }
+        
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+        
+        /* Footer */
+        footer {
+            background: var(--dark);
+            color: white;
+            padding: 4rem 0 2rem;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+        
+        .footer-column h3 {
+            font-size: 1.3rem;
+            margin-bottom: 1.5rem;
+            color: var(--ai);
+        }
+        
+        .footer-links {
+            list-style: none;
+        }
+        
+        .footer-links li {
+            margin-bottom: 0.8rem;
+        }
+        
+        .footer-links a {
+            color: #ccc;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        
+        .footer-links a:hover {
+            color: var(--ai);
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+        
+        .social-links a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            color: white;
+            transition: all 0.3s ease;
+        }
+        
+        .social-links a:hover {
+            background: var(--ai);
+            transform: translateY(-3px);
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: #aaa;
+            font-size: 0.9rem;
+        }
+        
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .animate-fadeInUp {
+            animation: fadeInUp 0.8s ease forwards;
+        }
+        
+        .hidden {
+            opacity: 0;
+        }
+        
+        /* Glow Effect */
+        .glow {
+            box-shadow: 0 0 20px rgba(138, 43, 226, 0.3);
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .nav-links {
+                display: none;
+            }
+            
+            .info-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .info-btn {
+                width: 100%;
+                max-width: 300px;
+                justify-content: center;
+            }
+            
+            .back-button-container {
+                bottom: 20px;
+                right: 20px;
+            }
+        }
+    </style>
 </head>
 <body>
-  <header>
-    <h1>Trending Careers</h1>
-    <p>Careers of the Future 🔮</p>
-  </header>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <i class="fas fa-crystal-ball"></i>
+                    <span>FutureCareers</span>
+                </div>
+                <div class="nav-links">
+                    <a href="#overview">Overview</a>
+                    <a href="#pathways">Career Pathways</a>
+                    <a href="#success">Success Stories</a>
+                    <a href="#resources">Resources</a>
+                </div>
+            </div>
+        </div>
+    </header>
 
-  <section>
-    <div class="career">
-      <h2>🤖 Artificial Intelligence & Data Science</h2>
-      <p>High-demand careers in Machine Learning, AI, Data Analysis, Robotics.</p>
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1>Careers of the Future 🔮</h1>
+                <p>Discover high-demand careers that will shape tomorrow's world. Get ahead of the curve with skills that matter in the digital age.</p>
+                <a href="#pathways" class="cta-button">Explore Future Careers <i class="fas fa-arrow-right"></i></a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section class="stats">
+        <div class="container">
+            <div class="stats-container">
+                <div class="stat-item">
+                    <div class="stat-number">75%</div>
+                    <div class="stat-label">Growth in AI Jobs</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">3.5M</div>
+                    <div class="stat-label">Cybersecurity Job Openings</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">₹8-25L</div>
+                    <div class="stat-label">Average Starting Salary</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">60%</div>
+                    <div class="stat-label">Digital Marketing Growth</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Overview Section -->
+    <section id="overview" class="section">
+        <div class="container">
+            <h2 class="section-title">High-Demand Future Careers</h2>
+            <div class="cards-grid">
+                <div class="card ai animate-fadeInUp hidden">
+                    <div class="card-icon">
+                        <i class="fas fa-robot"></i>
+                    </div>
+                    <div class="card-content">
+                        <h3>🤖 Artificial Intelligence & Data Science</h3>
+                        <p>Transform industries with intelligent systems that learn, adapt, and automate complex processes.</p>
+                        <ul class="card-features">
+                            <li><i class="fas fa-check"></i> Machine Learning Engineering</li>
+                            <li><i class="fas fa-check"></i> AI Research & Development</li>
+                            <li><i class="fas fa-check"></i> Data Analysis & Visualization</li>
+                            <li><i class="fas fa-check"></i> Robotics & Automation</li>
+                            <li><i class="fas fa-check"></i> Natural Language Processing</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="card cybersecurity animate-fadeInUp hidden">
+                    <div class="card-icon">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <div class="card-content">
+                        <h3>🛡️ Cybersecurity</h3>
+                        <p>Protect digital assets and infrastructure in an increasingly connected world facing sophisticated threats.</p>
+                        <ul class="card-features">
+                            <li><i class="fas fa-check"></i> Ethical Hacking & Penetration Testing</li>
+                            <li><i class="fas fa-check"></i> Security Analysis & Architecture</li>
+                            <li><i class="fas fa-check"></i> Digital Forensics</li>
+                            <li><i class="fas fa-check"></i> Incident Response</li>
+                            <li><i class="fas fa-check"></i> Cryptography & Encryption</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="card digital-marketing animate-fadeInUp hidden">
+                    <div class="card-icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <div class="card-content">
+                        <h3>🌍 Digital Marketing</h3>
+                        <p>Drive business growth through data-driven strategies that connect brands with global audiences.</p>
+                        <ul class="card-features">
+                            <li><i class="fas fa-check"></i> SEO & SEM Strategy</li>
+                            <li><i class="fas fa-check"></i> Content Creation & Strategy</li>
+                            <li><i class="fas fa-check"></i> Social Media Marketing</li>
+                            <li><i class="fas fa-check"></i> E-commerce Growth</li>
+                            <li><i class="fas fa-check"></i> Analytics & Performance Tracking</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="card biotech animate-fadeInUp hidden">
+                    <div class="card-icon">
+                        <i class="fas fa-dna"></i>
+                    </div>
+                    <div class="card-content">
+                        <h3>🧪 Biotechnology & Healthcare</h3>
+                        <p>Revolutionize medicine and healthcare through cutting-edge biological research and technology.</p>
+                        <ul class="card-features">
+                            <li><i class="fas fa-check"></i> Genetics & Genomics</li>
+                            <li><i class="fas fa-check"></i> Bioinformatics</li>
+                            <li><i class="fas fa-check"></i> Pharmaceutical Research</li>
+                            <li><i class="fas fa-check"></i> Healthcare Technology</li>
+                            <li><i class="fas fa-check"></i> Biomedical Engineering</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Career Pathways Section -->
+    <section id="pathways" class="pathways-section">
+        <div class="container">
+            <h2 class="section-title">Career Pathways & Opportunities</h2>
+            <div class="pathways-container">
+                <div class="pathway-card ai-pathway animate-fadeInUp hidden">
+                    <div class="pathway-header">
+                        <i class="fas fa-robot fa-2x"></i>
+                        <div>
+                            <h3>AI & Data Science</h3>
+                            <p>Intelligent systems careers</p>
+                        </div>
+                    </div>
+                    <div class="pathway-body">
+                        <div class="pathway-item">
+                            <div class="pathway-info">
+                                <h4>Machine Learning Engineer</h4>
+                                <p>Design and implement ML algorithms and systems</p>
+                            </div>
+                            <div class="pathway-meta">
+                                <span class="pathway-duration">2-4 Years</span>
+                                <span class="pathway-salary">₹12-30L</span>
+                            </div>
+                        </div>
+                        <div class="pathway-item">
+                            <div class="pathway-info">
+                                <h4>Data Scientist</h4>
+                                <p>Extract insights from complex datasets</p>
+                            </div>
+                            <div class="pathway-meta">
+                                <span class="pathway-duration">2-4 Years</span>
+                                <span class="pathway-salary">₹10-25L</span>
+                            </div>
+                        </div>
+                        <div class="pathway-item">
+                            <div class="pathway-info">
+                                <h4>AI Research Scientist</h4>
+                                <p>Advance the frontiers of artificial intelligence</p>
+                            </div>
+                            <div class="pathway-meta">
+                                <span class="pathway-duration">4-6 Years</span>
+                                <span class="pathway-salary">₹15-40L</span>
+                            </div>
+                        </div>
+                        <div class="pathway-item">
+                            <div class="pathway-info">
+                                <h4>Robotics Engineer</h4>
+                                <p>Design and build intelligent robotic systems</p>
+                            </div>
+                            <div class="pathway-meta">
+                                <span class="pathway-duration">3-5 Years</span>
+                                <span class="pathway-salary">₹8-20L</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="pathway-card cybersecurity-pathway animate-fadeInUp hidden">
+                    <div class="pathway-header">
+                        <i class="fas fa-shield-alt fa-2x"></i>
+                        <div>
+                            <h3>Cybersecurity</h3>
+                            <p>Digital protection careers</p>
+                        </div>
+                    </div>
+                    <div class="pathway-body">
+                        <div class="pathway-item">
+                            <div class="pathway-info">
+                                <h4>Ethical Hacker</h4>
+                                <p>Identify system vulnerabilities through authorized testing</p>
+                            </div>
+                            <div class="pathway-meta">
+                                <span class="pathway-duration">1-3 Years</span>
+                                <span class="pathway-salary">₹8-20L</span>
+                            </div>
+                        </div>
+                        <div class="pathway-item">
+                            <div class="pathway-info">
+                                <h4>Security Analyst</h4>
+                                <p>Monitor and protect organizational networks</p>
+                            </div>
+                            <div class="pathway-meta">
+                                <span class="pathway-duration">1-3 Years</span>
+                                <span class="pathway-salary">₹6-15L</span>
+                            </div>
+                        </div>
+                        <div class="pathway-item">
+                            <div class="pathway-info">
+                                <h4>Security Architect</h4>
+                                <p>Design secure network infrastructure</p>
+                            </div>
+                            <div class="pathway-meta">
+                                <span class="pathway-duration">3-5 Years</span>
+                                <span class="pathway-salary">₹12-30L</span>
+                            </div>
+                        </div>
+                        <div class="pathway-item">
+                            <div class="pathway-info">
+                                <h4>Digital Forensics Expert</h4>
+                                <p>Investigate cyber crimes and security breaches</p>
+                            </div>
+                            <div class="pathway-meta">
+                                <span class="pathway-duration">2-4 Years</span>
+                                <span class="pathway-salary">₹8-18L</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="pathway-card digital-marketing-pathway animate-fadeInUp hidden">
+                    <div class="pathway-header">
+                        <i class="fas fa-chart-line fa-2x"></i>
+                        <div>
+                            <h3>Digital Marketing</h3>
+                            <p>Online growth careers</p>
+                        </div>
+                    </div>
+                    <div class="pathway-body">
+                        <div class="pathway-item">
+                            <div class="pathway-info">
+                                <h4>SEO Specialist</h4>
+                                <p>Optimize websites for search engine visibility</p>
+                            </div>
+                            <div class="pathway-meta">
+                                <span class="pathway-duration">6-12 Months</span>
+                                <span class="pathway-salary">₹4-12L</span>
+                            </div>
+                        </div>
+                        <div class="pathway-item">
+                            <div class="pathway-info">
+                                <h4>Content Strategist</h4>
+                                <p>Develop engaging content across platforms</p>
+                            </div>
+                            <div class="pathway-meta">
+                                <span class="pathway-duration">1-2 Years</span>
+                                <span class="pathway-salary">₹5-15L</span>
+                            </div>
+                        </div>
+                        <div class="pathway-item">
+                            <div class="pathway-info">
+                                <h4>Social Media Manager</h4>
+                                <p>Build brand presence across social platforms</p>
+                            </div>
+                            <div class="pathway-meta">
+                                <span class="pathway-duration">1-2 Years</span>
+                                <span class="pathway-salary">₹4-10L</span>
+                            </div>
+                        </div>
+                        <div class="pathway-item">
+                            <div class="pathway-info">
+                                <h4>E-commerce Manager</h4>
+                                <p>Drive online sales and customer experience</p>
+                            </div>
+                            <div class="pathway-meta">
+                                <span class="pathway-duration">2-3 Years</span>
+                                <span class="pathway-salary">₹6-18L</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="pathway-card biotech-pathway animate-fadeInUp hidden">
+                    <div class="pathway-header">
+                        <i class="fas fa-dna fa-2x"></i>
+                        <div>
+                            <h3>Biotechnology</h3>
+                            <p>Healthcare innovation careers</p>
+                        </div>
+                    </div>
+                    <div class="pathway-body">
+                        <div class="pathway-item">
+                            <div class="pathway-info">
+                                <h4>Bioinformatician</h4>
+                                <p>Analyze biological data using computational tools</p>
+                            </div>
+                            <div class="pathway-meta">
+                                <span class="pathway-duration">3-5 Years</span>
+                                <span class="pathway-salary">₹8-20L</span>
+                            </div>
+                        </div>
+                        <div class="pathway-item">
+                            <div class="pathway-info">
+                                <h4>Genetic Counselor</h4>
+                                <p>Guide patients through genetic testing and results</p>
+                            </div>
+                            <div class="pathway-meta">
+                                <span class="pathway-duration">3-4 Years</span>
+                                <span class="pathway-salary">₹6-15L</span>
+                            </div>
+                        </div>
+                        <div class="pathway-item">
+                            <div class="pathway-info">
+                                <h4>Pharmaceutical Researcher</h4>
+                                <p>Develop new drugs and treatments</p>
+                            </div>
+                            <div class="pathway-meta">
+                                <span class="pathway-duration">4-6 Years</span>
+                                <span class="pathway-salary">₹10-25L</span>
+                            </div>
+                        </div>
+                        <div class="pathway-item">
+                            <div class="pathway-info">
+                                <h4>Biomedical Engineer</h4>
+                                <p>Design medical equipment and devices</p>
+                            </div>
+                            <div class="pathway-meta">
+                                <span class="pathway-duration">4-5 Years</span>
+                                <span class="pathway-salary">₹8-18L</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Success Stories Section -->
+    <section id="success" class="section success-stories">
+        <div class="container">
+            <h2 class="section-title">Success Stories</h2>
+            <div class="stories-container">
+                <div class="story-card ai-story animate-fadeInUp hidden">
+                    <div class="story-image">
+                        <i class="fas fa-brain"></i>
+                    </div>
+                    <div class="story-content">
+                        <h3>Priya Sharma - AI Research Scientist</h3>
+                        <p>After completing her Master's in AI, Priya now leads a team developing cutting-edge machine learning algorithms at a top tech company.</p>
+                        <div class="story-stats">
+                            <div class="story-stat">
+                                <div class="story-stat-value">₹28L</div>
+                                <div class="story-stat-label">Annual Income</div>
+                            </div>
+                            <div class="story-stat">
+                                <div class="story-stat-value">4 Years</div>
+                                <div class="story-stat-label">Experience</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="story-card cybersecurity-story animate-fadeInUp hidden">
+                    <div class="story-image">
+                        <i class="fas fa-user-secret"></i>
+                    </div>
+                    <div class="story-content">
+                        <h3>Rahul Kumar - Cybersecurity Consultant</h3>
+                        <p>Rahul transitioned from IT support to cybersecurity and now helps Fortune 500 companies protect their digital assets from sophisticated threats.</p>
+                        <div class="story-stats">
+                            <div class="story-stat">
+                                <div class="story-stat-value">₹22L</div>
+                                <div class="story-stat-label">Annual Income</div>
+                            </div>
+                            <div class="story-stat">
+                                <div class="story-stat-value">5 Years</div>
+                                <div class="story-stat-label">Experience</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="story-card digital-marketing-story animate-fadeInUp hidden">
+                    <div class="story-image">
+                        <i class="fas fa-hashtag"></i>
+                    </div>
+                    <div class="story-content">
+                        <h3>Ananya Patel - Digital Marketing Director</h3>
+                        <p>Starting as a social media intern, Ananya now leads digital strategy for a global e-commerce brand, driving millions in online revenue.</p>
+                        <div class="story-stats">
+                            <div class="story-stat">
+                                <div class="story-stat-value">₹18L</div>
+                                <div class="story-stat-label">Annual Income</div>
+                            </div>
+                            <div class="story-stat">
+                                <div class="story-stat-value">6 Years</div>
+                                <div class="story-stat-label">Experience</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="story-card biotech-story animate-fadeInUp hidden">
+                    <div class="story-image">
+                        <i class="fas fa-microscope"></i>
+                    </div>
+                    <div class="story-content">
+                        <h3>Dr. Arjun Singh - Biotech Researcher</h3>
+                        <p>After his PhD in Biotechnology, Dr. Singh leads a research team developing innovative gene therapies for rare genetic disorders.</p>
+                        <div class="story-stats">
+                            <div class="story-stat">
+                                <div class="story-stat-value">₹32L</div>
+                                <div class="story-stat-label">Annual Income</div>
+                            </div>
+                            <div class="story-stat">
+                                <div class="story-stat-value">8 Years</div>
+                                <div class="story-stat-label">Experience</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Resources Section -->
+    <section id="resources" class="section">
+        <div class="container">
+            <h2 class="section-title">Resources & Next Steps</h2>
+            <div class="cards-grid">
+                <div class="card ai animate-fadeInUp hidden">
+                    <div class="card-icon">
+                        <i class="fas fa-graduation-cap"></i>
+                    </div>
+                    <div class="card-content">
+                        <h3>Learning Pathways</h3>
+                        <p>Structured educational routes to build expertise in future-focused careers.</p>
+                        <ul class="card-features">
+                            <li><i class="fas fa-check"></i> Online Certification Programs</li>
+                            <li><i class="fas fa-check"></i> University Degree Programs</li>
+                            <li><i class="fas fa-check"></i> Bootcamps & Intensive Training</li>
+                            <li><i class="fas fa-check"></i> Industry Certifications</li>
+                            <li><i class="fas fa-check"></i> Self-Paced Online Courses</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="card cybersecurity animate-fadeInUp hidden">
+                    <div class="card-icon">
+                        <i class="fas fa-network-wired"></i>
+                    </div>
+                    <div class="card-content">
+                        <h3>Industry Connections</h3>
+                        <p>Build your professional network and connect with industry leaders.</p>
+                        <ul class="card-features">
+                            <li><i class="fas fa-check"></i> Professional Associations</li>
+                            <li><i class="fas fa-check"></i> Industry Conferences</li>
+                            <li><i class="fas fa-check"></i> Networking Events</li>
+                            <li><i class="fas fa-check"></i> Mentorship Programs</li>
+                            <li><i class="fas fa-check"></i> Online Communities</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="card digital-marketing animate-fadeInUp hidden">
+                    <div class="card-icon">
+                        <i class="fas fa-briefcase"></i>
+                    </div>
+                    <div class="card-content">
+                        <h3>Career Opportunities</h3>
+                        <p>Explore job openings and internship opportunities in growing fields.</p>
+                        <ul class="card-features">
+                            <li><i class="fas fa-check"></i> Job Portals & Boards</li>
+                            <li><i class="fas fa-check"></i> Company Career Pages</li>
+                            <li><i class="fas fa-check"></i> Recruitment Agencies</li>
+                            <li><i class="fas fa-check"></i> Internship Programs</li>
+                            <li><i class="fas fa-check"></i> Freelance Platforms</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Back Button -->
+    <div class="back-button-container">
+        <button class="back-button" onclick="goToPreviousPage()">
+            <i class="fas fa-arrow-left"></i> Back to main menu
+        </button>
     </div>
 
-    <div class="career">
-      <h2>🛡️ Cybersecurity</h2>
-      <p>Protect systems, networks, and data from cyber threats. Ethical Hacking, Security Analysis.</p>
-    </div>
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>FutureCareers</h3>
+                    <p>Your guide to high-demand careers that will shape the future. Stay ahead with skills that matter in tomorrow's job market.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+                <div class="footer-column">
+                    <h3>Quick Links</h3>
+                    <ul class="footer-links">
+                        <li><a href="#overview">Career Fields</a></li>
+                        <li><a href="#pathways">Opportunities</a></li>
+                        <li><a href="#success">Success Stories</a></li>
+                        <li><a href="#resources">Resources</a></li>
+                        <li><a href="#">Contact Us</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Popular Careers</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">Machine Learning Engineer</a></li>
+                        <li><a href="#">Cybersecurity Analyst</a></li>
+                        <li><a href="#">Digital Marketing Manager</a></li>
+                        <li><a href="#">Bioinformatician</a></li>
+                        <li><a href="#">Data Scientist</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Contact Info</h3>
+                    <ul class="footer-links">
+                        <li><i class="fas fa-envelope"></i> info@futurecareers.com</li>
+                        <li><i class="fas fa-phone"></i> +91 98765 43210</li>
+                        <li><i class="fas fa-map-marker-alt"></i> 456 Innovation Drive, Bangalore, India</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2023 FutureCareers. All rights reserved. | Designed for the next generation of professionals</p>
+            </div>
+        </div>
+    </footer>
 
-    <div class="career">
-      <h2>🌍 Digital Marketing</h2>
-      <p>SEO, Content Creation, Social Media Marketing, E-commerce growth.</p>
-    </div>
-
-    <div class="career">
-      <h2>🧪 Biotechnology & Healthcare</h2>
-      <p>Genetics, Bioinformatics, Pharmaceutical Research, Healthcare Technology.</p>
-    </div>
-  </section>
-
-  <footer>
-    <a href="after10th.html">⬅ Back</a>
-  </footer>
+    <script>
+        // Scroll animation
+        document.addEventListener('DOMContentLoaded', function() {
+            const animatedElements = document.querySelectorAll('.animate-fadeInUp');
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.remove('hidden');
+                    }
+                });
+            }, { threshold: 0.1 });
+            
+            animatedElements.forEach(element => {
+                observer.observe(element);
+            });
+        });
+        
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+        
+        function goToPreviousPage() {
+    window.location.href = "after10th.html";
+}
+        
+        // Show/hide back button based on scroll position
+        window.addEventListener('scroll', function() {
+            const backButton = document.querySelector('.back-button-container');
+            if (window.scrollY > 500) {
+                backButton.style.display = 'block';
+            } else {
+                backButton.style.display = 'none';
+            }
+        });
+        
+        // Add glow effect to cards on hover
+        document.querySelectorAll('.card').forEach(card => {
+            card.addEventListener('mouseenter', function() {
+                this.classList.add('glow');
+            });
+            
+            card.addEventListener('mouseleave', function() {
+                this.classList.remove('glow');
+            });
+        });
+    </script>
 </body>
 </html>

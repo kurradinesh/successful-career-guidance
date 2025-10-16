@@ -1,0 +1,2182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Career Path Navigator - Your Complete Career Guidance Platform</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #4361ee;
+            --secondary: #3a0ca3;
+            --accent: #4cc9f0;
+            --light: #f8f9fa;
+            --dark: #212529;
+            --success: #4bb543;
+            --warning: #ffc107;
+            --danger: #dc3545;
+            --gray: #6c757d;
+            --light-gray: #e9ecef;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Roboto', sans-serif;
+            line-height: 1.6;
+            color: var(--dark);
+            background-color: #f5f7fb;
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Poppins', sans-serif;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+
+        
+        header {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            padding: 1rem 0;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .logo i {
+            font-size: 2rem;
+        }
+
+        .logo h1 {
+            font-size: 1.8rem;
+            margin: 0;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 1.5rem;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            padding: 0.5rem 0;
+            position: relative;
+        }
+
+        nav a:hover {
+            color: var(--accent);
+        }
+
+        nav a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--accent);
+            transition: width 0.3s ease;
+        }
+
+        nav a:hover::after {
+            width: 100%;
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+       
+        .hero {
+            background: linear-gradient(rgba(67, 97, 238, 0.8), rgba(58, 12, 163, 0.8)), url('https://images.unsplash.com/photo-1521737711867-e3b97375f902?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            padding: 5rem 0;
+            text-align: center;
+        }
+
+        .hero h2 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            animation: fadeInDown 1s ease;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto 2rem;
+            animation: fadeInUp 1s ease 0.3s both;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 0.8rem 1.8rem;
+            background-color: var(--accent);
+            color: white;
+            border: none;
+            border-radius: 50px;
+            font-weight: 600;
+            text-decoration: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .btn:hover {
+            background-color: #3ab0d3;
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+        }
+
+        .btn-secondary {
+            background-color: transparent;
+            border: 2px solid white;
+        }
+
+        .btn-secondary:hover {
+            background-color: white;
+            color: var(--primary);
+        }
+
+        
+        section {
+            padding: 5rem 0;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 3rem;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background-color: var(--primary);
+            border-radius: 2px;
+        }
+
+       
+        .career-paths {
+            background-color: white;
+        }
+
+        .paths-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .path-card {
+            background-color: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .path-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+        }
+
+        .path-header {
+            padding: 1.5rem;
+            color: white;
+            position: relative;
+        }
+
+        .path-header h3 {
+            margin: 0;
+            font-size: 1.4rem;
+        }
+
+        .path-level {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background-color: rgba(255, 255, 255, 0.2);
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 500;
+        }
+
+        .path-content {
+            padding: 1.5rem;
+        }
+
+        .path-content ul {
+            list-style: none;
+            margin-bottom: 1.5rem;
+        }
+
+        .path-content li {
+            padding: 0.5rem 0;
+            border-bottom: 1px solid var(--light-gray);
+            position: relative;
+            padding-left: 1.5rem;
+        }
+
+        .path-content li:last-child {
+            border-bottom: none;
+        }
+
+        .path-content li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: var(--success);
+            font-weight: bold;
+        }
+
+        .path-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 1.5rem;
+            background-color: var(--light-gray);
+        }
+
+        .salary {
+            font-weight: 600;
+            color: var(--success);
+        }
+
+        
+        .placement-prep {
+            background-color: var(--light);
+        }
+
+        .rounds-container {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+
+        .round-card {
+            display: flex;
+            background-color: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+        }
+
+        .round-number {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: var(--primary);
+            color: white;
+            min-width: 80px;
+            font-size: 2rem;
+            font-weight: 700;
+        }
+
+        .round-content {
+            padding: 1.5rem;
+            flex: 1;
+        }
+
+        .round-content h3 {
+            margin-top: 0;
+            color: var(--primary);
+        }
+
+        .prep-tips {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 1rem;
+            margin: 1.5rem 0;
+        }
+
+        .tip {
+            background-color: var(--light-gray);
+            padding: 1rem;
+            border-radius: 8px;
+            border-left: 4px solid var(--primary);
+        }
+
+        .video-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .video-link {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .video-link:hover {
+            text-decoration: underline;
+        }
+
+       
+        .opportunities-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .opportunity-card {
+            background-color: white;
+            border-radius: 10px;
+            padding: 2rem;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+            transition: all 0.3s ease;
+        }
+
+        .opportunity-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.12);
+        }
+
+        .opportunity-card h3 {
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            color: var(--primary);
+            margin-bottom: 1.5rem;
+        }
+
+        .opportunity-card h3 i {
+            font-size: 1.5rem;
+        }
+
+        .opportunity-card ul {
+            list-style: none;
+        }
+
+        .opportunity-card li {
+            padding: 0.5rem 0;
+            border-bottom: 1px solid var(--light-gray);
+        }
+
+        .opportunity-card li:last-child {
+            border-bottom: none;
+        }
+
+        .opportunity-card a {
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .opportunity-card a:hover {
+            text-decoration: underline;
+        }
+
+        .presence-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .presence-card {
+            background-color: white;
+            border-radius: 10px;
+            padding: 2rem;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .presence-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.12);
+        }
+
+        .presence-icon {
+            font-size: 3rem;
+            color: var(--primary);
+            margin-bottom: 1.5rem;
+        }
+
+        .presence-card h3 {
+            color: var(--primary);
+        }
+
+        .presence-card ul {
+            list-style: none;
+            text-align: left;
+            margin-top: 1.5rem;
+        }
+
+        .presence-card li {
+            padding: 0.5rem 0;
+            position: relative;
+            padding-left: 1.5rem;
+        }
+
+        .presence-card li::before {
+            content: '•';
+            position: absolute;
+            left: 0;
+            color: var(--primary);
+            font-weight: bold;
+        }
+
+        .studies-tabs {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-bottom: 2rem;
+            justify-content: center;
+        }
+
+        .tab-btn {
+            padding: 0.8rem 1.5rem;
+            background-color: var(--light-gray);
+            border: none;
+            border-radius: 50px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .tab-btn.active {
+            background-color: var(--primary);
+            color: white;
+        }
+
+        .tab-content {
+            display: none;
+            animation: fadeIn 0.5s ease;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        .country-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .country-card {
+            background-color: white;
+            border-radius: 10px;
+            padding: 1.5rem;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+        }
+
+        .country-card h4 {
+            color: var(--primary);
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .institutes-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 2rem;
+            background-color: white;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .institutes-table th, .institutes-table td {
+            padding: 1rem;
+            text-align: left;
+            border-bottom: 1px solid var(--light-gray);
+        }
+
+        .institutes-table th {
+            background-color: var(--primary);
+            color: white;
+            font-weight: 600;
+        }
+
+        .institutes-table tr:last-child td {
+            border-bottom: none;
+        }
+
+        .institutes-table tr:hover {
+            background-color: var(--light-gray);
+        }
+
+        
+        .guidance {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+        }
+
+        .guidance .section-title {
+            color: white;
+        }
+
+        .guidance .section-title::after {
+            background-color: var(--accent);
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .service-card {
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            padding: 2rem;
+            text-align: center;
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+        }
+
+        .service-card:hover {
+            transform: translateY(-5px);
+            background-color: rgba(255, 255, 255, 0.15);
+        }
+
+        .service-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+            color: var(--accent);
+        }
+
+        .form-container {
+            background-color: white;
+            border-radius: 10px;
+            padding: 2rem;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+            color: var(--dark);
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 0.8rem 1rem;
+            border: 1px solid var(--light-gray);
+            border-radius: 5px;
+            font-family: 'Roboto', sans-serif;
+            transition: all 0.3s ease;
+        }
+
+        .form-control:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(67, 97, 238, 0.2);
+        }
+
+        .checkbox-group {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .checkbox-group input {
+            width: auto;
+        }
+
+       
+        .forum-container {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 2rem;
+        }
+
+        .questions-list {
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+            overflow: hidden;
+        }
+
+        .question {
+            padding: 1.5rem;
+            border-bottom: 1px solid var(--light-gray);
+            transition: all 0.3s ease;
+        }
+
+        .question:hover {
+            background-color: var(--light-gray);
+        }
+
+        .question:last-child {
+            border-bottom: none;
+        }
+
+        .question-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 1rem;
+        }
+
+        .question-user {
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+        }
+
+        .user-avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: var(--primary);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+        }
+
+        .user-info h4 {
+            margin: 0;
+            font-size: 1rem;
+        }
+
+        .user-info p {
+            font-size: 0.8rem;
+            color: var(--gray);
+            margin: 0;
+        }
+
+        .question-time {
+            font-size: 0.8rem;
+            color: var(--gray);
+        }
+
+        .question-content h3 {
+            margin: 0 0 0.5rem;
+            font-size: 1.2rem;
+        }
+
+        .question-content p {
+            margin: 0;
+            color: var(--dark);
+        }
+
+        .question-replies {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-top: 1rem;
+            color: var(--primary);
+            font-weight: 500;
+        }
+
+        .forum-sidebar {
+            background-color: white;
+            border-radius: 10px;
+            padding: 1.5rem;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+            height: fit-content;
+        }
+
+        .contact-methods {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .contact-method {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .contact-icon {
+            font-size: 1.5rem;
+            color: var(--primary);
+            width: 40px;
+            text-align: center;
+        }
+
+        .contact-info h4 {
+            margin: 0;
+            font-size: 1rem;
+        }
+
+        .contact-info p {
+            margin: 0;
+            color: var(--gray);
+        }
+
+        .contact-info a {
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .contact-info a:hover {
+            text-decoration: underline;
+        }
+
+        
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .project-card {
+            background-color: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+            transition: all 0.3s ease;
+        }
+
+        .project-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.12);
+        }
+
+        .project-image {
+            height: 180px;
+            background-color: var(--light-gray);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--gray);
+            font-size: 3rem;
+        }
+
+        .project-content {
+            padding: 1.5rem;
+        }
+
+        .project-content h3 {
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .project-level {
+            display: inline-block;
+            padding: 0.3rem 0.8rem;
+            background-color: var(--light-gray);
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 500;
+            margin-bottom: 1rem;
+        }
+
+        .project-level.beginner {
+            background-color: #e7f4e4;
+            color: var(--success);
+        }
+
+        .project-level.intermediate {
+            background-color: #fff4e6;
+            color: #ff8c00;
+        }
+
+        .project-level.advanced {
+            background-color: #ffe6e6;
+            color: var(--danger);
+        }
+
+        .project-tech {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin: 1rem 0;
+        }
+
+        .tech-tag {
+            padding: 0.3rem 0.8rem;
+            background-color: var(--light-gray);
+            border-radius: 20px;
+            font-size: 0.8rem;
+        }
+
+        .project-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+
+        .project-link {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .project-link:hover {
+            text-decoration: underline;
+        }
+
+                footer {
+            background-color: var(--dark);
+            color: white;
+            padding: 3rem 0 1.5rem;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-column h3 {
+            color: var(--accent);
+            margin-bottom: 1.5rem;
+            font-size: 1.2rem;
+        }
+
+        .footer-column ul {
+            list-style: none;
+        }
+
+        .footer-column li {
+            margin-bottom: 0.8rem;
+        }
+
+        .footer-column a {
+            color: #adb5bd;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .footer-column a:hover {
+            color: white;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+
+        .social-link {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            color: white;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .social-link:hover {
+            background-color: var(--primary);
+            transform: translateY(-3px);
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 1.5rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: #adb5bd;
+            font-size: 0.9rem;
+        }
+
+      
+        .back-button {
+            position: fixed;
+            bottom: 30px;
+            left: 30px;
+            z-index: 1000;
+            background: linear-gradient(135deg, #ff6b6b, #ff8e8e);
+            color: white;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 15px rgba(255, 107, 107, 0.4);
+            cursor: pointer;
+            transition: all 0.5s ease;
+            font-size: 1.5rem;
+            animation: pulse 2s infinite;
+        }
+        
+        .back-button:hover {
+            background: linear-gradient(135deg, #ff5252, #ff7b7b);
+            transform: scale(1.1) rotate(-5deg);
+            box-shadow: 0 6px 20px rgba(255, 107, 107, 0.6);
+            animation: none;
+        }
+        
+        .back-button .tooltip {
+            position: absolute;
+            bottom: 70px;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: #333;
+            color: white;
+            padding: 8px 12px;
+            border-radius: 4px;
+            font-size: 0.8rem;
+            white-space: nowrap;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+        }
+        
+        .back-button:hover .tooltip {
+            opacity: 1;
+            visibility: visible;
+        }
+        
+        .back-button .tooltip::after {
+            content: '';
+            position: absolute;
+            top: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            border-width: 5px;
+            border-style: solid;
+            border-color: #333 transparent transparent transparent;
+        }
+
+        
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        @keyframes pulse {
+            0% {
+                box-shadow: 0 0 0 0 rgba(255, 107, 107, 0.7);
+            }
+            70% {
+                box-shadow: 0 0 0 10px rgba(255, 107, 107, 0);
+            }
+            100% {
+                box-shadow: 0 0 0 0 rgba(255, 107, 107, 0);
+            }
+        }
+
+       
+        @media (max-width: 992px) {
+            .forum-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .hero h2 {
+                font-size: 2.5rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                gap: 1rem;
+            }
+            
+            nav ul {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            
+            .hero h2 {
+                font-size: 2rem;
+            }
+            
+            .round-card {
+                flex-direction: column;
+            }
+            
+            .round-number {
+                min-width: 100%;
+                padding: 1rem;
+            }
+            
+            .studies-tabs {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .tab-btn {
+                width: 100%;
+                max-width: 300px;
+            }
+
+            .back-button {
+                width: 50px;
+                height: 50px;
+                bottom: 20px;
+                left: 20px;
+                font-size: 1.2rem;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .mobile-menu-btn {
+                display: block;
+            }
+            
+            nav ul {
+                display: none;
+                flex-direction: column;
+                width: 100%;
+                text-align: center;
+                margin-top: 1rem;
+            }
+            
+            nav ul.show {
+                display: flex;
+            }
+            
+            .hero {
+                padding: 3rem 0;
+            }
+            
+            section {
+                padding: 3rem 0;
+            }
+            
+            .hero h2 {
+                font-size: 1.8rem;
+            }
+            
+            .hero p {
+                font-size: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    
+    <div class="back-button" id="backButton">
+        <i class="fas fa-arrow-left"></i>
+        <div class="tooltip">Go to After 10th Page</div>
+    </div>
+
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <i class="fas fa-road"></i>
+                    <h1>Career Path Navigator</h1>
+                </div>
+                <button class="mobile-menu-btn">
+                    <i class="fas fa-bars"></i>
+                </button>
+                <nav>
+                    <ul>
+                        <li><a href="#career-paths">Career Paths</a></li>
+                        <li><a href="#placement-prep">Placement Prep</a></li>
+                        <li><a href="#opportunities">Opportunities</a></li>
+                        <li><a href="#professional-presence">Professional Presence</a></li>
+                        <li><a href="#higher-studies">Higher Studies</a></li>
+                        <li><a href="#guidance">Free Guidance</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    
+    <section class="hero">
+        <div class="container">
+            <h2>Your Complete Career Guidance Platform</h2>
+            <p>Choose your career path and follow our comprehensive roadmaps to success. From learning resources to job placement, we guide you at every step.</p>
+            <a href="#career-paths" class="btn">Explore Career Paths</a>
+            <a href="#guidance" class="btn btn-secondary">Get Free Guidance</a>
+        </div>
+    </section>
+
+    <section id="career-paths" class="career-paths">
+        <div class="container">
+            <h2 class="section-title">Popular Career Paths & Learning Roadmaps</h2>
+            <p class="section-subtitle" style="text-align: center; margin-bottom: 3rem; max-width: 800px; margin-left: auto; margin-right: auto;">Choose your career path and follow our comprehensive roadmaps to success</p>
+            
+            <div class="paths-grid">
+               
+                <div class="path-card">
+                    <div class="path-header" style="background: linear-gradient(135deg, #667eea, #764ba2);">
+                        <h3>Artificial Intelligence & Machine Learning</h3>
+                        <span class="path-level">Advanced</span>
+                    </div>
+                    <div class="path-content">
+                        <h4>What to Learn:</h4>
+                        <ul>
+                            <li>Python Programming & NumPy/Pandas</li>
+                            <li>Mathematics (Linear Algebra, Statistics, Calculus)</li>
+                            <li>Machine Learning Algorithms</li>
+                            <li>Deep Learning & Neural Networks</li>
+                            <li>TensorFlow/PyTorch frameworks</li>
+                            <li>Computer Vision & NLP</li>
+                        </ul>
+                        <p><strong>Career Scope:</strong> AI/ML Engineers earn 8-40 LPA. High demand in tech giants, startups, research labs.</p>
+                        <p><strong>Job Roles:</strong> ML Engineer, Data Scientist, AI Researcher, Computer Vision Engineer</p>
+                    </div>
+                    <div class="path-footer">
+                        <span class="salary">8-40 LPA</span>
+                        <a href="ai-data-scientist.pdf" class="btn">Download Roadmap PDF</a>
+                    </div>
+                </div>
+                
+                <div class="path-card">
+                    <div class="path-header" style="background: linear-gradient(135deg, #f093fb, #f5576c);">
+                        <h3>Full Stack Web Development</h3>
+                        <span class="path-level">Intermediate</span>
+                    </div>
+                    <div class="path-content">
+                        <h4>What to Learn:</h4>
+                        <ul>
+                            <li>HTML, CSS, JavaScript fundamentals</li>
+                            <li>React/Angular/Vue.js frontend</li>
+                            <li>Node.js, Express backend</li>
+                            <li>MongoDB/PostgreSQL databases</li>
+                            <li>REST APIs & GraphQL</li>
+                            <li>Git, Docker, AWS/Azure basics</li>
+                        </ul>
+                        <p><strong>Career Scope:</strong> 5-25 LPA. High demand in startups and product companies.</p>
+                        <p><strong>Job Roles:</strong> Full Stack Developer, Frontend/Backend Developer, Web Developer</p>
+                    </div>
+                    <div class="path-footer">
+                        <span class="salary">5-25 LPA</span>
+                        <a href="full-stack.pdf" class="btn">Download Roadmap PDF</a>
+                    </div>
+                </div>
+                
+              
+                <div class="path-card">
+                    <div class="path-header" style="background: linear-gradient(135deg, #4facfe, #00f2fe);">
+                        <h3>Data Structures & Algorithms</h3>
+                        <span class="path-level">Essential</span>
+                    </div>
+                    <div class="path-content">
+                        <h4>What to Learn:</h4>
+                        <ul>
+                            <li>Arrays, Linked Lists, Stacks, Queues</li>
+                            <li>Trees, Graphs, Hash Tables</li>
+                            <li>Sorting & Searching Algorithms</li>
+                            <li>Dynamic Programming</li>
+                            <li>Greedy Algorithms & Backtracking</li>
+                            <li>Problem-solving on LeetCode/CodeForces</li>
+                        </ul>
+                        <p><strong>Career Scope:</strong> Essential for FAANG jobs. Critical for coding interviews at all levels.</p>
+                        <p><strong>Importance:</strong> Core requirement for software engineering roles in top companies</p>
+                    </div>
+                    <div class="path-footer">
+                        <span class="salary">Essential Skill</span>
+                        <a href="DSA_Roadmap_2025.pdf" class="btn">Download Roadmap PDF</a>
+                    </div>
+                </div>
+            </div>
+            
+            <div style="text-align: center; margin-top: 3rem;">
+                <a href="#" class="btn">View All Career Paths</a>
+            </div>
+        </div>
+    </section>
+
+    <section id="placement-prep" class="placement-prep">
+        <div class="container">
+            <h2 class="section-title">Placement Drive Preparation</h2>
+            <p class="section-subtitle" style="text-align: center; margin-bottom: 3rem; max-width: 800px; margin-left: auto; margin-right: auto;">Master each round of the placement process</p>
+            
+            <div class="rounds-container">
+                
+                <div class="round-card">
+                    <div class="round-number">1</div>
+                    <div class="round-content">
+                        <h3>Aptitude Round</h3>
+                        <p><strong>Duration:</strong> 60-90 minutes</p>
+                        <p><strong>Topics:</strong> Quantitative aptitude, logical reasoning, verbal ability</p>
+                        
+                        <h4>Preparation Tips:</h4>
+                        <div class="prep-tips">
+                            <div class="tip">Practice on IndiaBix, PrepInsta</div>
+                            <div class="tip">Solve previous year papers</div>
+                            <div class="tip">Time management is crucial</div>
+                            <div class="tip">Focus on accuracy over speed</div>
+                        </div>
+                        
+                        <div class="video-links">
+                            <a href="https://youtu.be/dxt6IzqU4Wg" class="video-link">
+                                <i class="fas fa-play-circle"></i>
+                                Aptitude Preparation Videos
+                            </a>
+                        </div>
+                        
+                        <a href="Aptitude_Verbal_Roadmap_2025.pdf" class="btn" style="margin-top: 1rem;">Download Preparation Guide PDF</a>
+                    </div>
+                </div>
+                
+               
+                <div class="round-card">
+                    <div class="round-number">2</div>
+                    <div class="round-content">
+                        <h3>Coding Test</h3>
+                        <p><strong>Duration:</strong> 90-120 minutes</p>
+                        <p><strong>Topics:</strong> DSA problems, algorithmic challenges</p>
+                        
+                        <h4>Preparation Tips:</h4>
+                        <div class="prep-tips">
+                            <div class="tip">Solve 300+ problems on LeetCode</div>
+                            <div class="tip">Master array, string, tree problems</div>
+                            <div class="tip">Practice on HackerRank, CodeChef</div>
+                            <div class="tip">Learn to optimize time complexity</div>
+                        </div>
+                        
+                        <div class="video-links">
+                            <a href="https://youtu.be/OTNe0eV8418" class="video-link">
+                                <i class="fas fa-play-circle"></i>
+                                Top Coding Interview Prep Videos
+                            </a>
+                        </div>
+                        
+                        <a href="Coding_Test_Roadmap_2025.pdf" class="btn" style="margin-top: 1rem;">Download Coding Prep Guide PDF</a>
+                    </div>
+                </div>
+                
+                <div class="round-card">
+                    <div class="round-number">3</div>
+                    <div class="round-content">
+                        <h3>Technical Interview</h3>
+                        <p><strong>Duration:</strong> 45-60 minutes</p>
+                        <p><strong>Topics:</strong> Data structures, algorithms, system design, projects</p>
+                        
+                        <h4>Preparation Tips:</h4>
+                        <div class="prep-tips">
+                            <div class="tip">Revise core CS subjects (OS, DBMS, Networks)</div>
+                            <div class="tip">Be ready to explain your projects in depth</div>
+                            <div class="tip">Practice whiteboard coding</div>
+                            <div class="tip">Understand time/space complexity</div>
+                        </div>
+                        
+                        <div class="video-links">
+                            <a href="https://youtu.be/BoZpcibb-JI?si=cewxRSy-W02nK_1q" class="video-link">
+                                <i class="fas fa-play-circle"></i>
+                                Technical Interview Question Examples
+                            </a>
+                        </div>
+                        
+                        <a href="Technical_Interview_Roadmap_2025.pdf" class="btn" style="margin-top: 1rem;">Download Technical Interview Guide PDF</a>
+                    </div>
+                </div>
+                
+                
+                <div class="round-card">
+                    <div class="round-number">4</div>
+                    <div class="round-content">
+                        <h3>HR Round</h3>
+                        <p><strong>Duration:</strong> 20-30 minutes</p>
+                        <p><strong>Topics:</strong> Behavioral questions, salary negotiation, company fit</p>
+                        
+                        <h4>Common Questions:</h4>
+                        <div class="prep-tips">
+                            <div class="tip">Tell me about yourself</div>
+                            <div class="tip">Why should we hire you?</div>
+                            <div class="tip">What are your strengths/weaknesses?</div>
+                            <div class="tip">Where do you see yourself in 5 years?</div>
+                        </div>
+                        
+                        <div class="video-links">
+                            <a href="https://youtu.be/3SzC9q7lKKA?si=u7q9f1a5bFKe4phS" class="video-link">
+                                <i class="fas fa-play-circle"></i>
+                                HR Interview Preparation Videos
+                            </a>
+                        </div>
+                        
+                        <a href="Placement_Drive_Roadmap_2025.pdf" class="btn" style="margin-top: 1rem;">Download HR Interview Guide PDF</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    
+    <section id="opportunities" class="opportunities">
+        <div class="container">
+            <h2 class="section-title">Job & Internship Opportunities</h2>
+            
+            <div class="opportunities-grid">
+                
+                <div class="opportunity-card">
+                    <h3><i class="fas fa-laptop-code"></i> Software Development Opportunities</h3>
+                    <h4>Internships</h4>
+                    <ul>
+                        <li><a href="https://internshala.com" target="_blank">Internshala</a>: India's largest internship platform</li>
+                        <li><a href="https://linkedin.com" target="_blank">LinkedIn</a>: Professional networking & job search</li>
+                        <li><a href="https://angel.co" target="_blank">AngelList</a>: Startup internships</li>
+                        <li><a href="https://naukri.com" target="_blank">Naukri Campus</a>: Campus placement opportunities</li>
+                    </ul>
+                    
+                    <h4>Full-time Jobs</h4>
+                    <ul>
+                        <li><a href="https://naukri.com" target="_blank">Naukri.com</a>: Largest job portal in India</li>
+                        <li><a href="https://linkedin.com/jobs" target="_blank">LinkedIn Jobs</a>: Professional opportunities</li>
+                        <li><a href="https://indeed.com" target="_blank">Indeed</a>: Global job search engine</li>
+                        <li><a href="https://glassdoor.com" target="_blank">Glassdoor</a>: Jobs with company reviews</li>
+                    </ul>
+                    
+                    <h4>Freelancing</h4>
+                    <ul>
+                        <li><a href="https://upwork.com" target="_blank">Upwork</a>: Global freelancing marketplace</li>
+                        <li><a href="https://fiverr.com" target="_blank">Fiverr</a>: Gig-based services</li>
+                        <li><a href="https://freelancer.com" target="_blank">Freelancer.com</a>: Project bidding platform</li>
+                        <li><a href="https://toptal.com" target="_blank">Toptal</a>: Elite freelance network</li>
+                    </ul>
+                </div>
+                
+                
+                <div class="opportunity-card">
+                    <h3><i class="fas fa-landmark"></i> Government Job Opportunities</h3>
+                    <h4>Central Government</h4>
+                    <ul>
+                        <li><strong>UPSC</strong>: IAS, IPS, IFS civil services</li>
+                        <li><strong>SSC</strong>: CGL, CHSL, JE, MTS</li>
+                        <li><strong>IBPS</strong>: Bank PO, Clerk, SO</li>
+                        <li><strong>RRB</strong>: Railway jobs (NTPC, Group D)</li>
+                        <li><strong>Defence</strong>: AFCAT, NDA, CDS</li>
+                        <li><strong>PSUs</strong>: ISRO, DRDO, BARC, ONGC through GATE</li>
+                    </ul>
+                    
+                    <h4>State Government (by State)</h4>
+                    <ul>
+                        <li><strong>Telangana</strong>: TSPSC, TSLPRB (Police), TSGENCO</li>
+                        <li><strong>Andhra Pradesh</strong>: APPSC, APPSLPRB</li>
+                        <li><strong>Karnataka</strong>: KPSC, KSP</li>
+                        <li><strong>Tamil Nadu</strong>: TNPSC, TN Police</li>
+                        <li><strong>Maharashtra</strong>: MPSC, Maharashtra Police</li>
+                        <li><strong>State PSUs</strong>: Electricity boards, transport corporations</li>
+                    </ul>
+                </div>
+                
+                
+                <div class="opportunity-card">
+                    <h3><i class="fas fa-briefcase"></i> Non-Tech Job Opportunities</h3>
+                    <ul>
+                        <li><strong>Finance & Accounting</strong>: CA, CMA, Banking, Financial Analyst, Tax Consultant</li>
+                        <li><strong>Hotel Management</strong>: Hotel Manager, Chef, Event Manager, Tourism roles</li>
+                        <li><strong>Aviation</strong>: Pilot, Cabin Crew, Airport Operations, Air Traffic Control</li>
+                        <li><strong>Design & Creative</strong>: Graphic Designer, UI/UX Designer, Content Writer</li>
+                        <li><strong>Sales & Marketing</strong>: Marketing Manager, Business Development, Digital Marketing</li>
+                        <li><strong>Healthcare (Non-Medical)</strong>: Hospital Admin, Medical Coding, Healthcare IT</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+   
+    <section id="professional-presence" class="professional-presence">
+        <div class="container">
+            <h2 class="section-title">Build Your Professional Presence</h2>
+            
+            <div class="presence-grid">
+               
+                <div class="presence-card">
+                    <div class="presence-icon">
+                        <i class="fab fa-github"></i>
+                    </div>
+                    <h3>GitHub Profile</h3>
+                    <p>Essential for developers. Showcase your projects, contribute to open source, build your portfolio.</p>
+                    <ul>
+                        <li>Upload personal projects</li>
+                        <li>Contribute to open source</li>
+                        <li>Maintain consistent commit history</li>
+                        <li>Write good README files</li>
+                    </ul>
+                    <a href="https://github.com" target="_blank" class="btn" style="margin-top: 1.5rem;">Create GitHub Profile</a>
+                </div>
+                
+             
+                <div class="presence-card">
+                    <div class="presence-icon">
+                        <i class="fab fa-linkedin"></i>
+                    </div>
+                    <h3>LinkedIn Profile</h3>
+                    <p>Professional networking platform. Connect with recruiters, showcase experience, build your brand.</p>
+                    <ul>
+                        <li>Complete profile with professional photo</li>
+                        <li>Add skills and get endorsements</li>
+                        <li>Share achievements and posts</li>
+                        <li>Connect with professionals in your field</li>
+                    </ul>
+                    <a href="https://linkedin.com" target="_blank" class="btn" style="margin-top: 1.5rem;">Optimize LinkedIn</a>
+                </div>
+                
+            
+                <div class="presence-card">
+                    <div class="presence-icon">
+                        <i class="fas fa-globe"></i>
+                    </div>
+                    <h3>Portfolio Website</h3>
+                    <p>Showcase your work, projects, and skills. Essential for standing out in applications.</p>
+                    <ul>
+                        <li>Display best projects</li>
+                        <li>Include resume/CV</li>
+                        <li>Add contact information</li>
+                        <li>Keep it updated regularly</li>
+                    </ul>
+                    <a href="https://www.behance.net/search/projects/web%20design%20portfolio" class="btn" style="margin-top: 1.5rem;">Build Portfolio Website</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    
+    <section id="higher-studies" class="higher-studies">
+        <div class="container">
+            <h2 class="section-title">Higher Studies After Graduation</h2>
+            
+            <div class="studies-tabs">
+                <button class="tab-btn active" data-tab="india">Post-Graduate Studies in India</button>
+                <button class="tab-btn" data-tab="abroad">Study Abroad Options</button>
+                <button class="tab-btn" data-tab="institutes">Top Institutes</button>
+            </div>
+            
+          
+            <div id="india" class="tab-content active">
+                <div class="paths-grid">
+                  
+                    <div class="path-card">
+                        <div class="path-header" style="background: linear-gradient(135deg, #667eea, #764ba2);">
+                            <h3>MTech Programs</h3>
+                        </div>
+                        <div class="path-content">
+                            <p><strong>Through GATE Exam</strong></p>
+                            <ul>
+                                <li>IITs, NITs, IIITs admission</li>
+                                <li>Specializations: AI/ML, Data Science, VLSI, etc.</li>
+                                <li>Stipend available for GATE qualified students</li>
+                                <li>Better placement opportunities</li>
+                            </ul>
+                            <p><strong>Top Specializations:</strong> Computer Science, Data Science, Cyber Security, VLSI</p>
+                        </div>
+                        <div class="path-footer">
+                            <a href="#" class="btn">Download GATE Preparation Roadmap PDF</a>
+                        </div>
+                    </div>
+                    
+                    
+                    <div class="path-card">
+                        <div class="path-header" style="background: linear-gradient(135deg, #f093fb, #f5576c);">
+                            <h3>MBA Programs</h3>
+                        </div>
+                        <div class="path-content">
+                            <p><strong>Through CAT, XAT, GMAT</strong></p>
+                            <ul>
+                                <li>IIMs, ISB, Top B-Schools</li>
+                                <li>Career switch to management roles</li>
+                                <li>High salary packages (15-30 LPA average)</li>
+                                <li>Specializations: Finance, Marketing, HR, Operations</li>
+                            </ul>
+                            <p><strong>Best for:</strong> Career growth, managerial positions, consulting</p>
+                        </div>
+                        <div class="path-footer">
+                            <a href="#" class="btn">Download CAT Preparation Roadmap PDF</a>
+                        </div>
+                    </div>
+                    
+                    
+                    <div class="path-card">
+                        <div class="path-header" style="background: linear-gradient(135deg, #4facfe, #00f2fe);">
+                            <h3>Research Programs</h3>
+                        </div>
+                        <div class="path-content">
+                            <p><strong>MSc, MS, PhD programs</strong></p>
+                            <ul>
+                                <li>Research in IITs, IISc, TIFR, IISERs</li>
+                                <li>PhD programs in top institutes</li>
+                                <li>Fellowship and stipend provided</li>
+                                <li>Academic and research career path</li>
+                            </ul>
+                            <p><strong>Entry:</strong> Through GATE, JEST, JAM, institute-specific tests</p>
+                        </div>
+                        <div class="path-footer">
+                            <a href="#" class="btn">Download Research Path Guide PDF</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+           
+            <div id="abroad" class="tab-content">
+                <div class="country-cards">
+                    
+                    <div class="country-card">
+                        <h4><i class="fas fa-flag-usa"></i> USA</h4>
+                        <p><strong>Requirements:</strong> GRE/GMAT, TOEFL/IELTS</p>
+                        <p><strong>Popular Programs:</strong> MS in CS, Data Science, MBA</p>
+                        <p><strong>Average Cost:</strong> $40,000-80,000 per year</p>
+                        <p><strong>Benefits:</strong> Top universities, OPT work permit, high salaries</p>
+                        <p><strong>Top Universities:</strong> Stanford, MIT, CMU, UC Berkeley</p>
+                    </div>
+                    
+                  
+                    <div class="country-card">
+                        <h4><i class="fas fa-flag-uk"></i> UK</h4>
+                        <p><strong>Requirements:</strong> IELTS/TOEFL, GRE (optional)</p>
+                        <p><strong>Popular Programs:</strong> MSc programs (1 year)</p>
+                        <p><strong>Average Cost:</strong> £20,000-35,000 per year</p>
+                        <p><strong>Benefits:</strong> Shorter duration, PSW visa (2 years)</p>
+                        <p><strong>Top Universities:</strong> Oxford, Cambridge, Imperial College</p>
+                    </div>
+                    
+                   
+                    <div class="country-card">
+                        <h4><i class="fas fa-flag-canada"></i> Canada</h4>
+                        <p><strong>Requirements:</strong> IELTS, GRE (some universities)</p>
+                        <p><strong>Popular Programs:</strong> MS, MBA, Diploma programs</p>
+                        <p><strong>Average Cost:</strong> CAD 20,000-35,000 per year</p>
+                        <p><strong>Benefits:</strong> PR opportunities, affordable, safe country</p>
+                        <p><strong>Top Universities:</strong> University of Toronto, UBC, McGill</p>
+                    </div>
+                    
+                   
+                    <div class="country-card">
+                        <h4><i class="fas fa-flag-germany"></i> Germany</h4>
+                        <p><strong>Requirements:</strong> IELTS/TOEFL, German (for some programs)</p>
+                        <p><strong>Popular Programs:</strong> MS in Engineering, MBA</p>
+                        <p><strong>Average Cost:</strong> €0-3,000 per year (public universities)</p>
+                        <p><strong>Benefits:</strong> Low cost, strong economy, work opportunities</p>
+                        <p><strong>Top Universities:</strong> TUM, RWTH Aachen, University of Munich</p>
+                    </div>
+                </div>
+                
+                <div style="text-align: center; margin-top: 2rem;">
+                    <a href="Study Abroad.pptx" class="btn">Download Study Abroad Complete Guide PDF</a>
+                </div>
+            </div>
+            
+          
+            <div id="institutes" class="tab-content">
+                <table class="institutes-table">
+                    <thead>
+                        <tr>
+                            <th>Institute</th>
+                            <th>Program</th>
+                            <th>Entrance Exam</th>
+                            <th>Specializations</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>IIT Bombay</td>
+                            <td>MTech</td>
+                            <td>GATE</td>
+                            <td>CSE, EE, Mechanical, Civil</td>
+                        </tr>
+                        <tr>
+                            <td>IIT Delhi</td>
+                            <td>MTech</td>
+                            <td>GATE</td>
+                            <td>CSE, AI, Data Science</td>
+                        </tr>
+                        <tr>
+                            <td>IISc Bangalore</td>
+                            <td>MTech/MS/PhD</td>
+                            <td>GATE</td>
+                            <td>Research-oriented programs</td>
+                        </tr>
+                        <tr>
+                            <td>IIM Ahmedabad</td>
+                            <td>MBA</td>
+                            <td>CAT</td>
+                            <td>General Management</td>
+                        </tr>
+                        <tr>
+                            <td>IIM Bangalore</td>
+                            <td>MBA</td>
+                            <td>CAT</td>
+                            <td>Finance, Marketing, Strategy</td>
+                        </tr>
+                        <tr>
+                            <td>IIM Calcutta</td>
+                            <td>MBA</td>
+                            <td>CAT</td>
+                            <td>All management specializations</td>
+                        </tr>
+                        <tr>
+                            <td>ISB Hyderabad</td>
+                            <td>MBA/PGP</td>
+                            <td>GMAT/GRE</td>
+                            <td>International MBA program</td>
+                        </tr>
+                        <tr>
+                            <td>BITS Pilani</td>
+                            <td>ME</td>
+                            <td>GATE</td>
+                            <td>Various engineering streams</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+
+
+    <section id="project-ideas" class="project-ideas">
+        <div class="container">
+            <h2 class="section-title">Project Ideas to Boost Your Resume</h2>
+            
+            <div class="projects-grid">
+                
+                <div class="project-card">
+                    <div class="project-image">
+                        <i class="fas fa-robot"></i>
+                    </div>
+                    <div class="project-content">
+                        <h3>AI-Powered Resume Analyzer</h3>
+                        <span class="project-level intermediate">Intermediate</span>
+                        <p>An intelligent system that analyzes resumes and provides feedback on ATS compatibility, keyword optimization, and content quality.</p>
+                        
+                        <div class="project-tech">
+                            <span class="tech-tag">Python</span>
+                            <span class="tech-tag">NLP</span>
+                            <span class="tech-tag">Flask</span>
+                            <span class="tech-tag">Machine Learning</span>
+                        </div>
+                        
+                        <div class="project-links">
+                            <a href="#" class="project-link">
+                                <i class="fas fa-code"></i>
+                                Source Code
+                            </a>
+                            <a href="https://youtu.be/hqu5EYMLCUw?si=IeliRC5KdvReC7sB" class="project-link">
+                                <i class="fas fa-external-link-alt"></i>
+                                Live Demo
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+              
+                <div class="project-card">
+                    <div class="project-image">
+                        <i class="fas fa-shopping-cart"></i>
+                    </div>
+                    <div class="project-content">
+                        <h3>E-Commerce Platform</h3>
+                        <span class="project-level advanced">Advanced</span>
+                        <p>A full-stack e-commerce application with user authentication, product catalog, shopping cart, payment integration, and admin panel.</p>
+                        
+                        <div class="project-tech">
+                            <span class="tech-tag">React</span>
+                            <span class="tech-tag">Node.js</span>
+                            <span class="tech-tag">MongoDB</span>
+                            <span class="tech-tag">Stripe API</span>
+                        </div>
+                        
+                        <div class="project-links">
+                            <a href="#" class="project-link">
+                                <i class="fas fa-code"></i>
+                                Source Code
+                            </a>
+                            <a href="https://youtu.be/y66RgYMAgSo?si=SjY054y9dpopvkq3" class="project-link">
+                                <i class="fas fa-external-link-alt"></i>
+                                Live Demo
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+              
+                <div class="project-card">
+                    <div class="project-image">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <div class="project-content">
+                        <h3>Stock Market Prediction</h3>
+                        <span class="project-level advanced">Advanced</span>
+                        <p>Machine learning model that predicts stock prices using historical data, sentiment analysis, and technical indicators.</p>
+                        
+                        <div class="project-tech">
+                            <span class="tech-tag">Python</span>
+                            <span class="tech-tag">TensorFlow</span>
+                            <span class="tech-tag">Pandas</span>
+                            <span class="tech-tag">LSTM</span>
+                        </div>
+                        
+                        <div class="project-links">
+                            <a href="#" class="project-link">
+                                <i class="fas fa-code"></i>
+                                Source Code
+                            </a>
+                            <a href="https://youtu.be/x6gYvFrNFfo?si=Yg323qS4vR90SbRU" class="project-link">
+                                <i class="fas fa-external-link-alt"></i>
+                                Live Demo
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div style="text-align: center; margin-top: 3rem;">
+                <a href="#" class="btn">View All Project Ideas</a>
+            </div>
+        </div>
+    </section>
+
+    
+    <section id="guidance" class="guidance">
+        <div class="container">
+            <h2 class="section-title">Free Career Guidance & Support</h2>
+            <p class="section-subtitle" style="text-align: center; margin-bottom: 3rem; max-width: 800px; margin-left: auto; margin-right: auto; color: rgba(255,255,255,0.8);">Get personalized guidance from top professional lecturers</p>
+            
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-graduation-cap"></i>
+                    </div>
+                    <h3>After Intermediate Guidance</h3>
+                    <p>Confused about which stream or course to choose after completing intermediate? Get expert advice.</p>
+                </div>
+                
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-road"></i>
+                    </div>
+                    <h3>Career Path Selection</h3>
+                    <p>Current students struggling with career paths? We help you choose the best path based on your interests.</p>
+                </div>
+                
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-briefcase"></i>
+                    </div>
+                    <h3>Placement Preparation</h3>
+                    <p>Get ready for campus placements with expert guidance on resume building, coding tests, and interviews.</p>
+                </div>
+                
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-globe-americas"></i>
+                    </div>
+                    <h3>Higher Studies Counseling</h3>
+                    <p>Planning for Masters or study abroad? Get guidance on exams, university selection, and applications.</p>
+                </div>
+            </div>
+            
+            <div class="form-container">
+                <h3 style="text-align: center; color: var(--primary); margin-bottom: 2rem;">Register for Free Career Guidance</h3>
+                <p style="text-align: center; margin-bottom: 2rem;">Fill out the form and our expert counselors will reach out to you within 24 hours</p>
+                
+                <form id="guidance-form">
+                    <div class="form-group">
+                        <label for="full-name">Full Name *</label>
+                        <input type="text" id="full-name" class="form-control" placeholder="Enter your full name" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="email">Email Address *</label>
+                        <input type="email" id="email" class="form-control" placeholder="your.email@example.com" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="phone">Phone Number *</label>
+                        <input type="tel" id="phone" class="form-control" placeholder="10-digit mobile number" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="status">Current Status *</label>
+                        <select id="status" class="form-control" required>
+                            <option value="">Select your current status</option>
+                            <option value="intermediate">Intermediate Student</option>
+                            <option value="btech">BTech Student</option>
+                            <option value="degree">Degree Student</option>
+                            <option value="graduate">Recent Graduate</option>
+                            <option value="working">Working Professional</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="stream">Stream/Branch *</label>
+                        <select id="stream" class="form-control" required>
+                            <option value="">Select your stream/branch</option>
+                            <option value="mpc">MPC</option>
+                            <option value="bipc">BiPC</option>
+                            <option value="hec">HEC</option>
+                            <option value="cse">CSE</option>
+                            <option value="ece">ECE</option>
+                            <option value="mech">Mechanical</option>
+                            <option value="civil">Civil</option>
+                            <option value="other">Other</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="guidance-type">Type of Guidance Needed *</label>
+                        <select id="guidance-type" class="form-control" required>
+                            <option value="">Select guidance type</option>
+                            <option value="career-path">Career Path Selection</option>
+                            <option value="placement">Placement Preparation</option>
+                            <option value="higher-studies">Higher Studies</option>
+                            <option value="job-search">Job Search Support</option>
+                            <option value="other">Other</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="query">Your Query/Message</label>
+                        <textarea id="query" class="form-control" rows="4" placeholder="Tell us more about your situation and what guidance you need..."></textarea>
+                    </div>
+                    
+                    <div class="checkbox-group">
+                        <input type="checkbox" id="whatsapp">
+                        <label for="whatsapp">Send me updates on WhatsApp</label>
+                    </div>
+                    
+                    <div class="checkbox-group">
+                        <input type="checkbox" id="newsletter">
+                        <label for="newsletter">Subscribe to email newsletters and resources</label>
+                    </div>
+                    
+                    <button type="submit" class="btn" style="width: 100%;">Register for Free Guidance</button>
+                    
+                    <p style="text-align: center; margin-top: 1rem; font-size: 0.9rem; color: var(--gray);">By registering, you agree to receive guidance and educational content from CareerPath</p>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    
+    <section id="forum" class="forum">
+        <div class="container">
+            <h2 class="section-title">Community Discussion Forum</h2>
+            <p class="section-subtitle" style="text-align: center; margin-bottom: 3rem; max-width: 800px; margin-left: auto; margin-right: auto;">See questions from other students and learn from their experiences</p>
+            
+            <div class="forum-container">
+                <div class="questions-list">
+                    
+                    <div class="question">
+                        <div class="question-header">
+                            <div class="question-user">
+                                <div class="user-avatar">R</div>
+                                <div class="user-info">
+                                    <h4>Rahul Kumar</h4>
+                                    <p>MPC Student - Completed Intermediate</p>
+                                </div>
+                            </div>
+                            <div class="question-time">2 days ago</div>
+                        </div>
+                        <div class="question-content">
+                            <h3>Should I choose CSE or CSE(AI/ML) branch?</h3>
+                            <p>I got 98 percentile in JEE Mains and have options for both CSE and CSE(AI/ML) in good colleges. Which one has better placement prospects? I'm interested in both coding and machine learning.</p>
+                        </div>
+                        <div class="question-replies">
+                            <i class="fas fa-comments"></i>
+                            5 replies from counselors
+                        </div>
+                    </div>
+                    
+                   
+                    <div class="question">
+                        <div class="question-header">
+                            <div class="question-user">
+                                <div class="user-avatar">P</div>
+                                <div class="user-info">
+                                    <h4>Priya Sharma</h4>
+                                    <p>3rd Year CSE - Struggling with Placements</p>
+                                </div>
+                            </div>
+                            <div class="question-time">5 days ago</div>
+                        </div>
+                        <div class="question-content">
+                            <h3>How to prepare for coding interviews in 3 months?</h3>
+                            <p>My campus placements start in 3 months. I know basic DSA but not confident. Can someone guide me with a proper roadmap? Which topics to focus on first?</p>
+                        </div>
+                        <div class="question-replies">
+                            <i class="fas fa-comments"></i>
+                            12 replies from counselors and students
+                        </div>
+                    </div>
+                    
+                  
+                    <div class="question">
+                        <div class="question-header">
+                            <div class="question-user">
+                                <div class="user-avatar">A</div>
+                                <div class="user-info">
+                                    <h4>Aditya Singh</h4>
+                                    <p>Final Year BTech - Planning Masters</p>
+                                </div>
+                            </div>
+                            <div class="question-time">1 week ago</div>
+                        </div>
+                        <div class="question-content">
+                            <h3>MS in USA vs MTech in IIT - which is better?</h3>
+                            <p>I'm confused between pursuing MS in USA (with education loan) or MTech from IIT through GATE. Which option is better for long-term career growth? Consider ROI and job prospects.</p>
+                        </div>
+                        <div class="question-replies">
+                            <i class="fas fa-comments"></i>
+                            8 replies from counselors
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="forum-sidebar">
+                    <h3>Other Ways to Reach Us</h3>
+                    
+                    <div class="contact-methods">
+                        <div class="contact-method">
+                            <div class="contact-icon">
+                                <i class="fas fa-envelope"></i>
+                            </div>
+                            <div class="contact-info">
+                                <h4>Email Support</h4>
+                                <p>Send your queries to:</p>
+                                <a href="mailto:support@careerpath.com">support@careerpath.com</a>
+                                <p>Response within 24 hours</p>
+                            </div>
+                        </div>
+                        
+                        <div class="contact-method">
+                            <div class="contact-icon">
+                                <i class="fab fa-whatsapp"></i>
+                            </div>
+                            <div class="contact-info">
+                                <h4>WhatsApp Community</h4>
+                                <p>Join our active community:</p>
+                                <a href="#">Join WhatsApp Group</a>
+                                <p>1000+ active members</p>
+                            </div>
+                        </div>
+                        
+                        <div class="contact-method">
+                            <div class="contact-icon">
+                                <i class="fas fa-robot"></i>
+                            </div>
+                            <div class="contact-info">
+                                <h4>AI Chatbot</h4>
+                                <p>Get instant answers:</p>
+                                <a href="#">Chat Now</a>
+                                <p>24/7 instant support</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div style="text-align: center; margin-top: 2rem;">
+                        <a href="#" class="btn">Register to Post Your Question</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+   
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>Career Path Navigator</h3>
+                    <p>Your complete career guidance platform helping students and professionals make informed career decisions.</p>
+                    <div class="social-links">
+                        <a href="#" class="social-link"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="#career-paths">Career Paths</a></li>
+                        <li><a href="#placement-prep">Placement Preparation</a></li>
+                        <li><a href="#opportunities">Job Opportunities</a></li>
+                        <li><a href="#higher-studies">Higher Studies</a></li>
+                        <li><a href="#project-ideas">Project Ideas</a></li>
+                        <li><a href="#guidance">Free Guidance</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Resources</h3>
+                    <ul>
+                        <li><a href="#">Roadmap PDFs</a></li>
+                        <li><a href="#">Interview Guides</a></li>
+                        <li><a href="#">Practice Tests</a></li>
+                        <li><a href="#">Study Materials</a></li>
+                        <li><a href="#">Video Tutorials</a></li>
+                        <li><a href="#">Blog & Articles</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Contact Us</h3>
+                    <ul>
+                        <li><i class="fas fa-envelope"></i> support@careerpath.com</li>
+                        <li><i class="fas fa-phone"></i> +91 98765 43210</li>
+                        <li><i class="fas fa-map-marker-alt"></i> Hyderabad, Telangana, India</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p>&copy; 2023 Career Path Navigator. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        
+        document.getElementById('backButton').addEventListener('click', function() {
+            
+            window.location.href = 'Btech.html';
+        });
+
+       
+        document.querySelector('.mobile-menu-btn').addEventListener('click', function() {
+            document.querySelector('nav ul').classList.toggle('show');
+        });
+
+        const tabBtns = document.querySelectorAll('.tab-btn');
+        const tabContents = document.querySelectorAll('.tab-content');
+        
+        tabBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+               
+                tabBtns.forEach(b => b.classList.remove('active'));
+                tabContents.forEach(c => c.classList.remove('active'));
+                
+                
+                btn.classList.add('active');
+                
+                
+                const tabId = btn.getAttribute('data-tab');
+                document.getElementById(tabId).classList.add('active');
+            });
+        });
+
+        
+        document.getElementById('guidance-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('Thank you for registering! Our career counselor will contact you within 24 hours.');
+            this.reset();
+        });
+
+        
+        document.querySelectorAll('nav a').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+                
+                window.scrollTo({
+                    top: targetElement.offsetTop - 80,
+                    behavior: 'smooth'
+                });
+                
+              
+                if (document.querySelector('nav ul').classList.contains('show')) {
+                    document.querySelector('nav ul').classList.remove('show');
+                }
+            });
+        });
+
+       
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        
+        document.querySelectorAll('.path-card, .round-card, .opportunity-card, .presence-card, .project-card').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(20px)';
+            el.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+            observer.observe(el);
+        });
+    </script>
+</body>
+</html>

@@ -590,7 +590,7 @@
             <i class="fas fa-arrow-left"></i> Back
         </button>
         <button class="nav-btn next-btn" onclick="goNext()">
-            Next <i class="fas fa-arrow-right"></i>
+            Next-> <i class="fas fa-arrow-right"></i>
         </button>
     </footer>
 
@@ -622,12 +622,12 @@
         function goNext() {
             localStorage.setItem('userProgress', 'CEC completed');
             alert('Moving to next section...');
-            // window.location.href = 'Next.html';
+            
         }
         
         function goBack() {
             alert('Going back to previous page...');
-            // window.location.href = 'academic.html';
+            window.location.href = 'academic.html';
         }
         
         // Progress tracking

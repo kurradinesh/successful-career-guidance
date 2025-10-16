@@ -5,7 +5,7 @@
   <title>Career Guidance Portal</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <style>
-    /* CSS Variables for consistent theming */
+    
     :root {
       --primary-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
       --secondary-gradient: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
@@ -263,7 +263,7 @@
       box-shadow: 0 15px 25px rgba(0, 0, 0, 0.2);
     }
 
-    /* Zomato-style form elements */
+   
     .form-container {
       text-align: left;
       margin-top: 20px;
@@ -551,7 +551,7 @@
       background-size: 16px;
     }
 
-    /* Social Login Modal Styles */
+    
     .social-modal {
       position: fixed;
       top: 0;
@@ -701,7 +701,6 @@
     <button onclick="showRegister()">Register</button>
   </div>
 
-  <!-- Welcome Section -->
   <div class="container fade-in" id="welcome">
     <div class="particles" id="welcomeParticles"></div>
     <div class="logo-container">
@@ -712,7 +711,7 @@
     <button class="btn-main" onclick="showRegister()">Start Career Registration</button>
   </div>
 
-  <!-- Register -->
+  
   <div class="container hidden" id="register">
     <div class="particles" id="registerParticles"></div>
     <div class="form-header">
@@ -783,7 +782,7 @@
     </form>
   </div>
 
-  <!-- Login -->
+  
   <div class="container hidden" id="login">
     <div class="particles" id="loginParticles"></div>
     <div class="form-header">
@@ -833,7 +832,7 @@
     </form>
   </div>
 
-  <!-- Social Login Modal -->
+  
   <div class="social-modal" id="socialModal">
     <div class="social-modal-content">
       <button class="social-modal-close" onclick="closeSocialModal()">
@@ -864,14 +863,14 @@
     const socialModal = document.getElementById('socialModal');
     let currentProvider = '';
 
-    // Create floating particles
+    
     function createParticles(containerId, count) {
       const container = document.getElementById(containerId);
       for (let i = 0; i < count; i++) {
         const particle = document.createElement('div');
         particle.classList.add('particle');
         
-        // Random properties
+        
         const size = Math.random() * 5 + 2;
         const left = Math.random() * 100;
         const duration = Math.random() * 10 + 10;
@@ -887,7 +886,7 @@
       }
     }
 
-    // Initialize particles for each container
+  
     createParticles('welcomeParticles', 15);
     createParticles('registerParticles', 10);
     createParticles('loginParticles', 10);
@@ -927,7 +926,7 @@
 
     function closeSocialModal() {
       socialModal.classList.remove('active');
-      // Clear the input fields
+     
       document.getElementById('socialModalEmail').value = '';
       document.getElementById('socialModalPassword').value = '';
     }
@@ -941,20 +940,16 @@
         return;
       }
       
-      // Simulate social login process
-      showMessage(`Successfully logged in with ${currentProvider}`, 'success');
       
-      // Store user data in localStorage
+      showMessage(`Successfully logged in with ${currentProvider}`, 'success');
       localStorage.setItem('userEmail', email);
       localStorage.setItem('userPassword', password);
       localStorage.setItem('userName', email.split('@')[0]);
       localStorage.setItem('userBranch', 'Computer Science');
       localStorage.setItem('socialLogin', currentProvider);
-      
-      // Close modal and redirect after a delay
       setTimeout(() => {
         closeSocialModal();
-        window.location.href = "academic.html";
+        window.location.href = "after10th.html";
       }, 1500);
     }
 
@@ -963,8 +958,6 @@
       messageDiv.classList.add(type === 'success' ? 'success-message' : 'error-message');
       messageDiv.textContent = message;
       document.body.appendChild(messageDiv);
-      
-      // Remove message after animation completes
       setTimeout(() => {
         if (messageDiv.parentNode) {
           document.body.removeChild(messageDiv);
@@ -972,7 +965,6 @@
       }, 3000);
     }
 
-    // Register
     registerForm.addEventListener('submit', (e) => {
       e.preventDefault();
       const name = document.getElementById('name').value;
@@ -990,8 +982,6 @@
         showLogin();
       }, 1500);
     });
-
-    // Login
     loginForm.addEventListener('submit', (e) => {
       e.preventDefault();
       const email = document.getElementById('loginEmail').value;
@@ -1003,7 +993,7 @@
       if (email === savedEmail && password === savedPassword) {
         showMessage('Login successful! Redirecting...', 'success');
         setTimeout(() => {
-          window.location.href = "academic.html";
+          window.location.href = "after10th.html";
         }, 1500);
       } else {
         showMessage('Invalid email or password.', 'error');
